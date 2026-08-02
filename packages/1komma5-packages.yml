@@ -1,0 +1,62 @@
+generated: '2026-08-02'
+method: searched
+source: npm registry search, PyPI, crates.io, docs and GitHub search
+note: >-
+  1KOMMA5° ships NO first-party client libraries. npm returns zero packages for "1komma5"
+  and "komma5"; PyPI has no 1KOMMA5°-published package. Everything below is
+  community-built against the undocumented Heartbeat API and is marked official: false.
+  Because there is no official SDK, no `SDKs` pointer is emitted for this provider.
+official_packages: []
+packages:
+- language: python
+  registry: pypi
+  name: onekommafive
+  version_observed: 0.1.42
+  url: https://pypi.org/project/onekommafive/
+  install: pip install onekommafive
+  official: false
+  maintainer: mrebbert (community)
+  repository: https://github.com/mrebbert/1komma5-api
+  changelog: https://github.com/mrebbert/1komma5-api/releases
+  requires_python: '>=3.11'
+  description: Python API client and CLI for the 1KOMMA5° Heartbeat API — live power
+    snapshots, energy summaries, EV charger control, market electricity prices and
+    Heartbeat AI optimisation decisions. Uses OAuth 2.0 authorization code + PKCE against
+    auth.1komma5grad.com, matching the mobile-app flow.
+  caveat: 'Author''s own warning: "The API is undocumented and was reverse-engineered from
+    the mobile app. It may change without notice."'
+integrations:
+- name: 1komma5-ha
+  kind: Home Assistant custom integration (HACS)
+  url: https://github.com/mrebbert/1komma5-ha
+  official: false
+  description: Home Assistant integration for the Heartbeat platform — dynamic electricity
+    prices, PV, battery, heat pump, EV wallbox and weather forecast; compatible with the
+    HA Energy Dashboard.
+- name: hacs_1komma5grad
+  kind: Home Assistant custom integration (HACS)
+  url: https://github.com/BirknerAlex/hacs_1komma5grad
+  official: false
+  description: Community Home Assistant integration for the 1KOMMA5° Heartbeat API.
+- name: 1komma5grad_ha
+  kind: Home Assistant recipe
+  url: https://github.com/derlangemarkus/1komma5grad_ha
+  official: false
+  description: Instructions for integrating 1komma5grad Heartbeat into Home Assistant.
+registries_probed:
+- {registry: npm, query: '1komma5', results: 0}
+- {registry: npm, query: komma5, results: 0}
+- {registry: pypi, name: onekommafive, status: 200}
+- {registry: pypi, name: 1komma5-api, status: 404}
+- {registry: pypi, name: onecommafive, status: 404}
+- {registry: pypi, name: komma5, status: 404}
+- {registry: crates.io, query: '1komma5', status: rate-limited}
+- {registry: github, org: 'https://github.com/1komma5', status: 200, public_repos: 0}
+x-evidence:
+  fetched: '2026-08-02'
+  urls:
+  - url: https://registry.npmjs.org/-/v1/search?text=1komma5
+    http_status: 200
+    result: 0 packages
+  - url: https://pypi.org/pypi/onekommafive/json
+    http_status: 200

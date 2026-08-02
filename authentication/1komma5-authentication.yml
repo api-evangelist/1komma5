@@ -1,0 +1,112 @@
+generated: '2026-08-02'
+method: searched
+source: https://auth.1komma5grad.com/.well-known/openid-configuration
+docs: null
+note: >-
+  1KOMMA5° publishes no developer authentication documentation. This profile was built
+  from two real, anonymously-fetchable sources: the Auth0 OIDC discovery document at
+  auth.1komma5grad.com, and the live Offer Tool OpenAPI. Note the Offer Tool spec is
+  DEFECTIVE for auth — `components.securitySchemes` is absent (null) even though two
+  operations carry `security: [{bearer: []}]` and declare a required `authorization`
+  header parameter. The scheme named `bearer` is therefore referenced but never defined.
+summary:
+  types:
+  - openIdConnect
+  - oauth2
+  - http
+  api_key_in: []
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+  - implicit
+  - password
+  - deviceCode
+  - refreshToken
+  - tokenExchange
+  - jwtBearer
+  pkce: true
+  mfa: true
+  dpop: true
+schemes:
+- name: auth0-oidc
+  type: openIdConnect
+  openIdConnectUrl: https://auth.1komma5grad.com/.well-known/openid-configuration
+  issuer: https://auth.1komma5grad.com/
+  provider: Auth0
+  endpoints:
+    authorization: https://auth.1komma5grad.com/authorize
+    token: https://auth.1komma5grad.com/oauth/token
+    userinfo: https://auth.1komma5grad.com/userinfo
+    jwks: https://auth.1komma5grad.com/.well-known/jwks.json
+    revocation: https://auth.1komma5grad.com/oauth/revoke
+    registration: https://auth.1komma5grad.com/oidc/register
+    device_authorization: https://auth.1komma5grad.com/oauth/device/code
+    backchannel_authentication: https://auth.1komma5grad.com/bc-authorize
+    mfa_challenge: https://auth.1komma5grad.com/mfa/challenge
+    global_token_revocation: https://auth.1komma5grad.com/oauth/global-token-revocation/connection/{connectionName}
+  id_token_signing_alg_values_supported:
+  - HS256
+  - RS256
+  - PS256
+  token_endpoint_auth_methods_supported:
+  - client_secret_basic
+  - client_secret_post
+  - private_key_jwt
+  - none
+  code_challenge_methods_supported:
+  - S256
+  - plain
+  response_modes_supported:
+  - query
+  - fragment
+  - form_post
+  dpop_signing_alg_values_supported:
+  - ES256
+  backchannel_logout_supported: true
+  dynamic_client_registration: true
+  sources:
+  - well-known/1komma5-openid-configuration.json
+- name: bearer
+  type: http
+  scheme: bearer
+  status: referenced-but-undefined
+  applied_to:
+  - SendOfferController_sendOffer_v1
+  - RefreshConfigEnergySiteInfoController_refresh_v1
+  note: >-
+    Declared in operation-level `security` and backed by a required `authorization`
+    header parameter, but there is no matching entry under components.securitySchemes
+    in the published spec. Recorded as observed, not invented.
+  sources:
+  - openapi/1komma5-offer-tool-openapi-original.json
+- name: heartbeat-oauth2-pkce
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    pkce: S256
+    authorizationUrl: https://auth.1komma5grad.com/authorize
+    tokenUrl: https://auth.1komma5grad.com/oauth/token
+  applies_to: https://heartbeat.1komma5grad.com
+  status: undocumented
+  note: >-
+    The Heartbeat customer API is gated by the same Auth0 tenant. 1KOMMA5° documents
+    no client credentials or developer onboarding path for it; the mobile-app flow
+    (authorization code + PKCE) is what community clients replicate.
+  sources:
+  - well-known/1komma5-openid-configuration.json
+gaps:
+- Offer Tool OpenAPI declares no components.securitySchemes — the `bearer` scheme it
+  references is undefined, so tooling cannot resolve auth from the spec.
+- No public developer registration, API key issuance, or partner onboarding page found
+  for either API.
+- No documented scope model for the Offer Tool API; authorization appears to be
+  role/tenant based (Admin - Roles, Tenants, branches) rather than scope based.
+x-evidence:
+  fetched: '2026-08-02'
+  urls:
+  - url: https://auth.1komma5grad.com/.well-known/openid-configuration
+    http_status: 200
+    content_type: application/json
+  - url: https://api.offer.1komma5grad.com/swagger-json
+    http_status: 200
+    content_type: application/json

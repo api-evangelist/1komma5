@@ -1,0 +1,118 @@
+generated: '2026-08-02'
+method: derived
+source: openapi/1komma5-offer-tool-openapi-original.json + well-known/1komma5-openid-configuration.json
+  + live probes
+note: >-
+  1KOMMA5° publishes no compliance or certification page (trust.1komma5.com,
+  security.1komma5.com and /trust, /compliance were probed and are absent), so no
+  `Compliance` or `TrustCenter` pointer is emitted. The standards below are asserted only
+  where a fetched artifact evidences them.
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: 'Offer Tool API serves openapi: 3.0.0 with 60 paths / 73 operations at
+    https://api.offer.1komma5grad.com/swagger-json'
+- id: oauth2
+  conforms: true
+  evidence: Auth0 authorization server metadata advertises authorization_code,
+    client_credentials, refresh_token, device_code, token-exchange and jwt-bearer grants
+- id: oauth2-pkce-rfc7636
+  conforms: true
+  evidence: code_challenge_methods_supported = [S256, plain]
+- id: oidc-discovery
+  conforms: true
+  evidence: https://auth.1komma5grad.com/.well-known/openid-configuration returns 200
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: https://auth.1komma5grad.com/.well-known/oauth-authorization-server returns 200
+- id: rfc7591-dynamic-client-registration
+  conforms: true
+  evidence: registration_endpoint = https://auth.1komma5grad.com/oidc/register
+- id: rfc7009-token-revocation
+  conforms: true
+  evidence: revocation_endpoint = https://auth.1komma5grad.com/oauth/revoke
+- id: rfc8628-device-authorization-grant
+  conforms: true
+  evidence: device_authorization_endpoint present; urn:ietf:params:oauth:grant-type:device_code
+    in grant_types_supported
+- id: rfc8693-token-exchange
+  conforms: true
+  evidence: urn:ietf:params:oauth:grant-type:token-exchange in grant_types_supported
+- id: rfc9449-dpop
+  conforms: true
+  evidence: dpop_signing_alg_values_supported = [ES256]
+- id: oidc-backchannel-logout
+  conforms: true
+  evidence: backchannel_logout_supported = true
+- id: ciba-client-initiated-backchannel-auth
+  conforms: true
+  evidence: backchannel_authentication_endpoint present; delivery mode poll
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: https://1komma5.com/.well-known/security.txt returns 200 with Contact,
+    Expires, Encryption and Preferred-Languages fields
+- id: rfc6797-hsts
+  conforms: partial
+  evidence: 1komma5.com, heartbeat.1komma5grad.com and auth.1komma5grad.com send HSTS;
+    api.offer.1komma5grad.com does not
+- id: dnssec
+  conforms: true
+  evidence: DNSSEC enabled on both 1komma5.com and 1komma5grad.com
+- id: rfc7208-spf
+  conforms: true
+  evidence: SPF records present on 1komma5.com and 1komma5grad.com
+- id: rfc7489-dmarc
+  conforms: true
+  evidence: DMARC present on both domains, policy=quarantine
+- id: rfc8659-caa
+  conforms: false
+  evidence: no CAA records on 1komma5.com or 1komma5grad.com
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: no application/problem+json anywhere in the spec; both APIs return
+    proprietary JSON error envelopes (see errors/1komma5-problem-types.yml)
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: no Sunset/Deprecation header observed; no deprecation policy published
+- id: json-api
+  conforms: false
+  evidence: plain application/json resource responses, no JSON:API document structure
+- id: odata
+  conforms: false
+- id: scim2
+  conforms: false
+  evidence: user/admin management is proprietary (/api/v1/admin/users), not /scim/v2
+- id: fhir-r4
+  conforms: false
+- id: fapi
+  conforms: false
+- id: psd2
+  conforms: false
+- id: openadr
+  conforms: unknown
+  evidence: >-
+    1KOMMA5° operates a residential virtual power plant, which is the domain OpenADR 3.0
+    and EEBus/SunSpec address, but it publishes nothing about grid-interface protocol
+    conformance. Not assertable either way from public artifacts.
+- id: asyncapi
+  conforms: false
+  evidence: no event or webhook surface is published for either API
+regulatory_context:
+  note: >-
+    Derived from the company's stated markets, not from a published compliance claim.
+    As a German-headquartered residential energy retailer and VPP operator selling in
+    DE/NL/SE/FI/DK/BE/AU, 1KOMMA5° sits under GDPR, the EU Electricity Market Directive
+    (2019/944) and national metering/grid codes, and — as an operator of connected home
+    energy hardware — the EU Cyber Resilience Act as it phases in. None of this is
+    evidenced by a published certification, so it is recorded as context only.
+compliance_published: false
+certifications: []
+x-evidence:
+  fetched: '2026-08-02'
+  urls:
+  - url: https://api.offer.1komma5grad.com/swagger-json
+    http_status: 200
+  - url: https://auth.1komma5grad.com/.well-known/openid-configuration
+    http_status: 200
+  - url: https://1komma5.com/.well-known/security.txt
+    http_status: 200

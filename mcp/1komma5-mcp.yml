@@ -1,0 +1,467 @@
+generated: '2026-08-02'
+method: derived
+status: candidate
+source: openapi/1komma5-offer-tool-openapi-original.json
+note: '1KOMMA5° publishes NO MCP server. Searched the docs, npm (@modelcontextprotocol and ''1komma5''/''komma5''
+  — zero packages), GitHub and the public MCP registries; nothing exists, and no /mcp or /sse endpoint
+  answered on any 1KOMMA5° host. The tools below are a CANDIDATE surface derived one-per-operation from
+  the live Offer Tool OpenAPI — what an MCP server for this API could expose, with each tool''s real input
+  schema inherited from the referenced operation''s parameters and requestBody. This is a design artifact,
+  not a provider claim: no MCPServer pointer is wired into apis.yml, and none should be until 1KOMMA5°
+  actually ships one.'
+server:
+  published: false
+  url: null
+  transport: null
+probes:
+- url: https://api.offer.1komma5grad.com/mcp
+  http_status: 404
+- url: https://heartbeat.1komma5grad.com/mcp
+  http_status: 404
+- registry: npm
+  query: 1komma5
+  results: 0
+coverage:
+  operations_total: 73
+  tools_candidate: 73
+  categories: 29
+tools:
+- name: index_index
+  description: GET /
+  category: index
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#IndexController_index
+  method: GET
+  path: /
+- name: health_get_health_status
+  description: GET /_health
+  category: Health
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#HealthController_getHealthStatus
+  method: GET
+  path: /_health
+- name: create_customer_site_handle
+  description: POST /api/v1/customers/{customerId}/sites
+  category: site
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#CreateCustomerSiteController_handle_v1
+  method: POST
+  path: /api/v1/customers/{customerId}/sites
+- name: tenant_get_tenants
+  description: GET /api/v1/tenant
+  category: Tenants
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#TenantController_getTenants_v1
+  method: GET
+  path: /api/v1/tenant
+- name: tenant_switch_active_tenant
+  description: POST /api/v1/tenant/switch
+  category: Tenants
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#TenantController_switchActiveTenant_v1
+  method: POST
+  path: /api/v1/tenant/switch
+- name: auth0_user_user_exists_by_email
+  description: POST /api/v1/auth0/user/exists
+  category: Users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#Auth0UserController_userExistsByEmail_v1
+  method: POST
+  path: /api/v1/auth0/user/exists
+- name: update_user_handle
+  description: PUT /api/v1/users/me
+  category: Users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#UpdateUserController_handle_v1
+  method: PUT
+  path: /api/v1/users/me
+- name: get_user_profile_handle
+  description: GET /api/v1/users/me
+  category: Users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetUserProfileController_handle_v1
+  method: GET
+  path: /api/v1/users/me
+- name: get_all_users_get_users
+  description: Get all users
+  category: Users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAllUsersController_getUsers_v1
+  method: GET
+  path: /api/v1/users
+- name: user_profile_photo_handle
+  description: POST /api/v1/users/me/profile-picture
+  category: users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#UserProfilePhotoController_handle_v1
+  method: POST
+  path: /api/v1/users/me/profile-picture
+- name: user_profile_photo_delete
+  description: DELETE /api/v1/users/me/profile-picture
+  category: users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#UserProfilePhotoController_delete_v1
+  method: DELETE
+  path: /api/v1/users/me/profile-picture
+- name: get_sales_users_get_sales_users
+  description: Get all sales users
+  category: Sales Users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetSalesUsersController_getSalesUsers_v1
+  method: GET
+  path: /api/v1/users/sales-persons
+- name: get_all_payment_options_handle
+  description: GET /api/v1/payment-options
+  category: payment-options
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAllPaymentOptionsController_handle_v1
+  method: GET
+  path: /api/v1/payment-options
+- name: update_customer_handle
+  description: Update a customer
+  category: Customers
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#UpdateCustomerController_handle_v1
+  method: PUT
+  path: /api/v1/customers/{id}
+- name: get_customer_get
+  description: Get customer
+  category: Customers
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetCustomerController_get_v1
+  method: GET
+  path: /api/v1/customers/{id}
+- name: delete_customer_handle
+  description: Delete a customer
+  category: Customers
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#DeleteCustomerController_handle_v1
+  method: DELETE
+  path: /api/v1/customers/{id}
+- name: get_all_customers_handle
+  description: Get all customers
+  category: Customers
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAllCustomersController_handle_v1
+  method: GET
+  path: /api/v1/customers
+- name: create_customer_handle
+  description: Create a customer
+  category: Customers
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#CreateCustomerController_handle_v1
+  method: POST
+  path: /api/v1/customers
+- name: get_customer_details_handle
+  description: Get customer details
+  category: customers
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetCustomerDetailsController_handle_v1
+  method: GET
+  path: /api/v1/customers/{id}/details
+- name: get_countries_get_countries
+  description: Get all countries
+  category: Admin - Countries
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetCountriesController_getCountries_v1
+  method: GET
+  path: /api/v1/admin/countries
+- name: product_get_all_handle
+  description: List all products
+  category: Products
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ProductGetAllController_handle_v1
+  method: GET
+  path: /api/v1/product
+- name: get_product_get
+  description: Get product
+  category: Products
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetProductController_get_v1
+  method: GET
+  path: /api/v1/product/{id}
+- name: get_concepts_get_all
+  description: Get public energy concepts/templates
+  category: Concepts
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetConceptsController_getAll_v1
+  method: GET
+  path: /api/v1/concepts-public
+- name: effective_price_check_simulation_data_de
+  description: Check simulation data for DE requests
+  category: EffectivePrice
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#EffectivePriceController_checkSimulationDataDe_v1
+  method: POST
+  path: /api/v1/effective-price/de/check-simulation-data
+- name: effective_price_get_effective_price_de
+  description: Calculate effective price for DE requests
+  category: EffectivePrice
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#EffectivePriceController_getEffectivePriceDe_v1
+  method: POST
+  path: /api/v1/effective-price/de
+- name: reject_offer_handle
+  description: Reject an offer, this endpoint will be called by the CRM whenever an quote is rejected
+    on their side
+  category: CRM
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#RejectOfferController_handle_v1
+  method: PATCH
+  path: /api/v1/crm/reject-offer/{crmOfferId}
+- name: get_deal_get_deal
+  description: Get deal by ID (testing endpoint)
+  category: CRM
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetDealController_getDeal_v1
+  method: GET
+  path: /api/v1/crm/deals/{dealId}
+- name: get_config_get
+  description: Get config by ID
+  category: Configs
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetConfigController_get_v1
+  method: GET
+  path: /api/v1/configs/{id}
+- name: send_offer_send_offer
+  description: Send offer to GetAccept for a configuration
+  category: Configs
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#SendOfferController_sendOffer_v1
+  method: POST
+  path: /api/v1/configs/{id}/send-offer
+- name: pdf_generate_pdf
+  description: Generate PDF for a configuration
+  category: PDF
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#PdfController_generatePdf_v1
+  method: POST
+  path: /api/v1/configs/{configId}/pdf
+- name: get_audit_logs_get_audit_logs
+  description: Get paginated audit logs with filtering and sorting
+  category: Admin - Audit Logs
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAuditLogsController_getAuditLogs_v1
+  method: GET
+  path: /api/v1/admin/audit-logs
+- name: get_admin_users_get_admin_users
+  description: Get paginated team users with filtering and sorting
+  category: Admin - Users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAdminUsersController_getAdminUsers_v1
+  method: GET
+  path: /api/v1/admin/users
+- name: create_admin_user_create_admin_user
+  description: Create a new team user
+  category: Admin - Users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#CreateAdminUserController_createAdminUser_v1
+  method: POST
+  path: /api/v1/admin/users
+- name: get_current_admin_user_get_current_admin_user
+  description: Get current admin user access level info
+  category: Admin - Users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetCurrentAdminUserController_getCurrentAdminUser_v1
+  method: GET
+  path: /api/v1/admin/users/me
+- name: get_my_branches_get_my_branches
+  description: Get branches accessible to the current user
+  category: Admin - Users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetMyBranchesController_getMyBranches_v1
+  method: GET
+  path: /api/v1/admin/users/me/branches
+- name: get_assignable_branches_get_assignable_branches
+  description: Get branches assignable to users for a given country
+  category: Admin - Users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAssignableBranchesController_getAssignableBranches_v1
+  method: GET
+  path: /api/v1/admin/users/assignable-branches
+- name: get_admin_user_get_admin_user
+  description: Get a single team user by ID
+  category: Admin - Users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAdminUserController_getAdminUser_v1
+  method: GET
+  path: /api/v1/admin/users/{id}
+- name: update_admin_user_update_admin_user
+  description: Update a team user
+  category: Admin - Users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#UpdateAdminUserController_updateAdminUser_v1
+  method: PATCH
+  path: /api/v1/admin/users/{id}
+- name: resend_invitation_resend_invitation
+  description: Resend invitation email to a user
+  category: Admin - Users
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ResendInvitationController_resendInvitation_v1
+  method: POST
+  path: /api/v1/admin/users/{id}/resend-invitation
+- name: get_admin_branches_get_admin_branches
+  description: Get paginated branches with filtering and sorting
+  category: Admin - Branches
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAdminBranchesController_getAdminBranches_v1
+  method: GET
+  path: /api/v1/admin/branches
+- name: create_admin_branch_create_admin_branch
+  description: Create a new branch
+  category: Admin - Branches
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#CreateAdminBranchController_createAdminBranch_v1
+  method: POST
+  path: /api/v1/admin/branches
+- name: get_admin_branch_get_admin_branch
+  description: Get a branch by ID
+  category: Admin - Branches
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAdminBranchController_getAdminBranch_v1
+  method: GET
+  path: /api/v1/admin/branches/{id}
+- name: update_admin_branch_update_admin_branch
+  description: Update a branch
+  category: Admin - Branches
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#UpdateAdminBranchController_updateAdminBranch_v1
+  method: PATCH
+  path: /api/v1/admin/branches/{id}
+- name: get_admin_concepts_get_admin_concepts
+  description: Get paginated concepts with filtering and sorting
+  category: Admin - Concepts
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAdminConceptsController_getAdminConcepts_v1
+  method: GET
+  path: /api/v1/admin/concepts
+- name: create_admin_concept_create_admin_concept
+  description: Create a new concept
+  category: Admin - Concepts
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#CreateAdminConceptController_createAdminConcept_v1
+  method: POST
+  path: /api/v1/admin/concepts
+- name: get_admin_concept_get_admin_concept
+  description: Get a concept by ID
+  category: Admin - Concepts
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAdminConceptController_getAdminConcept_v1
+  method: GET
+  path: /api/v1/admin/concepts/{id}
+- name: update_admin_concept_update_admin_concept
+  description: Update a concept
+  category: Admin - Concepts
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#UpdateAdminConceptController_updateAdminConcept_v1
+  method: PATCH
+  path: /api/v1/admin/concepts/{id}
+- name: get_admin_products_get_admin_products
+  description: Get paginated global products list with filtering and sorting
+  category: Admin - Products
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAdminProductsController_getAdminProducts_v1
+  method: GET
+  path: /api/v1/admin/products
+- name: create_admin_product_create_admin_product
+  description: Create a new product
+  category: Admin - Products
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#CreateAdminProductController_createAdminProduct_v1
+  method: POST
+  path: /api/v1/admin/products
+- name: get_admin_product_get_product
+  description: Get a single product by ID
+  category: Admin - Products
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAdminProductController_getProduct_v1
+  method: GET
+  path: /api/v1/admin/products/{id}
+- name: update_admin_product_update_admin_product
+  description: Update a product
+  category: Admin - Products
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#UpdateAdminProductController_updateAdminProduct_v1
+  method: PATCH
+  path: /api/v1/admin/products/{id}
+- name: get_admin_pricebook_get_admin_pricebook
+  description: Get paginated pricebook products for a specific branch
+  category: Admin - Products
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAdminPricebookController_getAdminPricebook_v1
+  method: GET
+  path: /api/v1/admin/pricebook
+- name: get_admin_categories_get_categories
+  description: List all product categories
+  category: Admin - Products
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAdminCategoriesController_getCategories_v1
+  method: GET
+  path: /api/v1/admin/categories
+- name: get_admin_categories_get_brands
+  description: List all product brands
+  category: Admin - Products
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAdminCategoriesController_getBrands_v1
+  method: GET
+  path: /api/v1/admin/brands
+- name: get_assignable_roles_get_assignable_roles
+  description: Get list of roles the current user can assign
+  category: Admin - Roles
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#GetAssignableRolesController_getAssignableRoles_v1
+  method: GET
+  path: /api/v1/admin/roles
+- name: backfill_config_hashes_backfill_config_hashes
+  description: Backfill missing rows in config_hash_lookup
+  category: Admin - Maintenance
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#BackfillConfigHashesController_backfillConfigHashes_v1
+  method: POST
+  path: /api/v1/admin/maintenance/backfill-config-hashes
+- name: megasearch_search
+  description: Search across multiple entities (users, branches) based on user permissions
+  category: Admin - Megasearch
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#MegasearchController_search_v1
+  method: GET
+  path: /api/v1/admin/megasearch
+- name: config_migration_orchestrator_migrate_all
+  description: Run all migration steps for a configuration
+  category: migration-frozen-state
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ConfigMigrationOrchestratorController_migrateAll
+  method: POST
+  path: /api/migration-frozen-state/configs/{configId}/migrate-all
+- name: config_products_migration_migrate_config_products
+  description: Migrate config products from frozen_state
+  category: Migrations
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ConfigProductsMigrationController_migrateConfigProducts_v1
+  method: POST
+  path: /api/v1/migration-frozen-state/configs/{configId}/config-products
+- name: config_documents_migration_migrate_config_documents
+  description: Migrate config documents from frozen_state
+  category: Migrations
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ConfigDocumentsMigrationController_migrateConfigDocuments_v1
+  method: POST
+  path: /api/v1/migration-frozen-state/configs/{configId}/config-documents
+- name: config_table_migration_migrate_config_table
+  description: Migrate config table columns from frozen_state
+  category: Migrations
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ConfigTableMigrationController_migrateConfigTable_v1
+  method: POST
+  path: /api/v1/migration-frozen-state/configs/{configId}/config-table
+- name: config_customer_migration_migrate_config_customer
+  description: Migrate config_customer table from frozen_state
+  category: Migrations
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ConfigCustomerMigrationController_migrateConfigCustomer_v1
+  method: POST
+  path: /api/v1/migration-frozen-state/configs/{configId}/config-customer
+- name: config_consumption_migration_migrate_config_consumption
+  description: Migrate config_consumption table from effective_price_data
+  category: Migrations
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ConfigConsumptionMigrationController_migrateConfigConsumption_v1
+  method: POST
+  path: /api/v1/migration-frozen-state/configs/{configId}/config-consumption-table
+- name: config_margins_migration_migrate_config_margins
+  description: Migrate config margins from frozen_state
+  category: Migrations
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ConfigMarginsMigrationController_migrateConfigMargins_v1
+  method: POST
+  path: /api/v1/migration-frozen-state/configs/{configId}/config-margins
+- name: config_calculation_legacy_migration_migrate_config_calculation_legacy
+  description: Migrate config_calculation_legacy table from frozen_state
+  category: Migrations
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ConfigCalculationLegacyMigrationController_migrateConfigCalculationLegacy_v1
+  method: POST
+  path: /api/v1/migration-frozen-state/configs/{configId}/config-calculation-legacy-table
+- name: config_calculation_migration_migrate_config_calculation
+  description: Migrate config_calculation table from various sources
+  category: Migrations
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ConfigCalculationMigrationController_migrateConfigCalculation_v1
+  method: POST
+  path: /api/v1/migration-frozen-state/configs/{configId}/config-calculation-table
+- name: config_metrics_migration_migrate_config_metrics
+  description: Migrate config_metrics table from frozen_state and effective_price_data
+  category: Migrations
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ConfigMetricsMigrationController_migrateConfigMetrics_v1
+  method: POST
+  path: /api/v1/migration-frozen-state/configs/{configId}/config-metrics
+- name: config_self_sufficiency_migration_migrate_config_self_sufficiency
+  description: Migrate config_self_sufficiency table from frozen_state
+  category: Migrations
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ConfigSelfSufficiencyMigrationController_migrateConfigSelfSufficiency_v1
+  method: POST
+  path: /api/v1/migration-frozen-state/configs/{configId}/config-self-sufficiency
+- name: config_market_components_migration_migrate_config_market_components
+  description: Migrate config market components from frozen_state
+  category: Migrations
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ConfigMarketComponentsMigrationController_migrateConfigMarketComponents_v1
+  method: POST
+  path: /api/v1/migration-frozen-state/configs/{configId}/config-market-components
+- name: config_effective_prices_migration_migrate_config_effective_prices
+  description: Migrate config effective prices from frozen_state
+  category: Migrations
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#ConfigEffectivePricesMigrationController_migrateConfigEffectivePrices_v1
+  method: POST
+  path: /api/v1/migration-frozen-state/configs/{configId}/config-effective-prices
+- name: test_pubsub_publish_test_ping
+  description: Publish a test.ping event to the message bus for E2E PubSub verification
+  category: Test
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#TestPubsubController_publishTestPing_v1
+  method: POST
+  path: /api/v1/test/pubsub
+- name: refresh_config_energy_site_info_refresh
+  description: Refresh a config's energy site info (grid/metering fees) from ESI.
+  category: Configs
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#RefreshConfigEnergySiteInfoController_refresh_v1
+  method: POST
+  path: /api/v1/configs/{id}/lookup-energy-service-data
+- name: queue_site_energy_site_info_refresh_queue
+  description: Queue energy site info refresh for all configs on a site.
+  category: Sites
+  source_operation: openapi/1komma5-offer-tool-openapi-original.json#QueueSiteEnergySiteInfoRefreshController_queue_v1
+  method: POST
+  path: /api/v1/sites/{id}/lookup-energy-service-data

@@ -1,0 +1,116 @@
+generated: '2026-08-02'
+method: searched
+source: live probes of /.well-known/* on every 1KOMMA5° host in apis.yml
+notes: >-
+  1komma5grad.com is a Next.js single-page site whose catch-all answers HTTP 200 with
+  the HTML shell for every /.well-known/* path. Those 200s are NOT documents and are
+  recorded as html-catchall so a later round does not mistake them for hits. The only
+  real documents are the RFC 9116 security.txt on 1komma5.com and the Auth0 OIDC /
+  OAuth 2.0 authorization-server metadata on auth.1komma5grad.com.
+hosts:
+- host: https://1komma5.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/plain
+    file: 1komma5-security.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://auth.1komma5grad.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: application/json
+    file: 1komma5-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: 1komma5-oauth-authorization-server.json
+  - path: /.well-known/jwks.json
+    status: 200
+    keys: 2
+    note: not stored — key material rotates
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://api.offer.1komma5grad.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://heartbeat.1komma5grad.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://customer-identity.1komma5grad.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://1komma5grad.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    result: html-catchall
+    note: Next.js shell, not a document
+  - path: /.well-known/agent-card.json
+    status: 200
+    result: html-catchall
+    note: Next.js shell, not an AgentCard — rejected
+  - path: /.well-known/agent.json
+    status: 200
+    result: html-catchall
+    note: Next.js shell, not an AgentCard — rejected
+  - path: /llms.txt
+    status: 200
+    result: html-catchall
+x-evidence:
+  fetched: '2026-08-02'
+  hosts_probed: 6
+  paths_probed_per_host: 8
+  real_documents: 4

@@ -1,23 +1,142 @@
 aid: 1komma5
-name: 1Komma5
-description: '1Komma5 is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+name: 1KOMMA5°
+description: '1KOMMA5° (1Komma5 Grad) is a Hamburg, Germany headquartered smart-energy
+  company that sells, installs and operates integrated residential energy systems —
+  rooftop photovoltaics, battery storage, heat pumps and EV charging — and ties them
+  together with Heartbeat AI, its energy-management platform. Heartbeat aggregates
+  customer hardware into one of Europe''s largest residential virtual power plants,
+  optimising self-consumption and trading household flexibility against day-ahead and
+  intraday electricity markets. The company operates across Germany, Australia, the
+  Netherlands, Sweden, Finland, Denmark and Belgium. Its machine-readable surface is
+  small and mostly internal: a live OpenAPI 3.0 for the Offer Tool API used by its
+  sales and partner network, an Auth0-backed OIDC provider at auth.1komma5grad.com,
+  and the undocumented Heartbeat customer API that its mobile apps and community-built
+  Home Assistant integrations consume.'
+image: https://1komma5.com/icon.svg
 url: https://raw.githubusercontent.com/api-evangelist/1komma5/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-02'
 modified: '2026-08-02'
 tags:
 - Company
-apis: []
+- Energy
+- Solar
+- Renewable Energy
+- Smart Home
+- Electric Vehicles
+- Heat Pumps
+- Virtual Power Plant
+- Energy Management
+- Germany
+apis:
+- name: 1KOMMA5° Offer Tool API
+  description: 'The Offer Tool API backs 1KOMMA5°''s sales configuration and quoting
+    workflow — customers and sites, product and pricebook catalogues, concepts, effective-price
+    simulation for the German market, offer configurations, PDF offer generation, CRM
+    deal lookup, and tenant/branch/user administration with audit logging. It serves
+    a live OpenAPI 3.0.0 description at /swagger-json covering 60 paths, 73 operations
+    and 130 component schemas. Access is bearer-token gated (Auth0); the Swagger UI
+    at /swagger is behind HTTP Basic.'
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Offers
+  - Quoting
+  - CRM
+  - Pricing
+  - Solar
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-offer-tool-openapi-original.json
+  - type: Overlay
+    url: overlays/1komma5-offer-tool-overlay.yaml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- name: 1KOMMA5° Heartbeat API
+  description: 'The Heartbeat API is the customer-facing energy API behind the 1KOMMA5°
+    mobile apps and the Heartbeat AI platform — sites and systems, live power snapshots
+    for PV, battery, heat pump and EV charger, energy summaries, dynamic electricity
+    prices from the energy trader, self-sufficiency figures and Heartbeat AI optimisation
+    decisions. 1KOMMA5° publishes no developer documentation and no machine-readable
+    description for it; the host was probed live (an anonymous 200 on /api/v1/supported-versions)
+    and the surface is additionally documented by community-built Python clients and
+    Home Assistant integrations. Authentication is OAuth 2.0 authorization code + PKCE
+    against auth.1komma5grad.com.'
+  humanURL: https://help.1komma5.com.au/heartbeat/
+  baseURL: https://heartbeat.1komma5grad.com
+  tags:
+  - Energy
+  - Solar
+  - Battery
+  - EV Charging
+  - Heat Pumps
+  properties:
+  - type: HelpCenter
+    url: https://help.1komma5.com.au/heartbeat/
+  - type: x-evidence
+    url: https://heartbeat.1komma5grad.com/api/v1/supported-versions
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/1komma5-agentic-access.yml
+- type: DomainSecurity
+  url: security/1komma5-domain-security.yml
 - type: Website
+  url: https://1komma5.com/en/
+- type: SecondaryMarket
   url: https://www.hiive.com/securities/1komma5-stock
+- type: Support
+  url: https://1komma5.com/en/about-us/contact/
+- type: HelpCenter
+  url: https://help.1komma5.com.au/
+- type: Blog
+  url: https://1komma5.com/en/press/press-releases/
+- type: TermsOfService
+  url: https://1komma5.com/de/legal/agb/
+- type: PrivacyPolicy
+  url: https://1komma5.com/en/legal/privacy-policy/
+- type: Imprint
+  url: https://1komma5.com/en/legal/imprint/
+- type: Careers
+  url: https://1komma5.com/en/about-us/jobs/
+- type: Security
+  url: https://1komma5.com/.well-known/security.txt
+- type: SecurityTxt
+  url: well-known/1komma5-security.txt
+- type: WellKnown
+  url: well-known/1komma5-well-known.yml
+- type: OpenIDConnect
+  url: well-known/1komma5-openid-configuration.json
+- type: Authentication
+  url: authentication/1komma5-authentication.yml
+- type: OAuthScopes
+  url: scopes/1komma5-scopes.yml
+- type: Conventions
+  url: conventions/1komma5-conventions.yml
+- type: ErrorCatalog
+  url: errors/1komma5-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/1komma5-lifecycle.yml
+- type: Conformance
+  url: conformance/1komma5-conformance.yml
+- type: DataModel
+  url: data-model/1komma5-data-model.yml
+- type: LLMsTxt
+  url: llms/1komma5-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Packages
+  url: packages/1komma5-packages.yml
+- type: VulnerabilityDisclosure
+  url: security/1komma5-vulnerability-disclosure.yml
+x-enrichment:
+  date: '2026-08-02'
+  status: enriched
+  artifacts_added: 23
+  pass: local-v1

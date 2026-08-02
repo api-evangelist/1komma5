@@ -1,0 +1,149 @@
+generated: '2026-08-02'
+method: derived
+source: openapi/1komma5-offer-tool-openapi-original.json + live error-envelope probes
+format: proprietary-json
+note: >-
+  Neither 1KOMMA5° API uses RFC 9457 application/problem+json — no `type`/`title`/
+  `detail` members and no problem media type anywhere in the Offer Tool spec. Both
+  services return a proprietary JSON envelope, and the two envelopes DIFFER from each
+  other. The Offer Tool spec also names no error schema in components.schemas, so the
+  shapes below were captured from live anonymous probes and the status/description
+  pairs were derived from the spec's own response objects.
+envelopes:
+- api: 1KOMMA5° Offer Tool API
+  host: https://api.offer.1komma5grad.com
+  media_type: application/json
+  fields:
+  - name: message
+    type: string
+    description: Human-readable error message.
+  - name: path
+    type: string
+    description: Request path that produced the error.
+  - name: statusCode
+    type: integer
+    description: HTTP status code, repeated in the body.
+  - name: success
+    type: boolean
+    description: Always false on an error response.
+  example: '{"message":"Cannot GET /nope","path":"/nope","statusCode":404,"success":false}'
+  observed:
+    url: https://api.offer.1komma5grad.com/nope
+    http_status: 404
+- api: 1KOMMA5° Heartbeat API
+  host: https://heartbeat.1komma5grad.com
+  media_type: application/json
+  fields:
+  - name: error_code
+    type: integer
+    description: Proprietary numeric error code. Observed values encode the HTTP status
+      in the low three digits behind a 60 prefix (60404 for 404, 60401 for 401).
+  - name: correlation_id
+    type: string
+    format: uuid
+    description: Per-request correlation id — the only request-tracing identifier either
+      API surfaces. Quote it when contacting support.
+  - name: message
+    type: string
+    description: Human-readable error message.
+  examples:
+  - '{"error_code":60404,"correlation_id":"0afb1d51-...","message":"Cannot GET /nope"}'
+  - '{"error_code":60401,"correlation_id":"bed9ffc2-...","message":"Unauthorized"}'
+  observed:
+  - url: https://heartbeat.1komma5grad.com/nope
+    http_status: 404
+  - url: https://heartbeat.1komma5grad.com/api/v2/systems
+    http_status: 401
+problems:
+- status: 400
+  title: Bad request
+  occurrences: 14
+  source: openapi/1komma5-offer-tool-openapi-original.json
+  variants:
+  - Bad request
+  - Invalid configId (not an integer) or failed to parse data
+  - Invalid configId (not an integer) or failed to parse effective_price_data
+  - Invalid configId (not an integer) or failed to parse frozen_state
+  - Auth0 not configured or failed to send email
+  remediation: Validate path/query parameter types (configId must be an integer) and
+    the request body against the referenced DTO schema before retrying.
+  source_operations:
+  - openapi/1komma5-offer-tool-openapi-original.json#PdfController_generatePdf_v1
+  - openapi/1komma5-offer-tool-openapi-original.json#ResendInvitationController_resendInvitation_v1
+  - openapi/1komma5-offer-tool-openapi-original.json#ConfigProductsMigrationController_migrateConfigProducts_v1
+- status: 401
+  title: Unauthorized
+  occurrences: 1
+  source: openapi/1komma5-offer-tool-openapi-original.json
+  remediation: Present a valid Auth0 bearer token in the `authorization` header. Tokens
+    are issued at https://auth.1komma5grad.com/oauth/token.
+  source_operations:
+  - openapi/1komma5-offer-tool-openapi-original.json#PdfController_generatePdf_v1
+  note: Only one operation documents a 401 even though the whole API is token gated —
+    an under-documentation gap, not an absence of the failure mode.
+- status: 404
+  title: Resource not found
+  occurrences: 21
+  source: openapi/1komma5-offer-tool-openapi-original.json
+  variants:
+  - Branch not found
+  - Concept not found
+  - Config not found
+  - Product not found
+  - User not found
+  - Scenario not found or post-processed scenario missing
+  remediation: Confirm the identifier exists in the caller's active tenant; tenant
+    context is switched with TenantController_switchActiveTenant_v1.
+  source_operations:
+  - openapi/1komma5-offer-tool-openapi-original.json#GetAdminUserController_getAdminUser_v1
+  - openapi/1komma5-offer-tool-openapi-original.json#GetAdminBranchController_getAdminBranch_v1
+  - openapi/1komma5-offer-tool-openapi-original.json#EffectivePriceController_getEffectivePriceDe_v1
+- status: 409
+  title: Conflict — email already exists
+  occurrences: 2
+  source: openapi/1komma5-offer-tool-openapi-original.json
+  variants:
+  - Email already exists
+  remediation: An admin user with that email is already provisioned; update the existing
+    user with UpdateAdminUserController_updateAdminUser_v1 instead of creating a new one.
+  source_operations:
+  - openapi/1komma5-offer-tool-openapi-original.json#CreateAdminUserController_createAdminUser_v1
+  - openapi/1komma5-offer-tool-openapi-original.json#UpdateAdminUserController_updateAdminUser_v1
+- status: 500
+  title: Internal server error
+  occurrences: 12
+  source: openapi/1komma5-offer-tool-openapi-original.json
+  variants:
+  - Internal server error during migration
+  remediation: Retry; every 500 in the spec is on a frozen-state migration operation,
+    which is a background maintenance surface rather than a customer-facing one.
+  source_operations:
+  - openapi/1komma5-offer-tool-openapi-original.json#ConfigProductsMigrationController_migrateConfigProducts_v1
+  - openapi/1komma5-offer-tool-openapi-original.json#ConfigCalculationMigrationController_migrateConfigCalculation_v1
+- status: 503
+  title: PDF service unavailable
+  occurrences: 1
+  source: openapi/1komma5-offer-tool-openapi-original.json
+  remediation: The downstream PDF renderer is unavailable; retry the offer generation
+    with backoff.
+  source_operations:
+  - openapi/1komma5-offer-tool-openapi-original.json#PdfController_generatePdf_v1
+coverage:
+  operations_total: 73
+  operations_with_any_4xx_5xx: 30
+  operations_with_only_2xx: 43
+  distinct_error_statuses: 6
+gaps:
+- No error-code reference page is published for either API.
+- No machine-readable error schema in the Offer Tool spec — every 4xx/5xx response is
+  description-only with no `content`.
+- 43 of 73 operations document no failure response at all.
+x-evidence:
+  fetched: '2026-08-02'
+  urls:
+  - url: https://api.offer.1komma5grad.com/nope
+    http_status: 404
+  - url: https://heartbeat.1komma5grad.com/nope
+    http_status: 404
+  - url: https://heartbeat.1komma5grad.com/api/v2/systems
+    http_status: 401

@@ -1,0 +1,62 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the 1KOMMA5° Offer Tool API
+  version: 1.0.0
+extends: openapi/1komma5-offer-tool-openapi-original.json
+x-generated: '2026-08-02'
+x-method: generated
+x-source: openapi/1komma5-offer-tool-openapi-original.json
+x-note: >-
+  Captures API Evangelist enhancements over the harvested specification without mutating
+  it. The harvested spec has no servers[], no securitySchemes (despite two operations
+  referencing a `bearer` scheme), no license and no contact. These actions add what was
+  observed live; they do not invent behaviour.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-slug: 1komma5
+    x-apievangelist-harvested: '2026-08-02'
+    x-apievangelist-source: https://api.offer.1komma5grad.com/swagger-json
+    x-apievangelist-notes: >-
+      Description served anonymously at /swagger-json; the Swagger UI at /swagger is
+      behind HTTP Basic. The API itself is Auth0 bearer gated.
+- target: $
+  update:
+    servers:
+    - url: https://api.offer.1komma5grad.com
+      description: Production (observed live — the harvested spec declares no servers[])
+- target: $.components
+  update:
+    securitySchemes:
+      bearer:
+        type: http
+        scheme: bearer
+        bearerFormat: JWT
+        description: >-
+          Auth0-issued JWT bearer token from https://auth.1komma5grad.com/oauth/token.
+          The harvested spec references a scheme named `bearer` in operation-level
+          security but never defines it; this action supplies the definition observed
+          from the authorization server metadata.
+- target: $
+  update:
+    externalDocs:
+      description: 1KOMMA5° company site (no developer portal is published)
+      url: https://1komma5.com/en/
+- target: $.info
+  update:
+    x-apievangelist-gaps:
+    - no-servers-declared
+    - no-security-schemes-declared
+    - bearer-scheme-referenced-but-undefined
+    - no-license
+    - no-contact
+    - no-error-response-schemas
+    - 43-of-73-operations-document-no-4xx-or-5xx
+    - no-examples-in-spec
+    x-apievangelist-artifacts:
+      authentication: authentication/1komma5-authentication.yml
+      conventions: conventions/1komma5-conventions.yml
+      errors: errors/1komma5-problem-types.yml
+      lifecycle: lifecycle/1komma5-lifecycle.yml
+      data_model: data-model/1komma5-data-model.yml
+      conformance: conformance/1komma5-conformance.yml

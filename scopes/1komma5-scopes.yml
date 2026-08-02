@@ -1,0 +1,88 @@
+generated: '2026-08-02'
+method: probed
+source: https://auth.1komma5grad.com/.well-known/openid-configuration
+docs: null
+note: >-
+  1KOMMA5° declares no API scopes in any published OpenAPI (the Offer Tool spec has no
+  securitySchemes at all) and publishes no scopes/permissions reference page. The scopes
+  below are the ones its Auth0 authorization server advertises anonymously in OIDC
+  discovery — standard OIDC/Auth0 identity scopes, not product-resource scopes. No
+  1KOMMA5°-specific API scope (e.g. read:sites, write:systems) is publicly discoverable.
+schemes:
+- name: auth0-oidc
+  source: well-known/1komma5-openid-configuration.json
+  issuer: https://auth.1komma5grad.com/
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.1komma5grad.com/authorize
+    tokenUrl: https://auth.1komma5grad.com/oauth/token
+  - flow: clientCredentials
+    tokenUrl: https://auth.1komma5grad.com/oauth/token
+  - flow: deviceCode
+    deviceAuthorizationUrl: https://auth.1komma5grad.com/oauth/device/code
+    tokenUrl: https://auth.1komma5grad.com/oauth/token
+scopes:
+- scope: openid
+  description: Issue an OIDC ID token for the authenticated end user.
+  flows: [authorizationCode]
+  sources: [well-known/1komma5-openid-configuration.json]
+- scope: profile
+  description: Basic profile claims (name, given_name, family_name, nickname, picture).
+  flows: [authorizationCode]
+  sources: [well-known/1komma5-openid-configuration.json]
+- scope: offline_access
+  description: Issue a refresh token so the client can renew access without re-prompting.
+  flows: [authorizationCode]
+  sources: [well-known/1komma5-openid-configuration.json]
+- scope: name
+  description: The end user's full name claim.
+  flows: [authorizationCode]
+  sources: [well-known/1komma5-openid-configuration.json]
+- scope: given_name
+  description: The end user's given name claim.
+  flows: [authorizationCode]
+  sources: [well-known/1komma5-openid-configuration.json]
+- scope: family_name
+  description: The end user's family name claim.
+  flows: [authorizationCode]
+  sources: [well-known/1komma5-openid-configuration.json]
+- scope: nickname
+  description: The end user's nickname claim.
+  flows: [authorizationCode]
+  sources: [well-known/1komma5-openid-configuration.json]
+- scope: email
+  description: The end user's email address claim.
+  flows: [authorizationCode]
+  sources: [well-known/1komma5-openid-configuration.json]
+- scope: email_verified
+  description: Whether the end user's email address has been verified.
+  flows: [authorizationCode]
+  sources: [well-known/1komma5-openid-configuration.json]
+- scope: picture
+  description: The end user's profile picture URL claim.
+  flows: [authorizationCode]
+  sources: [well-known/1komma5-openid-configuration.json]
+- scope: created_at
+  description: Auth0 account creation timestamp claim.
+  flows: [authorizationCode]
+  sources: [well-known/1komma5-openid-configuration.json]
+- scope: identities
+  description: Auth0 linked-identity records for the end user.
+  flows: [authorizationCode]
+  sources: [well-known/1komma5-openid-configuration.json]
+- scope: phone
+  description: The end user's phone number claim.
+  flows: [authorizationCode]
+  sources: [well-known/1komma5-openid-configuration.json]
+- scope: address
+  description: The end user's address claim.
+  flows: [authorizationCode]
+  sources: [well-known/1komma5-openid-configuration.json]
+coverage:
+  scopes_total: 14
+  product_resource_scopes: 0
+  identity_scopes: 14
+x-evidence:
+  fetched: '2026-08-02'
+  url: https://auth.1komma5grad.com/.well-known/openid-configuration
+  http_status: 200

@@ -1,0 +1,98 @@
+generated: '2026-08-02'
+method: derived
+source: openapi/1komma5-offer-tool-openapi-original.json + live probes
+note: >-
+  1KOMMA5° publishes no API versioning policy, no deprecation policy, no SLA and no
+  status page. Everything below is derived from the live specification and from probing
+  the hosts. Absence is recorded as absence.
+versioning:
+  scheme: uri-path
+  apis:
+  - api: 1KOMMA5° Offer Tool API
+    current: v1
+    pattern: /api/v1/{resource}
+    operation_id_convention: '{Controller}_{handler}_v1 — the version is baked into the
+      operationId, so a v2 operation would get a distinct id rather than replacing v1'
+    unversioned_paths:
+    - /
+    - /_health
+    - /api/migration-frozen-state/configs/{configId}/migrate-all
+    docs: null
+  - api: 1KOMMA5° Heartbeat API
+    versions_in_use:
+    - v1
+    - v2
+    - v3
+    - v4
+    pattern: /api/v{n}/{resource}
+    version_discovery: https://heartbeat.1komma5grad.com/api/v1/supported-versions
+    version_discovery_status: 200 (anonymous)
+    note: >-
+      Multiple major versions are live simultaneously and are mixed within a single
+      client session (e.g. /api/v1/sites/ alongside /api/v2/systems and /api/v4/systems/),
+      which means version selection is per-resource, not per-client.
+    docs: null
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  deprecation_header: unknown
+  note: >-
+    No deprecation or sunset policy is published, and no RFC 8594 Sunset/Deprecation
+    header was observed on any anonymous probe. No `Deprecation` pointer is emitted.
+deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_note: >-
+  Probed status.1komma5.com, status.1komma5grad.com, 1komma5.statuspage.io,
+  1komma5grad.statuspage.io and 1komma5.instatus.com. The two DNS names do not resolve;
+  the three vendor subdomains return the vendor's own marketing page, not a 1KOMMA5°
+  status page. No status page exists — no `StatusPage` pointer is emitted.
+health_endpoints:
+- url: https://api.offer.1komma5grad.com/_health
+  operation_id: HealthController_getHealthStatus
+  api: 1KOMMA5° Offer Tool API
+- url: https://api.offer.1komma5grad.com/
+  operation_id: IndexController_index
+  note: 'liveness — returns the plain-text string: Offer Tool API is up and running'
+changelog:
+  url: null
+  note: >-
+    No dated API changelog is published for either API. Product-level announcements go
+    out through the press-release feed at https://1komma5.com/en/press/press-releases/
+    and through app-store release notes; neither is an API changelog, so no `ChangeLog`
+    pointer is emitted.
+maintenance_surface:
+  note: >-
+    12 of 73 Offer Tool operations are one-shot "frozen state" data-migration jobs under
+    /api/v1/migration-frozen-state/ plus an unversioned orchestrator. These are
+    transitional lifecycle machinery exposed on the public description and are the
+    likeliest operations to disappear without notice.
+  operations:
+  - ConfigMigrationOrchestratorController_migrateAll
+  - ConfigProductsMigrationController_migrateConfigProducts_v1
+  - ConfigDocumentsMigrationController_migrateConfigDocuments_v1
+  - ConfigTableMigrationController_migrateConfigTable_v1
+  - ConfigCustomerMigrationController_migrateConfigCustomer_v1
+  - ConfigConsumptionMigrationController_migrateConfigConsumption_v1
+  - ConfigMarginsMigrationController_migrateConfigMargins_v1
+  - ConfigCalculationLegacyMigrationController_migrateConfigCalculationLegacy_v1
+  - ConfigCalculationMigrationController_migrateConfigCalculation_v1
+  - ConfigMetricsMigrationController_migrateConfigMetrics_v1
+  - ConfigSelfSufficiencyMigrationController_migrateConfigSelfSufficiency_v1
+  - ConfigMarketComponentsMigrationController_migrateConfigMarketComponents_v1
+  - ConfigEffectivePricesMigrationController_migrateConfigEffectivePrices_v1
+x-evidence:
+  fetched: '2026-08-02'
+  urls:
+  - url: https://api.offer.1komma5grad.com/
+    http_status: 200
+  - url: https://heartbeat.1komma5grad.com/api/v1/supported-versions
+    http_status: 200
+  - url: https://status.1komma5.com
+    http_status: 0
+    note: DNS does not resolve
+  - url: https://status.1komma5grad.com
+    http_status: 0
+    note: DNS does not resolve

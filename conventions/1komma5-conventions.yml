@@ -1,0 +1,152 @@
+generated: '2026-08-02'
+method: derived
+source: openapi/1komma5-offer-tool-openapi-original.json + live probes of both API hosts
+note: >-
+  1KOMMA5° publishes no API conventions/design guide. Everything below is derived from
+  the live Offer Tool OpenAPI and from response headers observed on the Offer Tool and
+  Heartbeat hosts. Where a convention is absent it is recorded as absent — that is real
+  data, not a gap to fill.
+authentication:
+  style: OAuth 2.0 / OIDC bearer token (Auth0)
+  header: authorization
+  issuer: https://auth.1komma5grad.com/
+  detail: authentication/1komma5-authentication.yml
+  notes:
+  - The Offer Tool spec declares the `authorization` header as an explicit operation
+    parameter on two operations rather than via components.securitySchemes.
+  - The Swagger UI at /swagger is additionally protected by HTTP Basic (it answers 401
+    with a WWW-Authenticate Basic challenge), while the raw description at /swagger-json
+    is anonymous.
+idempotency:
+  supported: false
+  idempotency_key_header: null
+  note: >-
+    No Idempotency-Key header, parameter, or documented retry-safety contract exists on
+    either API. One maintenance operation
+    (BackfillConfigHashesController_backfillConfigHashes_v1) is *described* as
+    "Idempotent one-shot maintenance task", but that is a property of that single job,
+    not an API-wide idempotency contract. No `Idempotency` pointer is emitted for this
+    provider.
+pagination:
+  style: page-number
+  supported_on: subset of list operations
+  request_params:
+  - name: page
+    in: query
+    occurrences: 6
+  - name: limit
+    in: query
+    occurrences: 7
+  response_fields: undocumented
+  note: >-
+    Page/limit are declared on only 6-7 of the list operations; the remaining collection
+    endpoints (e.g. GetAllUsersController_getUsers_v1, ProductGetAllController_handle_v1)
+    take no paging parameters at all. No cursor or offset paging anywhere in the spec.
+sorting:
+  supported: true
+  request_params:
+  - name: sortBy
+    in: query
+    occurrences: 6
+  - name: sortOrder
+    in: query
+    occurrences: 6
+filtering:
+  request_params:
+  - name: search
+    in: query
+    occurrences: 6
+    note: free-text search on list endpoints
+  - name: countryId
+    in: query
+    occurrences: 5
+  - name: tenantId
+    in: query
+    occurrences: 2
+  - name: categoryId
+    in: query
+    occurrences: 2
+  - name: brandId
+    in: query
+    occurrences: 2
+  - name: force
+    in: query
+    occurrences: 13
+    note: on migration operations — re-run even when already migrated
+field_expansion:
+  supported: partial
+  params:
+  - name: relationships
+    in: query
+    note: single occurrence, on the customer list endpoint
+  alternative: >-
+    Dedicated "details" sub-resources are used instead of a general expansion syntax —
+    e.g. /api/v1/customers/{id}/details (GetCustomerDetailsController_handle_v1).
+metadata:
+  supported: partial
+  note: >-
+    Audit-log entries carry a free-form `metadata` object (AuditLog schema). There is no
+    user-writable metadata bag on business resources.
+request_tracing:
+  request_id_header: null
+  correlation:
+    heartbeat_api: correlation_id returned in every error body (UUID)
+    offer_tool_api: none — the error envelope carries no trace identifier
+    audit_logs: >-
+      Audit records carry a `traceId` field and the audit-log query supports a `traceId`
+      filter (GetAuditLogsController_getAuditLogs_v1).
+  upstream_headers_observed:
+  - x-cloud-trace-context (Google Cloud front end, both hosts)
+versioning:
+  scheme: uri-path
+  detail: lifecycle/1komma5-lifecycle.yml
+  offer_tool:
+    current: v1
+    pattern: /api/v1/...
+    operation_id_suffix: _v1
+    exception: /api/migration-frozen-state/... is unversioned
+  heartbeat:
+    versions_in_use: [v1, v2, v3, v4]
+    discovery: https://heartbeat.1komma5grad.com/api/v1/supported-versions (anonymous, 200)
+error_envelope:
+  format: proprietary-json
+  rfc9457: false
+  detail: errors/1komma5-problem-types.yml
+rate_limiting:
+  documented: false
+  headers_observed: none
+  note: >-
+    No RateLimit/X-RateLimit/Retry-After headers were returned on any anonymous probe of
+    either host, and neither API documents quotas. Recorded as absent.
+caching:
+  etag: true
+  note: Both hosts return weak ETags (W/"...") on JSON responses; no Cache-Control policy
+    is documented.
+content_negotiation:
+  request: application/json
+  response: application/json
+  file_uploads: multipart/form-data (user profile picture)
+security_headers_observed:
+  heartbeat.1komma5grad.com:
+  - content-security-policy
+  - strict-transport-security (max-age=15552000; includeSubDomains)
+  - x-content-type-options nosniff
+  - x-frame-options SAMEORIGIN
+  - referrer-policy no-referrer
+  - cross-origin-opener-policy same-origin
+  - cross-origin-resource-policy same-origin
+  api.offer.1komma5grad.com:
+  - strict-transport-security not present
+cross_links:
+  errors: errors/1komma5-problem-types.yml
+  lifecycle: lifecycle/1komma5-lifecycle.yml
+  authentication: authentication/1komma5-authentication.yml
+  scopes: scopes/1komma5-scopes.yml
+  data_model: data-model/1komma5-data-model.yml
+x-evidence:
+  fetched: '2026-08-02'
+  urls:
+  - url: https://api.offer.1komma5grad.com/swagger-json
+    http_status: 200
+  - url: https://heartbeat.1komma5grad.com/api/v1/supported-versions
+    http_status: 200

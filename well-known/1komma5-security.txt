@@ -1,0 +1,4 @@
+Contact: mailto:security@1komma5grad.com
+Expires: 2027-06-23T23:00:00.000Z
+Encryption: https://www.1komma5.com/.well-known/security-1komma5grad.asc
+Preferred-Languages: en,de

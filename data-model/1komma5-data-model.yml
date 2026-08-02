@@ -1,0 +1,236 @@
+generated: '2026-08-02'
+method: derived
+source: openapi/1komma5-offer-tool-openapi-original.json
+note: >-
+  Derived from the 130 component schemas and 60 paths of the live Offer Tool OpenAPI —
+  schema $ref edges plus id-reference fields. 1KOMMA5° publishes no object reference, so
+  no id prefixes or storage domains could be filled in. The Heartbeat API contributes no
+  entities here because it publishes no schema at all.
+api: 1KOMMA5° Offer Tool API
+entities:
+- name: Tenant
+  description: Top-level partition of the Offer Tool. Every user has an active tenant and
+    a default tenant, and list endpoints filter by tenantId.
+  paths:
+  - /api/v1/tenant
+  - /api/v1/tenant/switch
+  schemas: [TenantDto, AdminUserTenantDto]
+  key_fields: [id, tenantId, activeTenantId, defaultTenantId, tenantIds]
+- name: Branch
+  description: A physical/organisational branch inside a tenant; admin users are assigned
+    to branches.
+  paths:
+  - /api/v1/admin/branches
+  - /api/v1/admin/branches/{id}
+  - /api/v1/admin/users/me/branches
+  - /api/v1/admin/users/assignable-branches
+- name: User
+  description: An authenticated Offer Tool user (sales person or admin), backed by Auth0.
+  paths:
+  - /api/v1/users
+  - /api/v1/users/me
+  - /api/v1/users/me/profile-picture
+  - /api/v1/users/sales-persons
+  - /api/v1/admin/users
+  - /api/v1/admin/users/{id}
+  key_fields: [id, zohoUserId, currentTeamId, activeTenantId, defaultTenantId]
+- name: Role
+  description: Assignable role controlling what an admin user may do.
+  paths:
+  - /api/v1/admin/roles
+  schemas: [AssignableRolesResponseDto, AccessLevel]
+- name: Customer
+  description: The end customer a quote is built for.
+  paths:
+  - /api/v1/customers
+  - /api/v1/customers/{id}
+  - /api/v1/customers/{id}/details
+  schemas: [CustomerFullSchemaDto, CustomerCreateInputDto, SalesContactCustomerDto]
+  key_fields: [id, zohoId, salesContactId]
+- name: Site
+  description: The property/installation address a system is quoted for. Sites hang off a
+    customer and carry images and energy-service lookups.
+  paths:
+  - /api/v1/customers/{customerId}/sites
+  - /api/v1/sites/{id}/lookup-energy-service-data
+  schemas: [SiteResponseDto, SiteFormFieldsDto, SiteImage, SiteImageMeta, AddressDto]
+- name: Config
+  description: An offer configuration — the central working object. Carries products,
+    documents, tables, margins, metrics, self-sufficiency, market components and effective
+    prices, and is what gets rendered to PDF and sent to the customer.
+  paths:
+  - /api/v1/configs/{id}
+  - /api/v1/configs/{id}/send-offer
+  - /api/v1/configs/{configId}/pdf
+  - /api/v1/configs/{id}/lookup-energy-service-data
+  schemas: [ConfigDetailsResponseDto, SendOfferRequestDto, SendOfferResponseDto]
+  key_fields: [id, configId, hashId, getAcceptDocumentId]
+- name: Concept
+  description: A reusable offer template/blueprint a config is built from, scoped and
+    versioned by visibility.
+  paths:
+  - /api/v1/concepts-public
+  - /api/v1/admin/concepts
+  - /api/v1/admin/concepts/{id}
+  schemas: [ConceptTemplateType, ConceptScope, ConceptVisibility, ConceptSortField]
+- name: Product
+  description: A sellable item (module, inverter, battery, heat pump, wallbox) with brand,
+    category, media and price.
+  paths:
+  - /api/v1/product
+  - /api/v1/product/{id}
+  - /api/v1/admin/products
+  - /api/v1/admin/products/{id}
+  schemas: [ProductDTO, ProductGetAllResponse, PriceDTO, MediaDTO]
+- name: Category
+  description: Product taxonomy node.
+  paths:
+  - /api/v1/admin/categories
+  schemas: [CategoryDTO, CategoryDto]
+- name: Brand
+  description: Product manufacturer.
+  paths:
+  - /api/v1/admin/brands
+  schemas: [BrandDTO, BrandDto]
+- name: Pricebook
+  description: Tenant/country-scoped pricing for products.
+  paths:
+  - /api/v1/admin/pricebook
+  schemas: [PriceDTO, Currency]
+- name: PaymentOption
+  description: Available payment/financing option offered with a quote.
+  paths:
+  - /api/v1/payment-options
+  schemas: [GetAllPaymentOptionsDtoResponse]
+- name: EffectivePrice
+  description: German-market effective electricity price simulation attached to a quote.
+  paths:
+  - /api/v1/effective-price/de
+  - /api/v1/effective-price/de/check-simulation-data
+- name: Country
+  description: Country reference data driving locale, currency and market rules.
+  paths:
+  - /api/v1/admin/countries
+  schemas: [CountryDto, CountryCode, Locale, Currency]
+- name: Deal
+  description: CRM deal (Zoho) an offer is attached to; offers can be rejected back into
+    the CRM.
+  paths:
+  - /api/v1/crm/deals/{dealId}
+  - /api/v1/crm/reject-offer/{crmOfferId}
+  key_fields: [zohoId]
+- name: AuditLog
+  description: Immutable record of an action, with actor, subject, traceId and free-form
+    metadata.
+  paths:
+  - /api/v1/admin/audit-logs
+  schemas: [AuditLogSortField, Metadata]
+  key_fields: [traceId, actorIdentifier, subjectIdentifier]
+- name: Basket
+  description: Selected option set on a configuration.
+  schemas: [Basket, BasketOption]
+relationships:
+- from: Tenant
+  to: Branch
+  type: has_many
+  via: tenantId
+- from: Tenant
+  to: User
+  type: has_many
+  via: tenantId
+- from: User
+  to: Tenant
+  type: belongs_to
+  via: activeTenantId
+  note: also defaultTenantId and a tenantIds membership list
+- from: User
+  to: Branch
+  type: has_many
+  via: /api/v1/admin/users/me/branches
+- from: User
+  to: Role
+  type: has_many
+  via: /api/v1/admin/roles
+- from: Customer
+  to: Site
+  type: has_many
+  via: /api/v1/customers/{customerId}/sites
+- from: Customer
+  to: User
+  type: belongs_to
+  via: salesContactId
+- from: Config
+  to: Customer
+  type: belongs_to
+  via: customerId
+- from: Config
+  to: Site
+  type: belongs_to
+  via: site lookup-energy-service-data
+- from: Config
+  to: Concept
+  type: belongs_to
+  via: concept template
+- from: Config
+  to: Product
+  type: has_many
+  via: config-products
+- from: Config
+  to: Basket
+  type: has_one
+  via: basket
+- from: Config
+  to: EffectivePrice
+  type: has_one
+  via: config-effective-prices
+- from: Config
+  to: Deal
+  type: belongs_to
+  via: crmOfferId
+- from: Product
+  to: Category
+  type: belongs_to
+  via: categoryId
+- from: Product
+  to: Brand
+  type: belongs_to
+  via: brandId
+- from: Product
+  to: Pricebook
+  type: has_many
+  via: countryId
+- from: Site
+  to: Country
+  type: belongs_to
+  via: countryId
+- from: AuditLog
+  to: User
+  type: belongs_to
+  via: actorIdentifier
+shared_schemas:
+  most_referenced:
+  - {schema: PaginationMetaDto, inbound_refs: 6}
+  - {schema: AccessLevel, inbound_refs: 5}
+  - {schema: AddressDto, inbound_refs: 4}
+  - {schema: CountryDto, inbound_refs: 3}
+  - {schema: EnergyType, inbound_refs: 3}
+  - {schema: Currency, inbound_refs: 2}
+  - {schema: TenantDto, inbound_refs: 2}
+  - {schema: SiteResponseDto, inbound_refs: 2}
+external_systems:
+- name: Zoho CRM
+  evidence: zohoId, zohoUserId, zohoIdSearch fields and the /api/v1/crm/* operations
+- name: Auth0
+  evidence: /api/v1/auth0/user/exists and the auth.1komma5grad.com issuer
+- name: GetAccept
+  evidence: getAcceptDocumentId on the send-offer response — e-signature delivery
+- name: Google Cloud Pub/Sub
+  evidence: /api/v1/test/pubsub publishes a test ping
+gaps:
+- 'Two parallel schema naming conventions coexist (CategoryDTO/BrandDTO/PriceDTO vs
+  CategoryDto/BrandDto) — the same concept is modelled twice.'
+- No object reference is published, so id formats/prefixes could not be recorded.
+coverage:
+  schemas_total: 130
+  entities_identified: 18
+  relationships_identified: 20

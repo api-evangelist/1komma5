@@ -1,0 +1,67 @@
+generated: '2026-08-02'
+method: generated
+source: openapi/1komma5-offer-tool-openapi-original.json
+note: >-
+  1KOMMA5° publishes no AGENTS.md or provider-authored skills (searched; none found).
+  These are generated from the live Offer Tool OpenAPI — every operationId below was
+  verified verbatim against the harvested specification. No skills are offered for the
+  Heartbeat API because it publishes no machine-readable contract to ground them in.
+skills:
+- file: 1komma5-build-and-send-offer.md
+  name: Build and send a 1KOMMA5° solar offer
+  api: openapi/1komma5-offer-tool-openapi-original.json
+  operations:
+  - CreateCustomerController_handle_v1
+  - CreateCustomerSiteController_handle_v1
+  - GetCustomerDetailsController_handle_v1
+  - QueueSiteEnergySiteInfoRefreshController_queue_v1
+  - GetConceptsController_getAll_v1
+  - GetConfigController_get_v1
+  - RefreshConfigEnergySiteInfoController_refresh_v1
+  - EffectivePriceController_checkSimulationDataDe_v1
+  - EffectivePriceController_getEffectivePriceDe_v1
+  - GetAllPaymentOptionsController_handle_v1
+  - PdfController_generatePdf_v1
+  - SendOfferController_sendOffer_v1
+  - GetDealController_getDeal_v1
+  - RejectOfferController_handle_v1
+- file: 1komma5-browse-product-catalogue.md
+  name: Browse the 1KOMMA5° product catalogue and pricebook
+  api: openapi/1komma5-offer-tool-openapi-original.json
+  operations:
+  - ProductGetAllController_handle_v1
+  - GetProductController_get_v1
+  - GetAdminProductsController_getAdminProducts_v1
+  - GetAdminProductController_getProduct_v1
+  - GetAdminCategoriesController_getCategories_v1
+  - GetAdminCategoriesController_getBrands_v1
+  - GetAdminPricebookController_getAdminPricebook_v1
+  - GetCountriesController_getCountries_v1
+  - MegasearchController_search_v1
+- file: 1komma5-administer-tenant-users.md
+  name: Administer 1KOMMA5° Offer Tool tenants, branches and users
+  api: openapi/1komma5-offer-tool-openapi-original.json
+  operations:
+  - TenantController_getTenants_v1
+  - TenantController_switchActiveTenant_v1
+  - GetCurrentAdminUserController_getCurrentAdminUser_v1
+  - GetUserProfileController_handle_v1
+  - UpdateUserController_handle_v1
+  - UserProfilePhotoController_handle_v1
+  - UserProfilePhotoController_delete_v1
+  - Auth0UserController_userExistsByEmail_v1
+  - GetAdminUsersController_getAdminUsers_v1
+  - CreateAdminUserController_createAdminUser_v1
+  - GetAdminUserController_getAdminUser_v1
+  - UpdateAdminUserController_updateAdminUser_v1
+  - ResendInvitationController_resendInvitation_v1
+  - GetMyBranchesController_getMyBranches_v1
+  - GetAssignableBranchesController_getAssignableBranches_v1
+  - GetAdminBranchesController_getAdminBranches_v1
+  - CreateAdminBranchController_createAdminBranch_v1
+  - GetAdminBranchController_getAdminBranch_v1
+  - UpdateAdminBranchController_updateAdminBranch_v1
+  - GetAssignableRolesController_getAssignableRoles_v1
+  - GetAllUsersController_getUsers_v1
+  - GetSalesUsersController_getSalesUsers_v1
+  - GetAuditLogsController_getAuditLogs_v1
