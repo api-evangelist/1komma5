@@ -31,39 +31,15 @@ tags:
 - Energy Management
 - Germany
 apis:
-- name: 1KOMMA5° Offer Tool API
-  description: 'The Offer Tool API backs 1KOMMA5°''s sales configuration and quoting
-    workflow — customers and sites, product and pricebook catalogues, concepts, effective-price
-    simulation for the German market, offer configurations, PDF offer generation, CRM
-    deal lookup, and tenant/branch/user administration with audit logging. It serves
-    a live OpenAPI 3.0.0 description at /swagger-json covering 60 paths, 73 operations
-    and 130 component schemas. Access is bearer-token gated (Auth0); the Swagger UI
-    at /swagger is behind HTTP Basic.'
-  humanURL: https://api.offer.1komma5grad.com/
-  baseURL: https://api.offer.1komma5grad.com
-  tags:
-  - Offers
-  - Quoting
-  - CRM
-  - Pricing
-  - Solar
-  properties:
-  - type: OpenAPI
-    url: openapi/1komma5-offer-tool-openapi-original.json
-  - type: Overlay
-    url: overlays/1komma5-offer-tool-overlay.yaml
-  - type: x-evidence
-    url: https://api.offer.1komma5grad.com/swagger-json
 - name: 1KOMMA5° Heartbeat API
-  description: 'The Heartbeat API is the customer-facing energy API behind the 1KOMMA5°
-    mobile apps and the Heartbeat AI platform — sites and systems, live power snapshots
-    for PV, battery, heat pump and EV charger, energy summaries, dynamic electricity
-    prices from the energy trader, self-sufficiency figures and Heartbeat AI optimisation
-    decisions. 1KOMMA5° publishes no developer documentation and no machine-readable
-    description for it; the host was probed live (an anonymous 200 on /api/v1/supported-versions)
-    and the surface is additionally documented by community-built Python clients and
-    Home Assistant integrations. Authentication is OAuth 2.0 authorization code + PKCE
-    against auth.1komma5grad.com.'
+  description: >-
+    The Heartbeat API is the customer-facing energy API behind the 1KOMMA5° mobile apps and the Heartbeat
+    AI platform — sites and systems, live power snapshots for PV, battery, heat pump and EV charger, energy
+    summaries, dynamic electricity prices from the energy trader, self-sufficiency figures and Heartbeat
+    AI optimisation decisions. 1KOMMA5° publishes no developer documentation and no machine-readable description
+    for it; the host was probed live (an anonymous 200 on /api/v1/supported-versions) and the surface
+    is additionally documented by community-built Python clients and Home Assistant integrations. Authentication
+    is OAuth 2.0 authorization code + PKCE against auth.1komma5grad.com.
   humanURL: https://help.1komma5.com.au/heartbeat/
   baseURL: https://heartbeat.1komma5grad.com
   tags:
@@ -77,12 +53,341 @@ apis:
     url: https://help.1komma5.com.au/heartbeat/
   - type: x-evidence
     url: https://heartbeat.1komma5grad.com/api/v1/supported-versions
+- aid: 1komma5:1komma5-admin-audit-logs-api
+  name: 1KOMMA5° Admin - Audit Logs API
+  description: The Admin - Audit Logs API from 1KOMMA5° — 1 operation(s) for admin - audit logs.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Admin - Audit Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-admin-audit-logs-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-admin-branches-api
+  name: 1KOMMA5° Admin - Branches API
+  description: The Admin - Branches API from 1KOMMA5° — 2 operation(s) for admin - branches.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Admin - Branches
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-admin-branches-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-admin-concepts-api
+  name: 1KOMMA5° Admin - Concepts API
+  description: The Admin - Concepts API from 1KOMMA5° — 2 operation(s) for admin - concepts.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Admin - Concepts
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-admin-concepts-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-admin-countries-api
+  name: 1KOMMA5° Admin - Countries API
+  description: The Admin - Countries API from 1KOMMA5° — 1 operation(s) for admin - countries.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Admin - Countries
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-admin-countries-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-admin-maintenance-api
+  name: 1KOMMA5° Admin - Maintenance API
+  description: The Admin - Maintenance API from 1KOMMA5° — 1 operation(s) for admin - maintenance.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Admin - Maintenance
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-admin-maintenance-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-admin-megasearch-api
+  name: 1KOMMA5° Admin - Megasearch API
+  description: The Admin - Megasearch API from 1KOMMA5° — 1 operation(s) for admin - megasearch.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Admin - Megasearch
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-admin-megasearch-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-admin-products-api
+  name: 1KOMMA5° Admin - Products API
+  description: The Admin - Products API from 1KOMMA5° — 5 operation(s) for admin - products.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Admin - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-admin-products-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-admin-roles-api
+  name: 1KOMMA5° Admin - Roles API
+  description: The Admin - Roles API from 1KOMMA5° — 1 operation(s) for admin - roles.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Admin - Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-admin-roles-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-admin-users-api
+  name: 1KOMMA5° Admin - Users API
+  description: The Admin - Users API from 1KOMMA5° — 6 operation(s) for admin - users.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Admin - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-admin-users-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-concepts-api
+  name: 1KOMMA5° Concepts API
+  description: The Concepts API from 1KOMMA5° — 1 operation(s) for concepts.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Concepts
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-concepts-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-configs-api
+  name: 1KOMMA5° Configs API
+  description: The Configs API from 1KOMMA5° — 3 operation(s) for configs.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Configs
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-configs-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-crm-api
+  name: 1KOMMA5° CRM API
+  description: The CRM API from 1KOMMA5° — 2 operation(s) for crm.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - CRM
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-crm-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-customers-api
+  name: 1KOMMA5° Customers API
+  description: The Customers API from 1KOMMA5° — 3 operation(s) for customers.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-customers-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-effectiveprice-api
+  name: 1KOMMA5° Effective Price API
+  description: The EffectivePrice API from 1KOMMA5° — 2 operation(s) for effectiveprice.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - EffectivePrice
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-effectiveprice-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-health-api
+  name: 1KOMMA5° Health API
+  description: The Health API from 1KOMMA5° — 1 operation(s) for health.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-health-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-index-api
+  name: 1KOMMA5° Index API
+  description: The index API from 1KOMMA5° — 1 operation(s) for index.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - index
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-index-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-migration-frozen-state-api
+  name: 1KOMMA5° Migration Frozen State API
+  description: >-
+    The migration-frozen-state API from 1KOMMA5° — 1 operation(s) for migration-frozen-state.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - migration-frozen-state
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-migration-frozen-state-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-migrations-api
+  name: 1KOMMA5° Migrations API
+  description: The Migrations API from 1KOMMA5° — 12 operation(s) for migrations.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Migrations
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-migrations-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-payment-options-api
+  name: 1KOMMA5° Payment Options API
+  description: The payment-options API from 1KOMMA5° — 1 operation(s) for payment-options.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - payment-options
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-payment-options-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-pdf-api
+  name: 1KOMMA5° PDF API
+  description: The PDF API from 1KOMMA5° — 1 operation(s) for pdf.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - PDF
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-pdf-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-products-api
+  name: 1KOMMA5° Products API
+  description: The Products API from 1KOMMA5° — 2 operation(s) for products.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-products-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-sales-users-api
+  name: 1KOMMA5° Sales Users API
+  description: The Sales Users API from 1KOMMA5° — 1 operation(s) for sales users.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Sales Users
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-sales-users-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-site-api
+  name: 1KOMMA5° Site API
+  description: The site API from 1KOMMA5° — 1 operation(s) for site.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - site
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-site-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-sites-api
+  name: 1KOMMA5° Sites API
+  description: The Sites API from 1KOMMA5° — 1 operation(s) for sites.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Sites
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-sites-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-tenants-api
+  name: 1KOMMA5° Tenants API
+  description: The Tenants API from 1KOMMA5° — 2 operation(s) for tenants.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Tenants
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-tenants-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-test-api
+  name: 1KOMMA5° Test API
+  description: The Test API from 1KOMMA5° — 1 operation(s) for test.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Test
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-test-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
+- aid: 1komma5:1komma5-users-api
+  name: 1KOMMA5° Users API
+  description: The Users API from 1KOMMA5° — 4 operation(s) for users.
+  humanURL: https://api.offer.1komma5grad.com/
+  baseURL: https://api.offer.1komma5grad.com
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/1komma5-users-api-openapi.yml
+  - type: x-evidence
+    url: https://api.offer.1komma5grad.com/swagger-json
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: MCPServer
+  url: mcp/1komma5-mcp.yml
+- type: Overlay
+  url: overlays/1komma5-offer-tool-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/1komma5-agentic-access.yml
 - type: DomainSecurity
