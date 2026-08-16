@@ -2,6 +2,13 @@
   "repo": "1komma5",
   "feeds": [
     {
+      "source": "https://help.1komma5.com.au/blog/feed/",
+      "feed_url": "https://help.1komma5.com.au/blog/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://help.1komma5.com.au/",
       "feed_url": "https://help.1komma5.com.au/blog/feed/",
       "title": "",
@@ -10,5 +17,5 @@
     }
   ],
   "post_count": 0,
-  "fetched": "2026-08-06T14:08:46Z"
+  "fetched": "2026-08-15T12:22:01Z"
 }
