@@ -1,0 +1,80 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Admin - Countries API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Admin - Countries
+paths:
+  /api/v1/admin/countries:
+    get:
+      description: Returns all countries with their currency and VAT configuration. This is reference
+        data used for filtering, not an administered entity.
+      operationId: GetCountriesController_getCountries_v1
+      parameters: []
+      responses:
+        '200':
+          description: List of all countries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryDto'
+      summary: Get all countries
+      tags:
+      - Admin - Countries
+components:
+  schemas:
+    Currency:
+      type: string
+      enum:
+      - EUR
+      - DKK
+      - SEK
+    CountryDto:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+          description: Country name
+        countryCode:
+          allOf:
+          - $ref: '#/components/schemas/CountryCode'
+        locale:
+          allOf:
+          - $ref: '#/components/schemas/Locale'
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+        vatRate:
+          type: number
+          description: Default VAT rate as percentage
+      required:
+      - id
+      - name
+      - countryCode
+      - locale
+      - currency
+      - vatRate
+    Locale:
+      type: string
+      enum:
+      - de-DE
+      - da-DK
+      - en-US
+      - sv-SE
+      - nl-NL
+    CountryCode:
+      type: string
+      enum:
+      - DE
+      - DK
+      - SE
+      - NL
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

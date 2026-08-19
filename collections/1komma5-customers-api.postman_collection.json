@@ -1,0 +1,571 @@
+{
+  "item": [
+    {
+      "id": "6af47a24-6036-4bb9-801f-994b4c79206c",
+      "name": "Customers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f95a86b0-680d-4804-a8d5-a3856b004a59",
+          "name": "Update a customer",
+          "request": {
+            "name": "Update a customer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"address\": {\n    \"zipcode\": \"<string>\",\n    \"address\": \"<string,null>\",\n    \"city\": \"<string,null>\"\n  },\n  \"salesContact\": \"<number,null>\",\n  \"phone\": \"<string,null>\",\n  \"company\": \"<string,null>\",\n  \"salutation\": \"<string,null>\",\n  \"zohoId\": \"<string,null>\",\n  \"dateOfBirth\": \"<string,null-date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "99ac58a2-1a9e-41f2-86d8-4feee70596f8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"address\": {\n    \"zipcode\": \"<string>\",\n    \"address\": \"<string,null>\",\n    \"city\": \"<string,null>\"\n  },\n  \"salesContact\": \"<number,null>\",\n  \"phone\": \"<string,null>\",\n  \"company\": \"<string,null>\",\n  \"salutation\": \"<string,null>\",\n  \"zohoId\": \"<string,null>\",\n  \"dateOfBirth\": \"<string,null-date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9238.04815403875,\n  \"tenantId\": null,\n  \"countryId\": null,\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"currentTeamId\": 8911.733644142143,\n  \"profilePhotoPath\": \"string\",\n  \"phone\": \"string\",\n  \"isTeam\": true,\n  \"isTemplateUser\": false,\n  \"zohoId\": \"string\",\n  \"zohoUserId\": \"string\",\n  \"tenantIdHeat\": null,\n  \"activeTenantId\": \"string\",\n  \"lastName\": null,\n  \"firstName\": null,\n  \"source\": null,\n  \"dateOfBirth\": null,\n  \"zohoLink\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd025c58-43ea-44da-823c-dcbf34946cd2",
+          "name": "Get customer",
+          "request": {
+            "name": "Get customer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40b8f1d6-40e3-44b3-beed-1af371b64060",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9238.04815403875,\n  \"tenantId\": null,\n  \"countryId\": null,\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"currentTeamId\": 8911.733644142143,\n  \"profilePhotoPath\": \"string\",\n  \"phone\": \"string\",\n  \"isTeam\": true,\n  \"isTemplateUser\": false,\n  \"zohoId\": \"string\",\n  \"zohoUserId\": \"string\",\n  \"tenantIdHeat\": null,\n  \"activeTenantId\": \"string\",\n  \"lastName\": null,\n  \"firstName\": null,\n  \"source\": null,\n  \"dateOfBirth\": null,\n  \"zohoLink\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "915614df-1252-42f3-a88f-980761e50232",
+          "name": "Delete a customer",
+          "request": {
+            "name": "Delete a customer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "38c10b87-b91f-43e1-be9c-62b38a957ffb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99cf3b22-3a53-44e0-acda-eef7e02355eb",
+          "name": "Get all customers",
+          "request": {
+            "name": "Get all customers",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9fe7dca-342b-45b9-bd86-7dcf5d683aa5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"data\": [\n      [],\n      []\n    ],\n    \"meta\": {},\n    \"links\": {}\n  },\n  {\n    \"data\": [\n      [],\n      []\n    ],\n    \"meta\": {},\n    \"links\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "136e5dbe-08d1-4330-a2e2-eef10cba88c6",
+          "name": "Create a customer",
+          "request": {
+            "name": "Create a customer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer\": {\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address\": {\n      \"zipcode\": \"<string>\",\n      \"address\": \"<string,null>\",\n      \"city\": \"<string,null>\"\n    },\n    \"salesContact\": \"<number,null>\",\n    \"phone\": \"<string,null>\",\n    \"company\": \"<string,null>\",\n    \"salutation\": \"<string,null>\",\n    \"password\": \"<string,null>\",\n    \"zohoId\": \"<string,null>\",\n    \"dateOfBirth\": \"<string,null-date>\"\n  },\n  \"site\": {\n    \"maxPanels\": \"<number>\",\n    \"powerConsumptionYear\": \"<number>\",\n    \"address\": {\n      \"zipcode\": \"<string>\",\n      \"address\": \"<string,null>\",\n      \"city\": \"<string,null>\"\n    },\n    \"basket\": \"<array,null>\",\n    \"buildingHeatingLoad\": \"<number,null>\",\n    \"salesContactId\": \"<number,null>\",\n    \"ownersCount\": \"<number,null>\",\n    \"zohoId\": {\n      \"pv\": \"<string,null>\",\n      \"heat\": \"<string,null>\"\n    }\n  },\n  \"country\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c1007fe-2a00-4a34-be3b-abddcfffa056",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer\": {\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address\": {\n      \"zipcode\": \"<string>\",\n      \"address\": \"<string,null>\",\n      \"city\": \"<string,null>\"\n    },\n    \"salesContact\": \"<number,null>\",\n    \"phone\": \"<string,null>\",\n    \"company\": \"<string,null>\",\n    \"salutation\": \"<string,null>\",\n    \"password\": \"<string,null>\",\n    \"zohoId\": \"<string,null>\",\n    \"dateOfBirth\": \"<string,null-date>\"\n  },\n  \"site\": {\n    \"maxPanels\": \"<number>\",\n    \"powerConsumptionYear\": \"<number>\",\n    \"address\": {\n      \"zipcode\": \"<string>\",\n      \"address\": \"<string,null>\",\n      \"city\": \"<string,null>\"\n    },\n    \"basket\": \"<array,null>\",\n    \"buildingHeatingLoad\": \"<number,null>\",\n    \"salesContactId\": \"<number,null>\",\n    \"ownersCount\": \"<number,null>\",\n    \"zohoId\": {\n      \"pv\": \"<string,null>\",\n      \"heat\": \"<string,null>\"\n    }\n  },\n  \"country\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"customerId\": 5856.9094880731645\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d24a96a-a861-4705-ae69-057817752119",
+          "name": "Get customer details",
+          "request": {
+            "name": "Get customer details",
+            "description": {
+              "content": "Return the same customer information but with the sites associated",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "customers",
+                ":id",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "426bc823-26cd-4fcc-9872-b9eb93a81568",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "customers",
+                    ":id",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customer\": {\n    \"id\": 2113.1941443144033,\n    \"tenantId\": null,\n    \"countryId\": 7857.853674363991,\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"currentTeamId\": 6272.702924318167,\n    \"profilePhotoPath\": \"string\",\n    \"phone\": \"string\",\n    \"isTeam\": true,\n    \"isTemplateUser\": null,\n    \"zohoId\": \"string\",\n    \"zohoUserId\": \"string\",\n    \"tenantIdHeat\": \"string\",\n    \"activeTenantId\": null,\n    \"lastName\": \"string\",\n    \"firstName\": \"string\",\n    \"tenant\": {\n      \"name\": \"string\",\n      \"id\": \"string\",\n      \"country\": {\n        \"id\": 7744.988733698914,\n        \"name\": \"string\",\n        \"countryCode\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"locale\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"vatRate\": 7949.262134785981\n      },\n      \"isEnabledHeatpump\": false\n    },\n    \"source\": \"string\",\n    \"dateOfBirth\": \"1964-01-29\",\n    \"zohoLink\": \"string\",\n    \"company\": null,\n    \"salutation\": null,\n    \"address\": {\n      \"zipcode\": \"<string>\",\n      \"address\": \"<string,null>\",\n      \"city\": \"<string,null>\"\n    },\n    \"country\": {\n      \"id\": 8790.316090332037,\n      \"name\": \"string\",\n      \"countryCode\": \"NL\",\n      \"locale\": \"nl-NL\",\n      \"currency\": \"EUR\",\n      \"vatRate\": 8250.478465624281\n    },\n    \"salesContact\": {\n      \"id\": 48.194462973143445,\n      \"name\": \"string\",\n      \"email\": \"string\"\n    },\n    \"sites\": null\n  },\n  \"sites\": [\n    {\n      \"id\": \"string\",\n      \"hashId\": \"string\",\n      \"maxPanels\": null,\n      \"powerConsumptionYear\": null,\n      \"ownersCount\": 1511.9542830312116,\n      \"address\": {},\n      \"zohoId\": {\n        \"pv\": \"string\",\n        \"pvLink\": null,\n        \"pvDealStage\": null,\n        \"pvNewOffersAllowed\": false,\n        \"hp\": \"string\",\n        \"hpLink\": null,\n        \"hpDealStage\": \"string\",\n        \"hpNewOffersAllowed\": true\n      },\n      \"basket\": {\n        \"selectedOptions\": [\n          642.3108937918076,\n          341.04586491891854\n        ]\n      },\n      \"images\": [\n        {\n          \"id\": 7401.12960723865,\n          \"uuid\": {},\n          \"src\": \"string\",\n          \"meta\": {\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updatedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"id\": 30.727457414142513,\n          \"uuid\": {},\n          \"src\": \"string\",\n          \"meta\": {\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updatedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"hashId\": \"string\",\n      \"maxPanels\": {},\n      \"powerConsumptionYear\": null,\n      \"ownersCount\": 532.9845258393373,\n      \"address\": {},\n      \"zohoId\": {\n        \"pv\": null,\n        \"pvLink\": \"string\",\n        \"pvDealStage\": null,\n        \"pvNewOffersAllowed\": true,\n        \"hp\": null,\n        \"hpLink\": null,\n        \"hpDealStage\": \"string\",\n        \"hpNewOffersAllowed\": true\n      },\n      \"basket\": {\n        \"selectedOptions\": [\n          8395.993068788583,\n          3416.919370285857\n        ]\n      },\n      \"images\": [\n        {\n          \"id\": 5724.972972987229,\n          \"uuid\": {},\n          \"src\": \"string\",\n          \"meta\": {\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updatedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"id\": 7158.409065181673,\n          \"uuid\": {},\n          \"src\": \"string\",\n          \"meta\": {\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updatedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"files\": {\n    \"client\": [\n      \"string\",\n      \"string\"\n    ],\n    \"roofplan\": [\n      \"string\",\n      \"string\"\n    ],\n    \"documentation\": [\n      \"string\",\n      \"string\"\n    ],\n    \"qm\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://heartbeat.1komma5grad.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fcbf7553-2a5c-4918-95e0-77fdcd664f9a",
+    "name": "Offer Tool Customers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Api definitions for Offer Tool",
+      "type": "text/plain"
+    }
+  }
+}

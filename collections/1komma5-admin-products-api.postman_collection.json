@@ -1,0 +1,890 @@
+{
+  "item": [
+    {
+      "id": "b71167dc-fafb-459e-94c7-3fa76820f2f4",
+      "name": "Admin - Products",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8d12118e-5fc7-4494-a5e2-9ac64470c884",
+          "name": "Get paginated global products list with filtering and sorting",
+          "request": {
+            "name": "Get paginated global products list with filtering and sorting",
+            "description": {
+              "content": "Returns all products (country-scoped based on user access level). Global admins can filter by country.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search by product name"
+                },
+                {
+                  "disabled": false,
+                  "key": "categoryId",
+                  "value": "<number>",
+                  "description": "Filter by category ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "brandId",
+                  "value": "<number>",
+                  "description": "Filter by brand ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "countryId",
+                  "value": "<number>",
+                  "description": "Filter by country ID (only for global admins)"
+                },
+                {
+                  "disabled": false,
+                  "key": "public",
+                  "value": "<boolean>",
+                  "description": "Filter by visibility (public)"
+                },
+                {
+                  "disabled": false,
+                  "key": "canbesold",
+                  "value": "<boolean>",
+                  "description": "Filter by can be sold status"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Field to sort by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Sort order"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac36c686-a372-4c78-a406-89ef4db1e699",
+              "name": "Paginated list of products",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "Solar Panel"
+                    },
+                    {
+                      "key": "categoryId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "brandId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "countryId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "public",
+                      "value": "true"
+                    },
+                    {
+                      "key": "canbesold",
+                      "value": "true"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 7521.773843475907,\n      \"name\": \"string\",\n      \"category\": {\n        \"id\": 7662.261897516511,\n        \"name\": \"string\"\n      },\n      \"brand\": {\n        \"id\": 5312.875257117763,\n        \"name\": \"string\"\n      },\n      \"price\": 5976.283179649789,\n      \"factor\": 5331.533156574517,\n      \"public\": true,\n      \"canbesold\": false,\n      \"visibleToTenant\": true,\n      \"imageUrl\": {},\n      \"createdAt\": \"string\",\n      \"countryId\": {},\n      \"countryCode\": {},\n      \"vatType\": \"general\"\n    },\n    {\n      \"id\": 7534.007875789414,\n      \"name\": \"string\",\n      \"category\": {\n        \"id\": 4933.628987646303,\n        \"name\": \"string\"\n      },\n      \"brand\": {\n        \"id\": 9617.116782831848,\n        \"name\": \"string\"\n      },\n      \"price\": 5651.316757708689,\n      \"factor\": 2593.044005875762,\n      \"public\": false,\n      \"canbesold\": true,\n      \"visibleToTenant\": true,\n      \"imageUrl\": {},\n      \"createdAt\": \"string\",\n      \"countryId\": {},\n      \"countryCode\": null,\n      \"vatType\": \"general\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 100,\n    \"page\": 1,\n    \"limit\": 20,\n    \"totalPages\": 5\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccf97cc0-20ea-4f98-9066-c27237b7b781",
+          "name": "Create a new product",
+          "request": {
+            "name": "Create a new product",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "29432be9-6ad9-4b15-8962-4fce29af73f9",
+              "name": "Product created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Solar Panel XL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5100.549158750105,\n  \"name\": \"string\",\n  \"category\": {\n    \"id\": 6736.868182723694,\n    \"name\": \"string\"\n  },\n  \"brand\": {\n    \"id\": 4025.0098666991375,\n    \"name\": \"string\"\n  },\n  \"price\": 3307.2341509728367,\n  \"factor\": 8484.185859556801,\n  \"public\": false,\n  \"canbesold\": false,\n  \"visibleToTenant\": true,\n  \"imageUrl\": null,\n  \"createdAt\": \"string\",\n  \"countryId\": null,\n  \"countryCode\": null,\n  \"vatType\": \"general\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b92e752-5cb7-453b-917f-257bb65acf53",
+          "name": "Get a single product by ID",
+          "request": {
+            "name": "Get a single product by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "products",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0faef081-4539-47ee-be4a-bb5b504286c5",
+              "name": "Product details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5100.549158750105,\n  \"name\": \"string\",\n  \"category\": {\n    \"id\": 6736.868182723694,\n    \"name\": \"string\"\n  },\n  \"brand\": {\n    \"id\": 4025.0098666991375,\n    \"name\": \"string\"\n  },\n  \"price\": 3307.2341509728367,\n  \"factor\": 8484.185859556801,\n  \"public\": false,\n  \"canbesold\": false,\n  \"visibleToTenant\": true,\n  \"imageUrl\": null,\n  \"createdAt\": \"string\",\n  \"countryId\": null,\n  \"countryCode\": null,\n  \"vatType\": \"general\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d14b21d1-9db2-4ee1-8b83-85711b557ab0",
+          "name": "Update a product",
+          "request": {
+            "name": "Update a product",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "products",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "766b0d1d-a999-48f7-9022-2abc230e5949",
+              "name": "Product updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Solar Panel XL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5100.549158750105,\n  \"name\": \"string\",\n  \"category\": {\n    \"id\": 6736.868182723694,\n    \"name\": \"string\"\n  },\n  \"brand\": {\n    \"id\": 4025.0098666991375,\n    \"name\": \"string\"\n  },\n  \"price\": 3307.2341509728367,\n  \"factor\": 8484.185859556801,\n  \"public\": false,\n  \"canbesold\": false,\n  \"visibleToTenant\": true,\n  \"imageUrl\": null,\n  \"createdAt\": \"string\",\n  \"countryId\": null,\n  \"countryCode\": null,\n  \"vatType\": \"general\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c37d580a-69f9-4773-841c-1ef812fedd93",
+              "name": "Product not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Solar Panel XL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1ac0461-bd42-4dee-9ea1-457cff6f75a8",
+          "name": "Get paginated pricebook products for a specific branch",
+          "request": {
+            "name": "Get paginated pricebook products for a specific branch",
+            "description": {
+              "content": "Returns products that are in the pricebook for the specified branch/tenant. User must have access to the branch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "pricebook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenantId",
+                  "value": "<string>",
+                  "description": "(Required) Tenant/Branch ID to fetch pricebook for"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search by product name"
+                },
+                {
+                  "disabled": false,
+                  "key": "categoryId",
+                  "value": "<number>",
+                  "description": "Filter by category ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "brandId",
+                  "value": "<number>",
+                  "description": "Filter by brand ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "public",
+                  "value": "<boolean>",
+                  "description": "Filter by effective visibility (public)"
+                },
+                {
+                  "disabled": false,
+                  "key": "canbesold",
+                  "value": "<boolean>",
+                  "description": "Filter by effective can be sold status"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasOverride",
+                  "value": "<boolean>",
+                  "description": "Filter by override status: true = only products with overrides, false = only products without overrides"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Field to sort by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Sort order"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "23e85b9e-0aec-4cb4-97f6-dd019ed64f82",
+              "name": "Paginated list of pricebook products",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "pricebook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenantId",
+                      "value": "tenant-uuid-123"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "Solar Panel"
+                    },
+                    {
+                      "key": "categoryId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "brandId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "public",
+                      "value": "true"
+                    },
+                    {
+                      "key": "canbesold",
+                      "value": "true"
+                    },
+                    {
+                      "key": "hasOverride",
+                      "value": "true"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 1807.955627600124,\n      \"name\": \"string\",\n      \"category\": {\n        \"id\": 7249.447315971205,\n        \"name\": \"string\"\n      },\n      \"brand\": {\n        \"id\": 2272.9950661965427,\n        \"name\": \"string\"\n      },\n      \"price\": 8930.871655583085,\n      \"factor\": 9359.519266596979,\n      \"public\": true,\n      \"canbesold\": true,\n      \"visibleToTenant\": false,\n      \"imageUrl\": {},\n      \"createdAt\": \"string\",\n      \"countryId\": {},\n      \"countryCode\": {},\n      \"vatType\": \"pv\",\n      \"pricebookOverrides\": {\n        \"price\": {},\n        \"factor\": {},\n        \"public\": null,\n        \"canbesold\": {}\n      },\n      \"effectivePrice\": 2186.3372872382847,\n      \"effectiveFactor\": 3194.30908803899,\n      \"effectivePublic\": true,\n      \"effectiveCanbesold\": false\n    },\n    {\n      \"id\": 6225.919659990797,\n      \"name\": \"string\",\n      \"category\": {\n        \"id\": 791.0868919314673,\n        \"name\": \"string\"\n      },\n      \"brand\": {\n        \"id\": 6240.274720608187,\n        \"name\": \"string\"\n      },\n      \"price\": 9368.724370612119,\n      \"factor\": 3850.876739932272,\n      \"public\": false,\n      \"canbesold\": false,\n      \"visibleToTenant\": true,\n      \"imageUrl\": {},\n      \"createdAt\": \"string\",\n      \"countryId\": null,\n      \"countryCode\": null,\n      \"vatType\": \"pv\",\n      \"pricebookOverrides\": {\n        \"price\": {},\n        \"factor\": null,\n        \"public\": null,\n        \"canbesold\": null\n      },\n      \"effectivePrice\": 465.66617923731513,\n      \"effectiveFactor\": 7366.564306679599,\n      \"effectivePublic\": true,\n      \"effectiveCanbesold\": true\n    }\n  ],\n  \"meta\": {\n    \"total\": 100,\n    \"page\": 1,\n    \"limit\": 20,\n    \"totalPages\": 5\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d11d9cd1-32af-4921-9861-e09e39dcf2c3",
+          "name": "List all product categories",
+          "request": {
+            "name": "List all product categories",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "09ba82dc-52f5-40d5-a853-82e18ce677cf",
+              "name": "List of categories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 208.84335945613563,\n    \"name\": \"string\"\n  },\n  {\n    \"id\": 5178.87238247919,\n    \"name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d2ac17f-808c-4396-8b6c-a3d34c0c7e99",
+          "name": "List all product brands",
+          "request": {
+            "name": "List all product brands",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "brands"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4ad21ae-397f-439a-a683-fc2480d0a799",
+              "name": "List of brands",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "brands"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5611.841165601494,\n    \"name\": \"string\"\n  },\n  {\n    \"id\": 5655.827909808687,\n    \"name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://heartbeat.1komma5grad.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6d3c5ac6-c1ef-4a7a-8e56-7a4605b53a05",
+    "name": "Offer Tool Admin - Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Api definitions for Offer Tool",
+      "type": "text/plain"
+    }
+  }
+}

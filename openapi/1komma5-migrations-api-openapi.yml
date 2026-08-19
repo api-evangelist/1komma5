@@ -1,0 +1,710 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Migrations API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Migrations
+paths:
+  /api/v1/migration-frozen-state/configs/{configId}/config-products:
+    post:
+      description: Extracts category_id, category_name, brand_id, and brand_name from frozen_state JSON
+        and updates config_products table. Tracks migration status in MigrationFrozenStateConfig. Returns
+        early if migration was already completed successfully (unless force=true).
+      operationId: ConfigProductsMigrationController_migrateConfigProducts_v1
+      parameters:
+      - name: configId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: force
+        required: false
+        in: query
+        description: If true, re-runs the migration even if it was already completed successfully. Defaults
+          to false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Migration completed successfully or already completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigProductsMigrationResponseDto'
+        '400':
+          description: Invalid configId (not an integer) or failed to parse frozen_state
+        '404':
+          description: Config not found
+        '500':
+          description: Internal server error during migration
+      summary: Migrate config products from frozen_state
+      tags:
+      - Migrations
+  /api/v1/migration-frozen-state/configs/{configId}/config-documents:
+    post:
+      description: Extracts file entries from frozen_state JSON (from $.site.files[] and $.gewinnprognose.files[])
+        and inserts rows into config_documents table. Tracks migration status in MigrationFrozenStateConfig.
+        Returns early if migration was already completed successfully (unless force=true).
+      operationId: ConfigDocumentsMigrationController_migrateConfigDocuments_v1
+      parameters:
+      - name: configId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: force
+        required: false
+        in: query
+        description: If true, re-runs the migration even if it was already completed successfully. Defaults
+          to false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Migration completed successfully or already completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigDocumentsMigrationResponseDto'
+        '400':
+          description: Invalid configId (not an integer) or failed to parse frozen_state
+        '404':
+          description: Config not found
+        '500':
+          description: Internal server error during migration
+      summary: Migrate config documents from frozen_state
+      tags:
+      - Migrations
+  /api/v1/migration-frozen-state/configs/{configId}/config-table:
+    post:
+      description: Extracts roofSize and specificYieldBasedOnRoofAlignment from frozen_state JSON, and
+        populates paymentOptionName, tenantName, countryName, and countryCurrency from related tables.
+        Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already
+        completed successfully (unless force=true).
+      operationId: ConfigTableMigrationController_migrateConfigTable_v1
+      parameters:
+      - name: configId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: force
+        required: false
+        in: query
+        description: If true, re-runs the migration even if it was already completed successfully. Defaults
+          to false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Migration completed successfully or already completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigTableMigrationResponseDto'
+        '400':
+          description: Invalid configId (not an integer) or failed to parse frozen_state
+        '404':
+          description: Config not found
+        '500':
+          description: Internal server error during migration
+      summary: Migrate config table columns from frozen_state
+      tags:
+      - Migrations
+  /api/v1/migration-frozen-state/configs/{configId}/config-customer:
+    post:
+      description: Extracts customer address data from frozen_state.site.address JSON and populates/updates
+        the config_customer table. Tracks migration status in MigrationFrozenStateConfig. Returns early
+        if migration was already completed successfully (unless force=true).
+      operationId: ConfigCustomerMigrationController_migrateConfigCustomer_v1
+      parameters:
+      - name: configId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: force
+        required: false
+        in: query
+        description: If true, re-runs the migration even if it was already completed successfully. Defaults
+          to false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Migration completed successfully or already completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigCustomerMigrationResponseDto'
+        '400':
+          description: Invalid configId (not an integer) or failed to parse frozen_state
+        '404':
+          description: Config not found
+        '500':
+          description: Internal server error during migration
+      summary: Migrate config_customer table from frozen_state
+      tags:
+      - Migrations
+  /api/v1/migration-frozen-state/configs/{configId}/config-consumption-table:
+    post:
+      description: Extracts consumption values (heat, mobility, household, fossil consumption) from effective_price_data
+        JSON and populates the config_consumption table. Tracks migration status in MigrationFrozenStateConfig.configConsumptionsTable.
+        Returns early if migration was already completed successfully (unless force=true).
+      operationId: ConfigConsumptionMigrationController_migrateConfigConsumption_v1
+      parameters:
+      - name: configId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: force
+        required: false
+        in: query
+        description: If true, re-runs the migration even if it was already completed successfully. Defaults
+          to false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Migration completed successfully or already completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigConsumptionMigrationResponseDto'
+        '400':
+          description: Invalid configId (not an integer) or failed to parse effective_price_data
+        '404':
+          description: Config not found
+        '500':
+          description: Internal server error during migration
+      summary: Migrate config_consumption table from effective_price_data
+      tags:
+      - Migrations
+  /api/v1/migration-frozen-state/configs/{configId}/config-margins:
+    post:
+      description: Extracts margin data (total, pv, heat) from frozen_state JSON at $.margins and populates
+        the config_margins table. Tracks migration status in MigrationFrozenStateConfig. Returns early
+        if migration was already completed successfully (unless force=true).
+      operationId: ConfigMarginsMigrationController_migrateConfigMargins_v1
+      parameters:
+      - name: configId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: force
+        required: false
+        in: query
+        description: If true, re-runs the migration even if it was already completed successfully. Defaults
+          to false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Migration completed successfully or already completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigMarginsMigrationResponseDto'
+        '400':
+          description: Invalid configId (not an integer) or failed to parse frozen_state
+        '404':
+          description: Config not found
+        '500':
+          description: Internal server error during migration
+      summary: Migrate config margins from frozen_state
+      tags:
+      - Migrations
+  /api/v1/migration-frozen-state/configs/{configId}/config-calculation-legacy-table:
+    post:
+      description: Extracts calculation values (consumption, roof direction, specific yield, spot price,
+        self-sufficiency) from frozen_state.gewinnprognose JSON and populates the config_calculation_legacy
+        table. Tracks migration status in MigrationFrozenStateConfig.configCalculationLegacyTable. Returns
+        early if migration was already completed successfully (unless force=true).
+      operationId: ConfigCalculationLegacyMigrationController_migrateConfigCalculationLegacy_v1
+      parameters:
+      - name: configId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: force
+        required: false
+        in: query
+        description: If true, re-runs the migration even if it was already completed successfully. Defaults
+          to false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Migration completed successfully or already completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigCalculationLegacyMigrationResponseDto'
+        '400':
+          description: Invalid configId (not an integer) or failed to parse frozen_state
+        '404':
+          description: Config not found
+        '500':
+          description: Internal server error during migration
+      summary: Migrate config_calculation_legacy table from frozen_state
+      tags:
+      - Migrations
+  /api/v1/migration-frozen-state/configs/{configId}/config-calculation-table:
+    post:
+      description: 'Populates the config_calculation table using a fallback pattern: Frozen State (effective_price_data)
+        -> Database Columns -> Calculated/Default Values. Tracks migration status in MigrationFrozenStateConfig.configCalculationTable.
+        Returns early if migration was already completed successfully (unless force=true).'
+      operationId: ConfigCalculationMigrationController_migrateConfigCalculation_v1
+      parameters:
+      - name: configId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: force
+        required: false
+        in: query
+        description: If true, re-runs the migration even if it was already completed successfully. Defaults
+          to false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Migration completed successfully or already completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigCalculationMigrationResponseDto'
+        '400':
+          description: Invalid configId (not an integer) or failed to parse data
+        '404':
+          description: Config not found
+        '500':
+          description: Internal server error during migration
+      summary: Migrate config_calculation table from various sources
+      tags:
+      - Migrations
+  /api/v1/migration-frozen-state/configs/{configId}/config-metrics:
+    post:
+      description: Extracts CO2 savings, PV power, storage capacity, and other metrics from frozen_state
+        JSON (gewinnprognose, panels, batteries) and effective_price_data JSON. Populates config_metrics
+        child table. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration
+        was already completed successfully (unless force=true).
+      operationId: ConfigMetricsMigrationController_migrateConfigMetrics_v1
+      parameters:
+      - name: configId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: force
+        required: false
+        in: query
+        description: If true, re-runs the migration even if it was already completed successfully. Defaults
+          to false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Migration completed successfully or already completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigMetricsMigrationResponseDto'
+        '400':
+          description: Invalid configId (not an integer) or failed to parse frozen_state
+        '404':
+          description: Config not found
+        '500':
+          description: Internal server error during migration
+      summary: Migrate config_metrics table from frozen_state and effective_price_data
+      tags:
+      - Migrations
+  /api/v1/migration-frozen-state/configs/{configId}/config-self-sufficiency:
+    post:
+      description: Extracts scenario self-sufficiency (autarky) values from frozen_state.gewinnprognose.scenarios
+        and populates the config_self_sufficiency table. Maps scenario keys (no, pv, pv_bat, hb, dp) to
+        type values (unoptimized, pv, pv_optimized, heartbeat, dynamic_pulse). Tracks migration status
+        in MigrationFrozenStateConfig.configSelfSufficiencyTable. Returns early if migration was already
+        completed successfully (unless force=true).
+      operationId: ConfigSelfSufficiencyMigrationController_migrateConfigSelfSufficiency_v1
+      parameters:
+      - name: configId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: force
+        required: false
+        in: query
+        description: If true, re-runs the migration even if it was already completed successfully. Defaults
+          to false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Migration completed successfully or already completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigSelfSufficiencyMigrationResponseDto'
+        '400':
+          description: Invalid configId (not an integer) or failed to parse frozen_state
+        '404':
+          description: Config not found
+        '500':
+          description: Internal server error during migration
+      summary: Migrate config_self_sufficiency table from frozen_state
+      tags:
+      - Migrations
+  /api/v1/migration-frozen-state/configs/{configId}/config-market-components:
+    post:
+      description: Extracts market component data from frozen_state JSON at $.angebot, $.angebot_combined,
+        $.angebot_hp, or $.angebot_charger (first with data) and populates the config_market_components
+        table. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already
+        completed successfully (unless force=true).
+      operationId: ConfigMarketComponentsMigrationController_migrateConfigMarketComponents_v1
+      parameters:
+      - name: configId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: force
+        required: false
+        in: query
+        description: If true, re-runs the migration even if it was already completed successfully. Defaults
+          to false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Migration completed successfully or already completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigMarketComponentsMigrationResponseDto'
+        '400':
+          description: Invalid configId (not an integer) or failed to parse frozen_state
+        '404':
+          description: Config not found
+        '500':
+          description: Internal server error during migration
+      summary: Migrate config market components from frozen_state
+      tags:
+      - Migrations
+  /api/v1/migration-frozen-state/configs/{configId}/config-effective-prices:
+    post:
+      description: Computes effective price data from frozen_state.gewinnprognose (profit forecast scenarios)
+        and populates the config_effective_price table with up to 11 rows per config (unoptimized, pv,
+        dynamic_tariff x categories). Tracks migration status in MigrationFrozenStateConfig. Returns early
+        if migration was already completed successfully (unless force=true).
+      operationId: ConfigEffectivePricesMigrationController_migrateConfigEffectivePrices_v1
+      parameters:
+      - name: configId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: force
+        required: false
+        in: query
+        description: If true, re-runs the migration even if it was already completed successfully. Defaults
+          to false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Migration completed successfully or already completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigEffectivePricesMigrationResponseDto'
+        '400':
+          description: Invalid configId (not an integer) or failed to parse frozen_state
+        '404':
+          description: Config not found
+        '500':
+          description: Internal server error during migration
+      summary: Migrate config effective prices from frozen_state
+      tags:
+      - Migrations
+components:
+  schemas:
+    ConfigTableMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        columnsUpdated:
+          type: number
+          description: Number of columns updated (out of 6 possible columns)
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - columnsUpdated
+    ConfigMarketComponentsMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        marketComponentsCreated:
+          type: number
+          description: Number of market component rows created
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - marketComponentsCreated
+    ConfigCalculationMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+          example: true
+        configId:
+          type: number
+          description: The ID of the config that was migrated
+          example: 123
+        columnsUpdated:
+          type: number
+          description: Number of columns updated in the config_calculation table
+          example: 15
+        message:
+          type: string
+          description: Optional message about the migration status
+          example: Successfully updated 15 column(s)
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - columnsUpdated
+    ConfigConsumptionMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        columnsUpdated:
+          type: number
+          description: Number of columns updated (out of 6 possible columns)
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - columnsUpdated
+    ConfigDocumentsMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        documentsCreated:
+          type: number
+          description: Number of documents created
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - documentsCreated
+    ConfigProductsMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        productsUpdated:
+          type: number
+          description: Number of products updated
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - productsUpdated
+    ConfigSelfSufficiencyMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        rowsCreated:
+          type: number
+          description: Number of config_self_sufficiency rows created
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - rowsCreated
+    ConfigMarginsMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        marginsCreated:
+          type: number
+          description: 'Number of margin rows created (out of 3 possible: total, pv, heat)'
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - marginsCreated
+    ConfigCalculationLegacyMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        columnsUpdated:
+          type: number
+          description: Number of columns updated (out of 9 possible columns)
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - columnsUpdated
+    ConfigEffectivePricesMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        rowsCreated:
+          type: number
+          description: 'Number of effective price rows created (up to 11 possible: 2 unoptimized + 4 pv
+            + 5 dynamic_tariff)'
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - rowsCreated
+    ConfigMetricsMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        columnsUpdated:
+          type: number
+          description: Number of columns updated (out of 20 possible columns)
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - columnsUpdated
+    ConfigCustomerMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        columnsUpdated:
+          type: number
+          description: Number of columns updated (out of 9 possible columns)
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - columnsUpdated
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

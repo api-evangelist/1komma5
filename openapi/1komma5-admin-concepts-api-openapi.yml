@@ -1,0 +1,376 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Admin - Concepts API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Admin - Concepts
+paths:
+  /api/v1/admin/concepts:
+    get:
+      operationId: GetAdminConceptsController_getAdminConcepts_v1
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Page number (1-based)
+        schema:
+          minimum: 1
+          default: 1
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          minimum: 1
+          maximum: 1000
+          default: 20
+          type: number
+      - name: type
+        required: false
+        in: query
+        description: Filter by template type
+        schema:
+          $ref: '#/components/schemas/ConceptTemplateType'
+      - name: scope
+        required: false
+        in: query
+        description: Filter by scope (global = no tenant, branch = tenant-specific)
+        schema:
+          $ref: '#/components/schemas/ConceptScope'
+      - name: visibility
+        required: false
+        in: query
+        description: Filter by visibility (visible or hidden)
+        schema:
+          $ref: '#/components/schemas/ConceptVisibility'
+      - name: tenantId
+        required: false
+        in: query
+        description: Filter by branch/tenant ID
+        schema:
+          example: '42'
+          type: string
+      - name: countryId
+        required: false
+        in: query
+        description: Filter by country ID (for Global users)
+        schema:
+          example: 1
+          type: number
+      - name: search
+        required: false
+        in: query
+        description: Search by concept name
+        schema:
+          example: Solar Basic
+          type: string
+      - name: updatedFrom
+        required: false
+        in: query
+        description: Filter concepts updated on or after this date (ISO 8601, e.g. 2025-01-01T00:00:00.000Z)
+        schema:
+          example: '2025-01-01T00:00:00.000Z'
+          type: string
+      - name: updatedTo
+        required: false
+        in: query
+        description: Filter concepts updated on or before this date (ISO 8601, e.g. 2025-12-31T23:59:59.999Z)
+        schema:
+          example: '2025-12-31T23:59:59.999Z'
+          type: string
+      - name: sortBy
+        required: false
+        in: query
+        description: Field to sort by
+        schema:
+          $ref: '#/components/schemas/ConceptSortField'
+      - name: sortOrder
+        required: false
+        in: query
+        description: Sort order
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+      responses:
+        '200':
+          description: Paginated list of concepts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedConceptsResponseDto'
+      summary: Get paginated concepts with filtering and sorting
+      tags:
+      - Admin - Concepts
+    post:
+      operationId: CreateAdminConceptController_createAdminConcept_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAdminConceptDto'
+      responses:
+        '201':
+          description: Concept created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConceptListItemDto'
+      summary: Create a new concept
+      tags:
+      - Admin - Concepts
+  /api/v1/admin/concepts/{id}:
+    get:
+      operationId: GetAdminConceptController_getAdminConcept_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Concept found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConceptListItemDto'
+        '404':
+          description: Concept not found
+      summary: Get a concept by ID
+      tags:
+      - Admin - Concepts
+    patch:
+      operationId: UpdateAdminConceptController_updateAdminConcept_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAdminConceptDto'
+      responses:
+        '200':
+          description: Concept updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConceptListItemDto'
+        '404':
+          description: Concept not found
+      summary: Update a concept
+      tags:
+      - Admin - Concepts
+components:
+  schemas:
+    CreateAdminConceptDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Concept name
+          example: PV Basic 10kWp
+          minLength: 1
+          maxLength: 255
+      required:
+      - name
+    ConceptListItemDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Concept ID
+          example: 1
+        name:
+          type: string
+          description: Concept name
+          example: PV Basic 10kWp
+        templateType:
+          type:
+          - object
+          - 'null'
+          description: Template type (pv, wp, spnach, pvwp, mg)
+          example: pv
+        templateVisible:
+          type: boolean
+          description: Whether the concept is visible to users
+          example: true
+        templateMeta:
+          type:
+          - object
+          - 'null'
+          description: Template metadata (e.g. description)
+          example:
+            description: Basic PV system with battery
+        templateImage:
+          type:
+          - object
+          - 'null'
+          description: Template marketing image URL
+          example: https://storage.example.com/templates/concept.jpg
+        createdAt:
+          type: string
+          description: Creation date
+          example: '2024-01-15T10:30:00.000Z'
+        updatedAt:
+          type: string
+          description: Last update date
+          example: '2024-06-20T14:00:00.000Z'
+        scope:
+          type: string
+          description: 'Scope: global (no tenant) or branch (tenant-specific)'
+          example: global
+          enum:
+          - global
+          - branch
+        tenant:
+          description: Tenant info (only for branch-scoped concepts)
+          allOf:
+          - $ref: '#/components/schemas/ConceptTenantDto'
+        pricing:
+          description: Pricing information
+          allOf:
+          - $ref: '#/components/schemas/ConceptPricingDto'
+        products:
+          description: Products in this concept
+          items:
+            type: array
+          type: array
+      required:
+      - id
+      - name
+      - templateType
+      - templateVisible
+      - templateMeta
+      - templateImage
+      - createdAt
+      - updatedAt
+      - scope
+      - tenant
+      - pricing
+      - products
+    ConceptScope:
+      type: string
+      enum:
+      - global
+      - branch
+    ConceptSortField:
+      type: string
+      enum:
+      - name
+      - createdAt
+    UpdateAdminConceptDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Concept name
+          example: PV Basic 10kWp
+          minLength: 1
+          maxLength: 255
+    PaginationMetaDto:
+      type: object
+      properties:
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
+          example: 1
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
+      required:
+      - total
+      - page
+      - limit
+      - totalPages
+    ConceptTemplateType:
+      type: string
+      enum:
+      - pv
+      - wp
+      - spnach
+      - pvwp
+      - mg
+    ConceptPricingDto:
+      type: object
+      properties:
+        totalNet:
+          type: number
+          description: Total net price (excl. VAT)
+          example: 12500
+        totalGross:
+          type: number
+          description: Total gross price (incl. VAT)
+          example: 14875
+        vatRate:
+          type: number
+          description: VAT rate as percentage
+          example: 19
+        currency:
+          type: string
+          description: Currency code
+          example: EUR
+      required:
+      - totalNet
+      - totalGross
+      - vatRate
+      - currency
+    ConceptVisibility:
+      type: string
+      enum:
+      - visible
+      - hidden
+    PaginatedConceptsResponseDto:
+      type: object
+      properties:
+        data:
+          description: List of concepts
+          items:
+            type: array
+          type: array
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
+      required:
+      - data
+      - meta
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+    ConceptTenantDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Tenant ID
+          example: tenant-123
+        name:
+          type: string
+          description: Tenant name
+          example: Berlin Branch
+      required:
+      - id
+      - name
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

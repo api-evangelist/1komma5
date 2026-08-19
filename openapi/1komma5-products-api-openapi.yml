@@ -1,0 +1,175 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Products API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Products
+paths:
+  /api/v1/product:
+    get:
+      operationId: ProductGetAllController_handle_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductGetAllResponse'
+      summary: List all products
+      tags:
+      - Products
+  /api/v1/product/{id}:
+    get:
+      operationId: GetProductController_get_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: relationships
+        required: false
+        in: query
+        description: Comma-separated list of relationships to include (e.g., brochures)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDTO'
+      summary: Get product
+      tags:
+      - Products
+components:
+  schemas:
+    CategoryDTO:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+      required:
+      - id
+      - name
+    MediaDTO:
+      type: object
+      properties:
+        id:
+          type:
+          - number
+          - 'null'
+        normal:
+          type:
+          - string
+          - 'null'
+        thumb:
+          type:
+          - string
+          - 'null'
+        url:
+          type: string
+      required:
+      - url
+    BrandDTO:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+      required:
+      - id
+      - name
+    ProductGetAllResponse:
+      type: object
+      properties:
+        products:
+          description: List of products
+          items:
+            type: array
+          type: array
+        categories:
+          description: List of categories associated with the products
+          items:
+            type: array
+          type: array
+      required:
+      - products
+      - categories
+    PriceDTO:
+      type: object
+      properties:
+        relative:
+          type: number
+      required:
+      - relative
+    ProductDTO:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        category:
+          $ref: '#/components/schemas/CategoryDTO'
+        brand:
+          $ref: '#/components/schemas/BrandDTO'
+        featured:
+          type: boolean
+        description:
+          type:
+          - string
+          - 'null'
+        shortDescription:
+          type:
+          - string
+          - 'null'
+        attributes:
+          type: object
+        customPrice:
+          type:
+          - number
+          - 'null'
+        image:
+          type: string
+        prices:
+          $ref: '#/components/schemas/PriceDTO'
+        count:
+          type: number
+        brochures:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaDTO'
+        canEditCustomPrice:
+          type: boolean
+        canEditCustomInvoiceLine:
+          type: boolean
+        canEditOffer:
+          type: boolean
+      required:
+      - id
+      - name
+      - category
+      - brand
+      - featured
+      - description
+      - shortDescription
+      - attributes
+      - customPrice
+      - image
+      - prices
+      - count
+      - brochures
+      - canEditCustomPrice
+      - canEditCustomInvoiceLine
+      - canEditOffer
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Migration Frozen State API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "migration-frozen-state",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run all migration steps for a configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/migration-frozen-state/configs/:configId/migrate-all",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs all steps even if already migrated."
+              }
+            ]
+          },
+          "docs": "Triggers all migration services for the given configId. If force is true, cleans up existing migration data before running."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

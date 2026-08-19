@@ -1,0 +1,489 @@
+{
+  "item": [
+    {
+      "id": "e9ce9c67-6719-4be6-8188-2f05bb09dc49",
+      "name": "Users",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58078872-c48f-4fa4-b7c1-04b7290d6ff0",
+          "name": "Auth0User Controller user Exists By Email v1",
+          "request": {
+            "name": "Auth0User Controller user Exists By Email v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "auth0",
+                "user",
+                "exists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "463ec994-33c9-463b-b86c-6dcf3d9623e0",
+              "name": "Check if user exists in Auth0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth0",
+                    "user",
+                    "exists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"foo@bar.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"email\": \"foo@bar.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "169175c3-b844-461f-97e6-01762d615ce7",
+          "name": "Update User Controller handle v1",
+          "request": {
+            "name": "Update User Controller handle v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"calendarUrl\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a63d051-564e-4583-a634-ddc5fadf2f7e",
+              "name": "User profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"calendarUrl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4167.632770628519,\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"currency\": \"SEK\",\n  \"permissions\": [\n    [],\n    []\n  ],\n  \"abilities\": [\n    [],\n    []\n  ],\n  \"accessLevel\": \"branch\",\n  \"phone\": null,\n  \"country\": {\n    \"id\": 4595.675638462524,\n    \"name\": \"string\",\n    \"countryCode\": \"NL\",\n    \"locale\": \"da-DK\",\n    \"currency\": \"SEK\",\n    \"vatRate\": 5565.253136284606\n  },\n  \"profilePhotoUrl\": null,\n  \"calendarUrl\": null,\n  \"roles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenant\": {\n    \"name\": \"string\",\n    \"id\": \"string\",\n    \"country\": {\n      \"id\": 7214.543333047439,\n      \"name\": \"string\",\n      \"countryCode\": \"NL\",\n      \"locale\": \"sv-SE\",\n      \"currency\": \"SEK\",\n      \"vatRate\": 6052.3916512635715\n    },\n    \"isEnabledHeatpump\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57c5bfe0-c4bb-4850-bd0d-bdf2dc97b8bd",
+          "name": "Get User Profile Controller handle v1",
+          "request": {
+            "name": "Get User Profile Controller handle v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79610692-58a0-48c6-93c4-f5caba4c582f",
+              "name": "User profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4201.020565732365,\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"currency\": \"EUR\",\n  \"permissions\": [\n    [],\n    []\n  ],\n  \"abilities\": [\n    [],\n    []\n  ],\n  \"accessLevel\": \"branch\",\n  \"phone\": null,\n  \"country\": {\n    \"id\": 3743.2879246383864,\n    \"name\": \"string\",\n    \"countryCode\": \"DK\",\n    \"locale\": \"da-DK\",\n    \"currency\": \"DKK\",\n    \"vatRate\": 1286.125306226924\n  },\n  \"profilePhotoUrl\": {},\n  \"calendarUrl\": null,\n  \"roles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenant\": {\n    \"name\": \"string\",\n    \"id\": \"string\",\n    \"country\": {\n      \"id\": 6197.679737782699,\n      \"name\": \"string\",\n      \"countryCode\": \"DE\",\n      \"locale\": \"de-DE\",\n      \"currency\": \"EUR\",\n      \"vatRate\": 1833.245739867595\n    },\n    \"isEnabledHeatpump\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d45b282-d76d-4ab9-8d4e-9bf6b4e3bb86",
+          "name": "Get all users",
+          "request": {
+            "name": "Get all users",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a28f0581-66ae-4a63-bd91-1c317778134e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1971.0114401247681,\n    \"tenantId\": null,\n    \"countryId\": 9657.881171098008,\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"currentTeamId\": null,\n    \"profilePhotoPath\": null,\n    \"calendarUrl\": \"string\",\n    \"phone\": null,\n    \"isTeam\": false,\n    \"isTemplateUser\": false,\n    \"zohoId\": null,\n    \"zohoUserId\": \"string\",\n    \"tenantIdHeat\": \"string\",\n    \"activeTenantId\": \"string\"\n  },\n  {\n    \"id\": 7729.4287574430045,\n    \"tenantId\": \"string\",\n    \"countryId\": null,\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"currentTeamId\": 1174.5414758034356,\n    \"profilePhotoPath\": null,\n    \"calendarUrl\": null,\n    \"phone\": null,\n    \"isTeam\": true,\n    \"isTemplateUser\": false,\n    \"zohoId\": null,\n    \"zohoUserId\": null,\n    \"tenantIdHeat\": null,\n    \"activeTenantId\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02ceb381-90d5-45e1-9d70-8edff3ba0254",
+          "name": "User Profile Photo Controller handle v1",
+          "request": {
+            "name": "User Profile Photo Controller handle v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "profile-picture"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba3139d6-041b-4f37-962c-fdbb1f40254f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "profile-picture"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91b3a1d4-3454-489d-bb6a-41c3da40f6c0",
+          "name": "User Profile Photo Controller delete v1",
+          "request": {
+            "name": "User Profile Photo Controller delete v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "profile-picture"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b530fa8f-2ff0-47fe-a7e2-110c2150c0c7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "profile-picture"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://heartbeat.1komma5grad.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c3468438-fe4f-47c0-b7cc-ce4e87f501e0",
+    "name": "Offer Tool Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Api definitions for Offer Tool",
+      "type": "text/plain"
+    }
+  }
+}

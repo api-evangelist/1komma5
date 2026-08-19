@@ -1,0 +1,103 @@
+{
+  "item": [
+    {
+      "id": "eb158092-f705-4008-9c55-a948d4f9775c",
+      "name": "payment-options",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc48d736-37f0-48b5-b27f-cf13e4100bb6",
+          "name": "Get All Payment Options Controller handle v1",
+          "request": {
+            "name": "Get All Payment Options Controller handle v1",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "payment-options"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b72c446-711b-41e0-ba70-a9c5da506fd5",
+              "name": "Return all payment options for the user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "payment-options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://heartbeat.1komma5grad.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "53d49839-1629-4b66-825e-ac7e6fd28e02",
+    "name": "Offer Tool Payment Options API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Api definitions for Offer Tool",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Admin - Concepts API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin - Concepts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get paginated concepts with filtering and sorting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/concepts",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by template type"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Filter by scope (global = no tenant, branch = tenant-specific)"
+              },
+              {
+                "name": "visibility",
+                "value": "",
+                "type": "query",
+                "description": "Filter by visibility (visible or hidden)"
+              },
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by branch/tenant ID"
+              },
+              {
+                "name": "countryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country ID (for Global users)"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by concept name"
+              },
+              {
+                "name": "updatedFrom",
+                "value": "",
+                "type": "query",
+                "description": "Filter concepts updated on or after this date (ISO 8601, e.g. 2025-01-01T00:00:00.000Z)"
+              },
+              {
+                "name": "updatedTo",
+                "value": "",
+                "type": "query",
+                "description": "Filter concepts updated on or before this date (ISO 8601, e.g. 2025-12-31T23:59:59.999Z)"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ]
+          },
+          "docs": "Get paginated concepts with filtering and sorting"
+        },
+        {
+          "info": {
+            "name": "Create a new concept",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/concepts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new concept"
+        },
+        {
+          "info": {
+            "name": "Get a concept by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/concepts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a concept by ID"
+        },
+        {
+          "info": {
+            "name": "Update a concept",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/concepts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a concept"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

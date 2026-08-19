@@ -1,0 +1,227 @@
+{
+  "item": [
+    {
+      "id": "f2cd6f2e-e53e-45ec-8cb4-8fa70f916e22",
+      "name": "Admin - Audit Logs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "890e3719-5c35-4108-9d12-de5dc63507c4",
+          "name": "Get paginated audit logs with filtering and sorting",
+          "request": {
+            "name": "Get paginated audit logs with filtering and sorting",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "audit-logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "Filter by action type"
+                },
+                {
+                  "disabled": false,
+                  "key": "subjectType",
+                  "value": "<string>",
+                  "description": "Filter by subject type"
+                },
+                {
+                  "disabled": false,
+                  "key": "actorType",
+                  "value": "<string>",
+                  "description": "Filter by actor type"
+                },
+                {
+                  "disabled": false,
+                  "key": "traceId",
+                  "value": "<string>",
+                  "description": "Filter by trace ID (exact match)"
+                },
+                {
+                  "disabled": false,
+                  "key": "actorIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by actor identifier (exact match)"
+                },
+                {
+                  "disabled": false,
+                  "key": "subjectIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by subject identifier (exact match)"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<string>",
+                  "description": "Filter by start date (ISO 8601 format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<string>",
+                  "description": "Filter by end date (ISO 8601 format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Field to sort by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Sort order"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf898b0c-cba5-4deb-beb1-38ccc901a544",
+              "name": "Paginated list of audit logs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "audit-logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "action",
+                      "value": "created"
+                    },
+                    {
+                      "key": "subjectType",
+                      "value": "User"
+                    },
+                    {
+                      "key": "actorType",
+                      "value": "User"
+                    },
+                    {
+                      "key": "traceId",
+                      "value": "abc-trace-123"
+                    },
+                    {
+                      "key": "actorIdentifier",
+                      "value": "42"
+                    },
+                    {
+                      "key": "subjectIdentifier",
+                      "value": "123"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2024-01-01T00:00:00.000Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2024-12-31T23:59:59.999Z"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"action\": \"created\",\n      \"description\": \"User created a new configuration\",\n      \"actorType\": null,\n      \"actorIdentifier\": {},\n      \"subjectType\": {},\n      \"subjectIdentifier\": {},\n      \"traceId\": null,\n      \"metadata\": {\n        \"oldValue\": \"A\",\n        \"newValue\": \"B\"\n      },\n      \"createdAt\": \"2024-01-15T10:30:00.000Z\"\n    },\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"action\": \"created\",\n      \"description\": \"User created a new configuration\",\n      \"actorType\": {},\n      \"actorIdentifier\": {},\n      \"subjectType\": null,\n      \"subjectIdentifier\": null,\n      \"traceId\": {},\n      \"metadata\": {\n        \"oldValue\": \"A\",\n        \"newValue\": \"B\"\n      },\n      \"createdAt\": \"2024-01-15T10:30:00.000Z\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 100,\n    \"page\": 1,\n    \"limit\": 20,\n    \"totalPages\": 5\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://heartbeat.1komma5grad.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c8c80f45-fe5e-48f2-97aa-76442daa5772",
+    "name": "Offer Tool Admin - Audit Logs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Api definitions for Offer Tool",
+      "type": "text/plain"
+    }
+  }
+}

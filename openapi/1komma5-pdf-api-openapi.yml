@@ -1,0 +1,84 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool PDF API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: PDF
+paths:
+  /api/v1/configs/{configId}/pdf:
+    post:
+      operationId: PdfController_generatePdf_v1
+      parameters:
+      - name: configId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: authorization
+        required: true
+        in: header
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GeneratePdfDto'
+      responses:
+        '200':
+          description: PDF generation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PdfResponseDto'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '503':
+          description: PDF service unavailable
+      security:
+      - bearer: []
+      summary: Generate PDF for a configuration
+      tags:
+      - PDF
+components:
+  schemas:
+    GeneratePdfDto:
+      type: object
+      properties:
+        offerType:
+          allOf:
+          - $ref: '#/components/schemas/OfferTypeEnum'
+        withDataSheets:
+          type: boolean
+        shortVersion:
+          type: boolean
+        hasHeartbeat:
+          type: boolean
+          description: Whether the configuration has a Heartbeat product
+      required:
+      - offerType
+    PdfResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the PDF generation was initiated
+        message:
+          type: string
+          description: Error message if generation failed
+      required:
+      - success
+    OfferTypeEnum:
+      type: string
+      enum:
+      - pv
+      - heat
+      - charger
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

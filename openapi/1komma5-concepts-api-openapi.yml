@@ -1,0 +1,37 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Concepts API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Concepts
+paths:
+  /api/v1/concepts-public:
+    get:
+      operationId: GetConceptsController_getAll_v1
+      parameters:
+      - name: type
+        required: false
+        in: query
+        description: Type of concept (pv or heat). Defaults to pv.
+        schema:
+          enum:
+          - pv
+          - heat
+          type: string
+      responses:
+        '200':
+          description: List of energy concepts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/'
+      summary: Get public energy concepts/templates
+      tags:
+      - Concepts
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

@@ -1,0 +1,43 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool CRM API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: CRM
+paths:
+  /api/v1/crm/reject-offer/{crmOfferId}:
+    patch:
+      operationId: RejectOfferController_handle_v1
+      parameters:
+      - name: crmOfferId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Reject an offer, this endpoint will be called by the CRM whenever an quote is rejected
+        on their side
+      tags:
+      - CRM
+  /api/v1/crm/deals/{dealId}:
+    get:
+      operationId: GetDealController_getDeal_v1
+      parameters:
+      - name: dealId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deal retrieved successfully
+      summary: Get deal by ID (testing endpoint)
+      tags:
+      - CRM
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

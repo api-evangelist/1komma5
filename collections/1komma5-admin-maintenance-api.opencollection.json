@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Admin - Maintenance API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin - Maintenance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Backfill missing rows in config_hash_lookup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/maintenance/backfill-config-hashes",
+            "params": [
+              {
+                "name": "batchSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of configs to process per batch"
+              }
+            ]
+          },
+          "docs": "Idempotent one-shot maintenance task. Queues a worker job that iterates over configs without a hash lookup row and inserts one using the runtime HashService. Progress and results are logged by the worker. Restricted to Superadmin."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

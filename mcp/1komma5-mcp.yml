@@ -465,3 +465,9 @@ tools:
   source_operation: openapi/1komma5-offer-tool-openapi-original.json#QueueSiteEnergySiteInfoRefreshController_queue_v1
   method: POST
   path: /api/v1/sites/{id}/lookup-energy-service-data
+deployment:
+  mode: none
+  verified: derived
+  tools: 73
+  checked: '2026-08-12'
+  source: catalog MCP census

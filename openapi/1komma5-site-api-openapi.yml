@@ -1,0 +1,37 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Site API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: site
+paths:
+  /api/v1/customers/{customerId}/sites:
+    post:
+      operationId: CreateCustomerSiteController_handle_v1
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        schema:
+          type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerSiteRequestDto'
+      responses:
+        '201':
+          description: Created customer site
+      tags:
+      - site
+components:
+  schemas:
+    CreateCustomerSiteRequestDto:
+      type: object
+      properties: {}
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

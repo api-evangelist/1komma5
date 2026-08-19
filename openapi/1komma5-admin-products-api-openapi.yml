@@ -1,0 +1,597 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Admin - Products API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Admin - Products
+paths:
+  /api/v1/admin/products:
+    get:
+      description: Returns all products (country-scoped based on user access level). Global admins can
+        filter by country.
+      operationId: GetAdminProductsController_getAdminProducts_v1
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Page number (1-based)
+        schema:
+          minimum: 1
+          default: 1
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 20
+          type: number
+      - name: search
+        required: false
+        in: query
+        description: Search by product name
+        schema:
+          example: Solar Panel
+          type: string
+      - name: categoryId
+        required: false
+        in: query
+        description: Filter by category ID
+        schema:
+          example: 1
+          type: number
+      - name: brandId
+        required: false
+        in: query
+        description: Filter by brand ID
+        schema:
+          example: 1
+          type: number
+      - name: countryId
+        required: false
+        in: query
+        description: Filter by country ID (only for global admins)
+        schema:
+          example: 1
+          type: number
+      - name: public
+        required: false
+        in: query
+        description: Filter by visibility (public)
+        schema:
+          example: true
+          type: boolean
+      - name: canbesold
+        required: false
+        in: query
+        description: Filter by can be sold status
+        schema:
+          example: true
+          type: boolean
+      - name: sortBy
+        required: false
+        in: query
+        description: Field to sort by
+        schema:
+          $ref: '#/components/schemas/AdminProductSortField'
+      - name: sortOrder
+        required: false
+        in: query
+        description: Sort order
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+      responses:
+        '200':
+          description: Paginated list of products
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAdminProductsResponseDto'
+      summary: Get paginated global products list with filtering and sorting
+      tags:
+      - Admin - Products
+    post:
+      operationId: CreateAdminProductController_createAdminProduct_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAdminProductDto'
+      responses:
+        '201':
+          description: Product created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminProductDto'
+      summary: Create a new product
+      tags:
+      - Admin - Products
+  /api/v1/admin/products/{id}:
+    get:
+      operationId: GetAdminProductController_getProduct_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Product details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminProductDto'
+      summary: Get a single product by ID
+      tags:
+      - Admin - Products
+    patch:
+      operationId: UpdateAdminProductController_updateAdminProduct_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAdminProductDto'
+      responses:
+        '200':
+          description: Product updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminProductDto'
+        '404':
+          description: Product not found
+      summary: Update a product
+      tags:
+      - Admin - Products
+  /api/v1/admin/pricebook:
+    get:
+      description: Returns products that are in the pricebook for the specified branch/tenant. User must
+        have access to the branch.
+      operationId: GetAdminPricebookController_getAdminPricebook_v1
+      parameters:
+      - name: tenantId
+        required: true
+        in: query
+        description: Tenant/Branch ID to fetch pricebook for
+        schema:
+          example: tenant-uuid-123
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: Page number (1-based)
+        schema:
+          minimum: 1
+          default: 1
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 20
+          type: number
+      - name: search
+        required: false
+        in: query
+        description: Search by product name
+        schema:
+          example: Solar Panel
+          type: string
+      - name: categoryId
+        required: false
+        in: query
+        description: Filter by category ID
+        schema:
+          example: 1
+          type: number
+      - name: brandId
+        required: false
+        in: query
+        description: Filter by brand ID
+        schema:
+          example: 1
+          type: number
+      - name: public
+        required: false
+        in: query
+        description: Filter by effective visibility (public)
+        schema:
+          example: true
+          type: boolean
+      - name: canbesold
+        required: false
+        in: query
+        description: Filter by effective can be sold status
+        schema:
+          example: true
+          type: boolean
+      - name: hasOverride
+        required: false
+        in: query
+        description: 'Filter by override status: true = only products with overrides, false = only products
+          without overrides'
+        schema:
+          example: true
+          type: boolean
+      - name: sortBy
+        required: false
+        in: query
+        description: Field to sort by
+        schema:
+          $ref: '#/components/schemas/AdminProductSortField'
+      - name: sortOrder
+        required: false
+        in: query
+        description: Sort order
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+      responses:
+        '200':
+          description: Paginated list of pricebook products
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAdminPricebookResponseDto'
+      summary: Get paginated pricebook products for a specific branch
+      tags:
+      - Admin - Products
+  /api/v1/admin/categories:
+    get:
+      operationId: GetAdminCategoriesController_getCategories_v1
+      parameters: []
+      responses:
+        '200':
+          description: List of categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoryDto'
+      summary: List all product categories
+      tags:
+      - Admin - Products
+  /api/v1/admin/brands:
+    get:
+      operationId: GetAdminCategoriesController_getBrands_v1
+      parameters: []
+      responses:
+        '200':
+          description: List of brands
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BrandDto'
+      summary: List all product brands
+      tags:
+      - Admin - Products
+components:
+  schemas:
+    CategoryDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Category ID
+        name:
+          type: string
+          description: Category name
+      required:
+      - id
+      - name
+    AdminProductDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Product ID
+        name:
+          type: string
+          description: Product name
+        category:
+          description: Product category
+          allOf:
+          - $ref: '#/components/schemas/CategoryDto'
+        brand:
+          description: Product brand
+          allOf:
+          - $ref: '#/components/schemas/BrandDto'
+        price:
+          type: number
+          description: Product price (EK)
+        factor:
+          type: number
+          description: Price factor
+        public:
+          type: boolean
+          description: Is product publicly visible
+        canbesold:
+          type: boolean
+          description: Can product be sold
+        visibleToTenant:
+          type: boolean
+          description: Is product visible to tenants
+        imageUrl:
+          type:
+          - object
+          - 'null'
+          description: Product image URL
+        createdAt:
+          type: string
+          description: Product creation date
+        countryId:
+          type:
+          - object
+          - 'null'
+          description: Country ID
+        countryCode:
+          type:
+          - object
+          - 'null'
+          description: Country code (e.g., DE, SE, DK)
+        vatType:
+          type:
+          - string
+          - 'null'
+          description: VAT type override (null = inherit from category)
+          enum:
+          - pv
+          - general
+      required:
+      - id
+      - name
+      - category
+      - brand
+      - price
+      - factor
+      - public
+      - canbesold
+      - visibleToTenant
+      - imageUrl
+      - createdAt
+      - countryId
+      - countryCode
+      - vatType
+    PaginationMetaDto:
+      type: object
+      properties:
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
+          example: 1
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
+      required:
+      - total
+      - page
+      - limit
+      - totalPages
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+    UpdateAdminProductDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Product name
+          example: Solar Panel XL
+          minLength: 1
+          maxLength: 255
+    CreateAdminProductDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Product name
+          example: Solar Panel XL
+          minLength: 1
+          maxLength: 255
+      required:
+      - name
+    PaginatedAdminProductsResponseDto:
+      type: object
+      properties:
+        data:
+          description: List of products
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminProductDto'
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
+      required:
+      - data
+      - meta
+    AdminProductSortField:
+      type: string
+      enum:
+      - name
+      - createdAt
+      - price
+      - category
+    AdminPricebookProductDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Product ID
+        name:
+          type: string
+          description: Product name
+        category:
+          description: Product category
+          allOf:
+          - $ref: '#/components/schemas/CategoryDto'
+        brand:
+          description: Product brand
+          allOf:
+          - $ref: '#/components/schemas/BrandDto'
+        price:
+          type: number
+          description: Product price (EK)
+        factor:
+          type: number
+          description: Price factor
+        public:
+          type: boolean
+          description: Is product publicly visible
+        canbesold:
+          type: boolean
+          description: Can product be sold
+        visibleToTenant:
+          type: boolean
+          description: Is product visible to tenants
+        imageUrl:
+          type:
+          - object
+          - 'null'
+          description: Product image URL
+        createdAt:
+          type: string
+          description: Product creation date
+        countryId:
+          type:
+          - object
+          - 'null'
+          description: Country ID
+        countryCode:
+          type:
+          - object
+          - 'null'
+          description: Country code (e.g., DE, SE, DK)
+        vatType:
+          type:
+          - string
+          - 'null'
+          description: VAT type override (null = inherit from category)
+          enum:
+          - pv
+          - general
+        pricebookOverrides:
+          description: Pricebook overrides for this tenant
+          allOf:
+          - $ref: '#/components/schemas/PricebookOverridesDto'
+        effectivePrice:
+          type: number
+          description: Effective price (pricebook override or product default)
+        effectiveFactor:
+          type: number
+          description: Effective factor (pricebook override or product default)
+        effectivePublic:
+          type: boolean
+          description: Effective visibility (pricebook override or product default)
+        effectiveCanbesold:
+          type: boolean
+          description: Effective canbesold (pricebook override or product default)
+      required:
+      - id
+      - name
+      - category
+      - brand
+      - price
+      - factor
+      - public
+      - canbesold
+      - visibleToTenant
+      - imageUrl
+      - createdAt
+      - countryId
+      - countryCode
+      - vatType
+      - pricebookOverrides
+      - effectivePrice
+      - effectiveFactor
+      - effectivePublic
+      - effectiveCanbesold
+    PricebookOverridesDto:
+      type: object
+      properties:
+        price:
+          type:
+          - object
+          - 'null'
+          description: Overridden price
+        factor:
+          type:
+          - object
+          - 'null'
+          description: Overridden factor
+        public:
+          type:
+          - object
+          - 'null'
+          description: Overridden visibility
+        canbesold:
+          type:
+          - object
+          - 'null'
+          description: Overridden canbesold
+      required:
+      - price
+      - factor
+      - public
+      - canbesold
+    PaginatedAdminPricebookResponseDto:
+      type: object
+      properties:
+        data:
+          description: List of pricebook products
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminPricebookProductDto'
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
+      required:
+      - data
+      - meta
+    BrandDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Brand ID
+        name:
+          type: string
+          description: Brand name
+      required:
+      - id
+      - name
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

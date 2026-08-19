@@ -1,0 +1,273 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Configs API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Configs
+paths:
+  /api/v1/configs/{id}:
+    get:
+      operationId: GetConfigController_get_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigDetailsResponseDto'
+      summary: Get config by ID
+      tags:
+      - Configs
+  /api/v1/configs/{id}/send-offer:
+    post:
+      operationId: SendOfferController_sendOffer_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: authorization
+        required: true
+        in: header
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendOfferRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendOfferResponseDto'
+      security:
+      - bearer: []
+      summary: Send offer to GetAccept for a configuration
+      tags:
+      - Configs
+  /api/v1/configs/{id}/lookup-energy-service-data:
+    post:
+      operationId: RefreshConfigEnergySiteInfoController_refresh_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  success:
+                    type: boolean
+      summary: Refresh a config's energy site info (grid/metering fees) from ESI.
+      tags:
+      - Configs
+components:
+  schemas:
+    FinancingDto:
+      type: object
+      properties:
+        creditOption:
+          type: object
+        creditInvestmentSum:
+          type: object
+        creditInstallments:
+          type: object
+        creditInterestRate:
+          type: object
+        creditMonthlyFee:
+          type: object
+        creditTotalMonthlyCosts:
+          type: object
+        creditInstallmentsPv:
+          type: object
+        creditInstallmentsHeat:
+          type: object
+        creditInterestRatePv:
+          type: object
+        creditInterestRateHeat:
+          type: object
+        creditTotalMonthlyCostsPv:
+          type: object
+        creditTotalMonthlyCostsHeat:
+          type: object
+        financingLimits:
+          $ref: '#/components/schemas/FinancingLimitsDto'
+    OfferPdfDto:
+      type: object
+      properties:
+        id:
+          type: number
+        url:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        name:
+          type: string
+        fileName:
+          type: string
+        thumb:
+          type: string
+      required:
+      - id
+      - url
+      - createdAt
+      - updatedAt
+      - name
+      - fileName
+      - thumb
+    SendOfferResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+        getAcceptDocumentId:
+          type: string
+      required:
+      - success
+    FinancingLimitsDto:
+      type: object
+      properties:
+        isBlockedByAge:
+          type: boolean
+        maxInstallmentsPv:
+          type:
+          - number
+          - 'null'
+        maxInstallmentsHeat:
+          type:
+          - number
+          - 'null'
+        minInstallmentMonths:
+          type:
+          - number
+          - 'null'
+        combinedGrossLimitEur:
+          type: number
+        isCombinedGrossOverLimit:
+          type: boolean
+        isPvBlockedByCombinedGrossLimit:
+          type: boolean
+        isHeatBlockedByCombinedGrossLimit:
+          type: boolean
+        isPvAloneOverFinancingLimit:
+          type: boolean
+        isHeatAloneOverFinancingLimit:
+          type: boolean
+    SendOfferRequestDto:
+      type: object
+      properties:
+        offerType:
+          type: string
+          enum:
+          - pv
+          - heat
+        withDataSheets:
+          type: boolean
+        shortVersion:
+          type: boolean
+        email:
+          $ref: '#/components/schemas/SendOfferEmailDto'
+      required:
+      - offerType
+      - withDataSheets
+    SendOfferEmailDto:
+      type: object
+      properties:
+        recipient:
+          type: string
+        ccAddress:
+          type: string
+        subject:
+          type: string
+        body:
+          type: string
+      required:
+      - recipient
+      - subject
+      - body
+    ConfigDetailsResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        isFrozen:
+          type: boolean
+        isGeneralVat:
+          type: object
+        site:
+          type: object
+        customer:
+          type: object
+        tenant:
+          type: object
+        paymentOption:
+          type: object
+        financing:
+          $ref: '#/components/schemas/FinancingDto'
+        crmLinks:
+          type: object
+        notes:
+          type: object
+        roof:
+          type: object
+        getAcceptDocuments:
+          type: object
+        showItemPrices:
+          type: object
+        pdf:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferPdfDto'
+        metrics:
+          type: object
+        offer:
+          type: object
+        products:
+          type: object
+        margins:
+          type: object
+        profitability:
+          type: object
+        emailPlaceholders:
+          type: object
+      required:
+      - id
+      - name
+      - isFrozen
+      - site
+      - tenant
+      - crmLinks
+      - notes
+      - roof
+      - getAcceptDocuments
+      - metrics
+      - offer
+      - products
+      - margins
+      - profitability
+      - emailPlaceholders
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

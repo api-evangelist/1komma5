@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Sites API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Queue energy site info refresh for all configs on a site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/sites/:id/lookup-energy-service-data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Queue energy site info refresh for all configs on a site."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

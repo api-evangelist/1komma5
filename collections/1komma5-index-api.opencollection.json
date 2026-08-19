@@ -1,0 +1,28 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Index API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "index",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IndexController_index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

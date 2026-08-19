@@ -1,0 +1,53 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Sales Users API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Sales Users
+paths:
+  /api/v1/users/sales-persons:
+    get:
+      operationId: GetSalesUsersController_getSalesUsers_v1
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: Filter users by name
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SalesPersonDto'
+      summary: Get all sales users
+      tags:
+      - Sales Users
+components:
+  schemas:
+    SalesPersonDto:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      - email
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

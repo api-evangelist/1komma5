@@ -1,0 +1,28 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Payment Options API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "payment-options",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetAllPaymentOptionsController_handle_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/payment-options"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,81 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Migration Frozen State API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: migration-frozen-state
+paths:
+  /api/migration-frozen-state/configs/{configId}/migrate-all:
+    post:
+      description: Triggers all migration services for the given configId. If force is true, cleans up
+        existing migration data before running.
+      operationId: ConfigMigrationOrchestratorController_migrateAll
+      parameters:
+      - name: configId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: force
+        required: false
+        in: query
+        description: If true, re-runs all steps even if already migrated.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigMigrationOrchestratorResponseDto'
+      summary: Run all migration steps for a configuration
+      tags:
+      - migration-frozen-state
+components:
+  schemas:
+    MigrationSummaryDto:
+      type: object
+      properties:
+        total:
+          type: number
+          example: 12
+        succeeded:
+          type: number
+          example: 10
+        skipped:
+          type: number
+          example: 1
+        failed:
+          type: number
+          example: 1
+      required:
+      - total
+      - succeeded
+      - skipped
+      - failed
+    ConfigMigrationOrchestratorResponseDto:
+      type: object
+      properties:
+        configId:
+          type: number
+          example: 12345
+        success:
+          type: boolean
+          example: true
+        steps:
+          items:
+            type: array
+          type: array
+        summary:
+          $ref: '#/components/schemas/MigrationSummaryDto'
+      required:
+      - configId
+      - success
+      - steps
+      - summary
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

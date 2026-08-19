@@ -1,0 +1,108 @@
+{
+  "item": [
+    {
+      "id": "77fc34d8-532c-4b40-907f-029b39d7b3c8",
+      "name": "Admin - Roles",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "523274a8-b482-4cb5-9a63-e100053cd9d6",
+          "name": "Get list of roles the current user can assign",
+          "request": {
+            "name": "Get list of roles the current user can assign",
+            "description": {
+              "content": "Returns roles filtered based on the current user's permissions. Super admins can assign all roles, while other users have restricted role assignment capabilities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f62c742-03c7-40e6-8fd0-e99e0183a9be",
+              "name": "List of assignable roles with metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"roles\": [\n    {\n      \"name\": \"sales\",\n      \"displayName\": \"Sales\",\n      \"category\": \"tenant\"\n    },\n    {\n      \"name\": \"sales\",\n      \"displayName\": \"Sales\",\n      \"category\": \"tenant\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://heartbeat.1komma5grad.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fd3b29cd-2577-4411-810d-8ebd901e238a",
+    "name": "Offer Tool Admin - Roles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Api definitions for Offer Tool",
+      "type": "text/plain"
+    }
+  }
+}

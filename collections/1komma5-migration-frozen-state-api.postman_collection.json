@@ -1,0 +1,137 @@
+{
+  "item": [
+    {
+      "id": "d30e2de0-8f18-4aba-9d70-c57cf89e8a11",
+      "name": "migration-frozen-state",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1cbdde32-acd9-414a-b172-12d7e67a03a0",
+          "name": "Run all migration steps for a configuration",
+          "request": {
+            "name": "Run all migration steps for a configuration",
+            "description": {
+              "content": "Triggers all migration services for the given configId. If force is true, cleans up existing migration data before running.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "migration-frozen-state",
+                "configs",
+                ":configId",
+                "migrate-all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<boolean>",
+                  "description": "If true, re-runs all steps even if already migrated."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "configId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3437466-41b6-4b7d-8b65-ae42c5aa6942",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "migration-frozen-state",
+                    "configs",
+                    ":configId",
+                    "migrate-all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "configId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"configId\": 12345,\n  \"success\": true,\n  \"steps\": [\n    [],\n    []\n  ],\n  \"summary\": {\n    \"total\": 12,\n    \"succeeded\": 10,\n    \"skipped\": 1,\n    \"failed\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://heartbeat.1komma5grad.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fa208393-c9da-41fb-a3cf-62e966b2d08e",
+    "name": "Offer Tool Migration Frozen State API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Api definitions for Offer Tool",
+      "type": "text/plain"
+    }
+  }
+}

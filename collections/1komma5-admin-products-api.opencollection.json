@@ -1,0 +1,247 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Admin - Products API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin - Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get paginated global products list with filtering and sorting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/products",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by product name"
+              },
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by category ID"
+              },
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by brand ID"
+              },
+              {
+                "name": "countryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country ID (only for global admins)"
+              },
+              {
+                "name": "public",
+                "value": "",
+                "type": "query",
+                "description": "Filter by visibility (public)"
+              },
+              {
+                "name": "canbesold",
+                "value": "",
+                "type": "query",
+                "description": "Filter by can be sold status"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ]
+          },
+          "docs": "Returns all products (country-scoped based on user access level). Global admins can filter by country."
+        },
+        {
+          "info": {
+            "name": "Create a new product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/products",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new product"
+        },
+        {
+          "info": {
+            "name": "Get a single product by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single product by ID"
+        },
+        {
+          "info": {
+            "name": "Update a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a product"
+        },
+        {
+          "info": {
+            "name": "Get paginated pricebook products for a specific branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/pricebook",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "query",
+                "description": "Tenant/Branch ID to fetch pricebook for"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by product name"
+              },
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by category ID"
+              },
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by brand ID"
+              },
+              {
+                "name": "public",
+                "value": "",
+                "type": "query",
+                "description": "Filter by effective visibility (public)"
+              },
+              {
+                "name": "canbesold",
+                "value": "",
+                "type": "query",
+                "description": "Filter by effective can be sold status"
+              },
+              {
+                "name": "hasOverride",
+                "value": "",
+                "type": "query",
+                "description": "Filter by override status: true = only products with overrides, false = only products without overrides"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ]
+          },
+          "docs": "Returns products that are in the pricebook for the specified branch/tenant. User must have access to the branch."
+        },
+        {
+          "info": {
+            "name": "List all product categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/categories"
+          },
+          "docs": "List all product categories"
+        },
+        {
+          "info": {
+            "name": "List all product brands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/brands"
+          },
+          "docs": "List all product brands"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

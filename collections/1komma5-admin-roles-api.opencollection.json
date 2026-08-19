@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Admin - Roles API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin - Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of roles the current user can assign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/roles"
+          },
+          "docs": "Returns roles filtered based on the current user's permissions. Super admins can assign all roles, while other users have restricted role assignment capabilities."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

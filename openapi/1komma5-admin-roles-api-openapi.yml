@@ -1,0 +1,62 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Admin - Roles API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Admin - Roles
+paths:
+  /api/v1/admin/roles:
+    get:
+      description: Returns roles filtered based on the current user's permissions. Super admins can assign
+        all roles, while other users have restricted role assignment capabilities.
+      operationId: GetAssignableRolesController_getAssignableRoles_v1
+      parameters: []
+      responses:
+        '200':
+          description: List of assignable roles with metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssignableRolesResponseDto'
+      summary: Get list of roles the current user can assign
+      tags:
+      - Admin - Roles
+components:
+  schemas:
+    AssignableRolesResponseDto:
+      type: object
+      properties:
+        roles:
+          description: List of roles the current user can assign
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleDto'
+      required:
+      - roles
+    RoleDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Role name (database value)
+          example: sales
+        displayName:
+          type: string
+          description: Human-readable display name
+          example: Sales
+        category:
+          type: string
+          description: Role category - central or tenant level
+          example: tenant
+          enum:
+          - central
+          - tenant
+      required:
+      - name
+      - displayName
+      - category
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

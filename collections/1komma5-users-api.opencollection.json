@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Users API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Auth0UserController_userExistsByEmail_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/auth0/user/exists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetUserProfileController_handle_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/users/me"
+          }
+        },
+        {
+          "info": {
+            "name": "UpdateUserController_handle_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/users/me",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Get all users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/users"
+          },
+          "docs": "Get all users"
+        },
+        {
+          "info": {
+            "name": "UserProfilePhotoController_handle_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/users/me/profile-picture"
+          }
+        },
+        {
+          "info": {
+            "name": "UserProfilePhotoController_delete_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/users/me/profile-picture"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

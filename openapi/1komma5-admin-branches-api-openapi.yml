@@ -1,0 +1,258 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Admin - Branches API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Admin - Branches
+paths:
+  /api/v1/admin/branches:
+    get:
+      operationId: GetAdminBranchesController_getAdminBranches_v1
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Page number (1-based)
+        schema:
+          minimum: 1
+          default: 1
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          minimum: 1
+          maximum: 1000
+          default: 20
+          type: number
+      - name: search
+        required: false
+        in: query
+        description: Search by branch name
+        schema:
+          example: Berlin
+          type: string
+      - name: zohoIdSearch
+        required: false
+        in: query
+        description: Search by Zoho ID
+        schema:
+          example: '12345'
+          type: string
+      - name: countryId
+        required: false
+        in: query
+        description: Filter by country ID
+        schema:
+          example: 1
+          type: number
+      - name: sortBy
+        required: false
+        in: query
+        description: Field to sort by
+        schema:
+          $ref: '#/components/schemas/AdminBranchSortField'
+      - name: sortOrder
+        required: false
+        in: query
+        description: Sort order
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+      responses:
+        '200':
+          description: Paginated list of branches
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAdminBranchesResponseDto'
+      summary: Get paginated branches with filtering and sorting
+      tags:
+      - Admin - Branches
+    post:
+      operationId: CreateAdminBranchController_createAdminBranch_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAdminBranchDto'
+      responses:
+        '201':
+          description: Branch created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminBranchDto'
+      summary: Create a new branch
+      tags:
+      - Admin - Branches
+  /api/v1/admin/branches/{id}:
+    get:
+      operationId: GetAdminBranchController_getAdminBranch_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Branch found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminBranchDto'
+        '404':
+          description: Branch not found
+      summary: Get a branch by ID
+      tags:
+      - Admin - Branches
+    patch:
+      operationId: UpdateAdminBranchController_updateAdminBranch_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAdminBranchDto'
+      responses:
+        '200':
+          description: Branch updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminBranchDto'
+        '404':
+          description: Branch not found
+      summary: Update a branch
+      tags:
+      - Admin - Branches
+components:
+  schemas:
+    AdminBranchCountryDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Country ID
+          example: 1
+        name:
+          type: string
+          description: Country name
+          example: Germany
+        countryCode:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2)
+          example: DE
+      required:
+      - id
+      - name
+      - countryCode
+    AdminBranchSortField:
+      type: string
+      enum:
+      - name
+      - zohoId
+    PaginatedAdminBranchesResponseDto:
+      type: object
+      properties:
+        data:
+          description: List of branches
+          items:
+            type: array
+          type: array
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
+      required:
+      - data
+      - meta
+    PaginationMetaDto:
+      type: object
+      properties:
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
+          example: 1
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
+      required:
+      - total
+      - page
+      - limit
+      - totalPages
+    CreateAdminBranchDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Branch name
+          example: Berlin Branch
+          minLength: 1
+          maxLength: 255
+      required:
+      - name
+    AdminBranchDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Branch ID
+          example: branch-123
+        name:
+          type: string
+          description: Branch name
+          example: Berlin Branch
+        zohoId:
+          type:
+          - object
+          - 'null'
+          description: Zoho CRM ID
+          example: '12345678'
+        country:
+          description: Country information
+          allOf:
+          - $ref: '#/components/schemas/AdminBranchCountryDto'
+      required:
+      - id
+      - name
+      - zohoId
+      - country
+    UpdateAdminBranchDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Branch name
+          example: Berlin Branch
+          minLength: 1
+          maxLength: 255
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

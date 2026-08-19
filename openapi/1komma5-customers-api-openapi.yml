@@ -1,0 +1,800 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Customers API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Customers
+paths:
+  /api/v1/customers/{id}:
+    put:
+      operationId: UpdateCustomerController_handle_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCustomerRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerResponseDto'
+      summary: Update a customer
+      tags:
+      - Customers
+    get:
+      operationId: GetCustomerController_get_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerResponseDto'
+      summary: Get customer
+      tags:
+      - Customers
+    delete:
+      operationId: DeleteCustomerController_handle_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+      summary: Delete a customer
+      tags:
+      - Customers
+  /api/v1/customers:
+    get:
+      operationId: GetAllCustomersController_handle_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaginatedResponseDto'
+      summary: Get all customers
+      tags:
+      - Customers
+    post:
+      operationId: CreateCustomerController_handle_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCustomerResponseDto'
+      summary: Create a customer
+      tags:
+      - Customers
+  /api/v1/customers/{id}/details:
+    get:
+      description: Return the same customer information but with the sites associated
+      operationId: GetCustomerDetailsController_handle_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDetailsResponseDto'
+      summary: Get customer details
+      tags:
+      - Customers
+components:
+  schemas:
+    Locale:
+      type: string
+      enum:
+      - de-DE
+      - da-DK
+      - en-US
+      - sv-SE
+      - nl-NL
+    TenantDto:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        country:
+          $ref: '#/components/schemas/CountryDto'
+        isEnabledHeatpump:
+          type: boolean
+      required:
+      - name
+      - id
+      - country
+    CustomerFullSchemaDto:
+      type: object
+      properties:
+        id:
+          type: number
+        tenantId:
+          type:
+          - string
+          - 'null'
+        countryId:
+          type:
+          - number
+          - 'null'
+        name:
+          type: string
+        email:
+          type: string
+        source:
+          type:
+          - string
+          - 'null'
+        currentTeamId:
+          type:
+          - number
+          - 'null'
+        profilePhotoPath:
+          type:
+          - string
+          - 'null'
+        phone:
+          type:
+          - string
+          - 'null'
+        dateOfBirth:
+          type:
+          - string
+          - 'null'
+          format: date
+        isTeam:
+          type: boolean
+        isTemplateUser:
+          type:
+          - boolean
+          - 'null'
+        zohoId:
+          type:
+          - string
+          - 'null'
+        zohoLink:
+          type:
+          - string
+          - 'null'
+        zohoUserId:
+          type:
+          - string
+          - 'null'
+        tenantIdHeat:
+          type:
+          - string
+          - 'null'
+        activeTenantId:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        company:
+          type:
+          - string
+          - 'null'
+        salutation:
+          type:
+          - string
+          - 'null'
+        tenant:
+          $ref: '#/components/schemas/TenantDto'
+        address:
+          $ref: '#/components/schemas/AddressDto'
+        country:
+          allOf:
+          - $ref: '#/components/schemas/CountryDto'
+        salesContact:
+          description: Person responsible for the customer
+          allOf:
+          - $ref: '#/components/schemas/SalesContactCustomerDto'
+        sites:
+          description: Shows the sites associated with the customer
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SiteResponseDto'
+      required:
+      - id
+      - tenantId
+      - countryId
+      - name
+      - email
+      - currentTeamId
+      - profilePhotoPath
+      - phone
+      - isTeam
+      - isTemplateUser
+      - zohoId
+      - zohoUserId
+      - tenantIdHeat
+      - activeTenantId
+      - lastName
+      - firstName
+      - tenant
+    Metadata:
+      type: object
+      properties: {}
+    SiteImage:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Unique identifier
+        uuid:
+          type: object
+          description: Universally unique identifier
+        src:
+          type: string
+          description: Image URL
+        meta:
+          description: Image metadata
+          allOf:
+          - $ref: '#/components/schemas/SiteImageMeta'
+      required:
+      - id
+      - uuid
+      - src
+      - meta
+    BasketOption:
+      type: object
+      properties: {}
+    Basket:
+      type: object
+      properties:
+        options:
+          description: All the options that can be selected for the site's basket
+          type: array
+          items:
+            $ref: '#/components/schemas/BasketOption'
+        selectedOptions:
+          description: Selected options related with the site
+          type: array
+          items:
+            type: number
+      required:
+      - options
+      - selectedOptions
+    SiteImageMeta:
+      type: object
+      properties:
+        createdAt:
+          type: object
+          description: Creation timestamp
+        updatedAt:
+          type: object
+          description: Last update timestamp
+        name:
+          type: string
+          description: Image name
+        fileName:
+          type: string
+          description: Image file name
+      required:
+      - createdAt
+      - updatedAt
+      - name
+      - fileName
+    UpdateCustomerRequestDto:
+      type: object
+      properties:
+        salesContact:
+          type:
+          - number
+          - 'null'
+          description: Sales contact id
+        phone:
+          type:
+          - string
+          - 'null'
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        company:
+          type:
+          - string
+          - 'null'
+        salutation:
+          type:
+          - string
+          - 'null'
+        zohoId:
+          type:
+          - string
+          - 'null'
+        dateOfBirth:
+          type:
+          - string
+          - 'null'
+          format: date
+        address:
+          allOf:
+          - $ref: '#/components/schemas/AddressDto'
+      required:
+      - email
+      - firstName
+      - lastName
+      - address
+    CustomerResponseDto:
+      type: object
+      properties:
+        id:
+          type: number
+        tenantId:
+          type:
+          - string
+          - 'null'
+        countryId:
+          type:
+          - number
+          - 'null'
+        name:
+          type: string
+        email:
+          type: string
+        source:
+          type:
+          - string
+          - 'null'
+        currentTeamId:
+          type:
+          - number
+          - 'null'
+        profilePhotoPath:
+          type:
+          - string
+          - 'null'
+        phone:
+          type:
+          - string
+          - 'null'
+        dateOfBirth:
+          type:
+          - string
+          - 'null'
+          format: date
+        isTeam:
+          type: boolean
+        isTemplateUser:
+          type:
+          - boolean
+          - 'null'
+        zohoId:
+          type:
+          - string
+          - 'null'
+        zohoLink:
+          type:
+          - string
+          - 'null'
+        zohoUserId:
+          type:
+          - string
+          - 'null'
+        tenantIdHeat:
+          type:
+          - string
+          - 'null'
+        activeTenantId:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - tenantId
+      - countryId
+      - name
+      - email
+      - currentTeamId
+      - profilePhotoPath
+      - phone
+      - isTeam
+      - isTemplateUser
+      - zohoId
+      - zohoUserId
+      - tenantIdHeat
+      - activeTenantId
+      - lastName
+      - firstName
+    CreateCustomerResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the customer was successfully created
+        customerId:
+          type: number
+          description: The ID of the newly created customer
+      required:
+      - success
+      - customerId
+    CountryCode:
+      type: string
+      enum:
+      - DE
+      - DK
+      - SE
+      - NL
+    AddressDto:
+      type: object
+      properties:
+        address:
+          type:
+          - string
+          - 'null'
+        zipcode:
+          type: string
+        city:
+          type:
+          - string
+          - 'null'
+      required:
+      - zipcode
+    Currency:
+      type: string
+      enum:
+      - EUR
+      - DKK
+      - SEK
+    CreateCustomerRequestDto:
+      type: object
+      properties:
+        customer:
+          $ref: '#/components/schemas/CustomerCreateInputDto'
+        site:
+          $ref: '#/components/schemas/SiteFormFieldsDto'
+        country:
+          type: string
+          enum:
+          - DE
+          - DK
+          - SE
+      required:
+      - customer
+      - site
+      - country
+    SalesContactCustomerDto:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        email:
+          type: string
+      required:
+      - id
+      - name
+      - email
+    CustomerCreateInputDto:
+      type: object
+      properties:
+        salesContact:
+          type:
+          - number
+          - 'null'
+          description: Sales contact id
+        phone:
+          type:
+          - string
+          - 'null'
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        company:
+          type:
+          - string
+          - 'null'
+        salutation:
+          type:
+          - string
+          - 'null'
+        password:
+          type:
+          - string
+          - 'null'
+          description: Customer password. If not provided, a secure UUID-based password will be auto-generated.
+        zohoId:
+          type:
+          - string
+          - 'null'
+        dateOfBirth:
+          type:
+          - string
+          - 'null'
+          format: date
+        address:
+          allOf:
+          - $ref: '#/components/schemas/AddressDto'
+      required:
+      - email
+      - firstName
+      - lastName
+      - address
+    Links:
+      type: object
+      properties: {}
+    SiteFormFieldsDto:
+      type: object
+      properties:
+        address:
+          allOf:
+          - $ref: '#/components/schemas/AddressDto'
+        basket:
+          description: The IDs of available field_options
+          type:
+          - array
+          - 'null'
+          items:
+            type: array
+        maxPanels:
+          type: number
+        powerConsumptionYear:
+          type: number
+        buildingHeatingLoad:
+          type:
+          - number
+          - 'null'
+        salesContactId:
+          type:
+          - number
+          - 'null'
+          description: Sales contact id
+        ownersCount:
+          type:
+          - number
+          - 'null'
+        zohoId:
+          type: object
+          properties:
+            pv:
+              type:
+              - string
+              - 'null'
+            heat:
+              type:
+              - string
+              - 'null'
+      required:
+      - maxPanels
+      - powerConsumptionYear
+    CountryDto:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+          description: Country name
+        countryCode:
+          allOf:
+          - $ref: '#/components/schemas/CountryCode'
+        locale:
+          allOf:
+          - $ref: '#/components/schemas/Locale'
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+        vatRate:
+          type: number
+          description: Default VAT rate as percentage
+      required:
+      - id
+      - name
+      - countryCode
+      - locale
+      - currency
+      - vatRate
+    SiteResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Site ID - hashed
+        hashId:
+          type: string
+          description: HashId
+        maxPanels:
+          type:
+          - object
+          - 'null'
+          description: Maximum number of panels
+        powerConsumptionYear:
+          type:
+          - object
+          - 'null'
+          description: Annual power consumption
+        ownersCount:
+          type: number
+          description: Number of owners
+        address:
+          type:
+          - object
+          - 'null'
+          description: Site address
+        zohoId:
+          type: object
+          description: Zoho IDs and CRM deal stages
+          properties:
+            pv:
+              type:
+              - string
+              - 'null'
+              description: PV Zoho ID
+            pvLink:
+              type:
+              - string
+              - 'null'
+              description: PV Zoho Link
+            pvDealStage:
+              type:
+              - string
+              - 'null'
+              description: PV deal stage key from CRM sync
+            pvNewOffersAllowed:
+              type: boolean
+              description: Whether the PV deal can receive new offers
+            hp:
+              type:
+              - string
+              - 'null'
+              description: HP Zoho ID
+            hpLink:
+              type:
+              - string
+              - 'null'
+              description: HP Zoho Link
+            hpDealStage:
+              type:
+              - string
+              - 'null'
+              description: Heat deal stage key from CRM sync
+            hpNewOffersAllowed:
+              type: boolean
+              description: Whether the heat deal can receive new offers
+        basket:
+          description: Site basket
+          allOf:
+          - $ref: '#/components/schemas/Basket'
+        images:
+          description: Site images
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteImage'
+      required:
+      - id
+      - hashId
+      - maxPanels
+      - powerConsumptionYear
+      - ownersCount
+      - address
+      - zohoId
+      - basket
+      - images
+    CustomerDetailsResponseDto:
+      type: object
+      properties:
+        customer:
+          description: Customer information
+          allOf:
+          - $ref: '#/components/schemas/CustomerFullSchemaDto'
+        sites:
+          description: Sites associated with the customer
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteResponseDto'
+        files:
+          type:
+          - object
+          - 'null'
+          properties:
+            client:
+              type: array
+              items:
+                type: string
+              description: Client files
+            roofplan:
+              type: array
+              items:
+                type: string
+              description: Roofplan files
+            documentation:
+              type: array
+              items:
+                type: string
+              description: Documentation files
+            qm:
+              type: array
+              items:
+                type: string
+              description: QM files
+          description: Files associated with the customer
+      required:
+      - customer
+      - sites
+    PaginatedResponseDto:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: array
+        meta:
+          $ref: '#/components/schemas/Metadata'
+        links:
+          $ref: '#/components/schemas/Links'
+      required:
+      - data
+      - meta
+      - links
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

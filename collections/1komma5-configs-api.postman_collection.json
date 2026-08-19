@@ -1,0 +1,326 @@
+{
+  "item": [
+    {
+      "id": "a1c18064-e257-4f4e-bc96-a10a169277fe",
+      "name": "Configs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5672192b-e7a5-4ae2-b21d-de7c24ea1534",
+          "name": "Get config by ID",
+          "request": {
+            "name": "Get config by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "configs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27674463-0d2b-4bf6-90e0-a25961678ddb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "configs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"isFrozen\": true,\n  \"site\": {},\n  \"tenant\": {},\n  \"crmLinks\": {},\n  \"notes\": {},\n  \"roof\": {},\n  \"getAcceptDocuments\": {},\n  \"metrics\": {},\n  \"offer\": {},\n  \"products\": {},\n  \"margins\": {},\n  \"profitability\": {},\n  \"emailPlaceholders\": {},\n  \"isGeneralVat\": {},\n  \"customer\": {},\n  \"paymentOption\": {},\n  \"financing\": {\n    \"creditOption\": {},\n    \"creditInvestmentSum\": {},\n    \"creditInstallments\": {},\n    \"creditInterestRate\": {},\n    \"creditMonthlyFee\": {},\n    \"creditTotalMonthlyCosts\": {},\n    \"creditInstallmentsPv\": {},\n    \"creditInstallmentsHeat\": {},\n    \"creditInterestRatePv\": {},\n    \"creditInterestRateHeat\": {},\n    \"creditTotalMonthlyCostsPv\": {},\n    \"creditTotalMonthlyCostsHeat\": {},\n    \"financingLimits\": {\n      \"isBlockedByAge\": true,\n      \"maxInstallmentsPv\": 7554.510064313798,\n      \"maxInstallmentsHeat\": null,\n      \"minInstallmentMonths\": 1147.961651736773,\n      \"combinedGrossLimitEur\": 3105.174056404125,\n      \"isCombinedGrossOverLimit\": true,\n      \"isPvBlockedByCombinedGrossLimit\": false,\n      \"isHeatBlockedByCombinedGrossLimit\": true,\n      \"isPvAloneOverFinancingLimit\": true,\n      \"isHeatAloneOverFinancingLimit\": true\n    }\n  },\n  \"showItemPrices\": {},\n  \"pdf\": [\n    {\n      \"id\": 618.4028714524526,\n      \"url\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"name\": \"string\",\n      \"fileName\": \"string\",\n      \"thumb\": \"string\"\n    },\n    {\n      \"id\": 3982.3010281884694,\n      \"url\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"name\": \"string\",\n      \"fileName\": \"string\",\n      \"thumb\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59b53431-1422-4af0-b061-898a65168bfe",
+          "name": "Send offer to GetAccept for a configuration",
+          "request": {
+            "name": "Send offer to GetAccept for a configuration",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "configs",
+                ":id",
+                "send-offer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offerType\": \"<string>\",\n  \"withDataSheets\": \"<boolean>\",\n  \"shortVersion\": \"<boolean>\",\n  \"email\": {\n    \"recipient\": \"<string>\",\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\",\n    \"ccAddress\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d72573ac-d7dc-48e4-a8e4-c3d830f22ee7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "configs",
+                    ":id",
+                    "send-offer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offerType\": \"<string>\",\n  \"withDataSheets\": \"<boolean>\",\n  \"shortVersion\": \"<boolean>\",\n  \"email\": {\n    \"recipient\": \"<string>\",\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\",\n    \"ccAddress\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"getAcceptDocumentId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f68ea82-d20e-4562-bc30-17af86f3d083",
+          "name": "Refresh a config's energy site info (grid/metering fees) from ESI.",
+          "request": {
+            "name": "Refresh a config's energy site info (grid/metering fees) from ESI.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "configs",
+                ":id",
+                "lookup-energy-service-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa7ab3b3-df8a-412d-82fd-aa426c4411fe",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "configs",
+                    ":id",
+                    "lookup-energy-service-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://heartbeat.1komma5grad.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "730a430b-9e9a-4784-b29f-3e0a9d10b8df",
+    "name": "Offer Tool Configs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Api definitions for Offer Tool",
+      "type": "text/plain"
+    }
+  }
+}

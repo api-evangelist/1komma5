@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Test API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Test",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Publish a test.ping event to the message bus for E2E PubSub verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/test/pubsub"
+          },
+          "docs": "Publish a test.ping event to the message bus for E2E PubSub verification"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

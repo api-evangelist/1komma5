@@ -1,0 +1,30 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Health API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Health
+paths:
+  /_health:
+    get:
+      operationId: HealthController_getHealthStatus
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+      tags:
+      - Health
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      properties: {}
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

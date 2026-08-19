@@ -1,0 +1,140 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Admin - Megasearch API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Admin - Megasearch
+paths:
+  /api/v1/admin/megasearch:
+    get:
+      operationId: MegasearchController_search_v1
+      parameters:
+      - name: q
+        required: true
+        in: query
+        description: Search query string
+        schema:
+          minLength: 2
+          example: john
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Maximum number of results per entity type
+        schema:
+          minimum: 1
+          maximum: 20
+          default: 5
+          type: number
+      responses:
+        '200':
+          description: Grouped search results by entity type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MegasearchResponseDto'
+      summary: Search across multiple entities (users, branches) based on user permissions
+      tags:
+      - Admin - Megasearch
+components:
+  schemas:
+    MegasearchResultDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the entity
+          example: '1'
+        title:
+          type: string
+          description: Display title (usually the name)
+          example: John Doe
+        subtitle:
+          type: string
+          description: Additional information (email, country, zoho ID)
+          example: john@example.com
+        tags:
+          description: Colored tags for rich metadata display
+          type: array
+          items:
+            $ref: '#/components/schemas/MegasearchResultTagDto'
+        url:
+          type: string
+          description: URL path to navigate to this entity
+          example: /users/1
+      required:
+      - id
+      - title
+      - url
+    MegasearchMetaDto:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The search query that was executed
+          example: john
+        totalResults:
+          type: number
+          description: Total number of results across all groups
+          example: 5
+      required:
+      - query
+      - totalResults
+    MegasearchResultTagDto:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Tag display label
+          example: PV
+        variant:
+          type: string
+          description: Color variant for the tag
+          example: amber
+        style:
+          type: string
+          description: 'Rendering style: pill (scope badges), dot (type accent), icon (visibility)'
+          example: pill
+      required:
+      - label
+      - variant
+    MegasearchGroupDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Entity type identifier
+          example: user
+        label:
+          type: string
+          description: Human-readable label for the group
+          example: Users
+        results:
+          description: Search results in this group
+          type: array
+          items:
+            $ref: '#/components/schemas/MegasearchResultDto'
+      required:
+      - type
+      - label
+      - results
+    MegasearchResponseDto:
+      type: object
+      properties:
+        groups:
+          description: Search results grouped by entity type
+          type: array
+          items:
+            $ref: '#/components/schemas/MegasearchGroupDto'
+        meta:
+          description: Metadata about the search
+          allOf:
+          - $ref: '#/components/schemas/MegasearchMetaDto'
+      required:
+      - groups
+      - meta
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

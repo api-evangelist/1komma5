@@ -1,0 +1,33 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Sites API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Sites
+paths:
+  /api/v1/sites/{id}/lookup-energy-service-data:
+    post:
+      operationId: QueueSiteEnergySiteInfoRefreshController_queue_v1
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '202':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  queued:
+                    type: boolean
+      summary: Queue energy site info refresh for all configs on a site.
+      tags:
+      - Sites
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

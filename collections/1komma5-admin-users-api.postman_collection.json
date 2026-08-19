@@ -1,0 +1,1076 @@
+{
+  "item": [
+    {
+      "id": "f6a2a52b-ad9a-4eec-858a-b6c9fe3435c5",
+      "name": "Admin - Users",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5b3e4f19-7dfa-47cd-9416-a2091ceb3926",
+          "name": "Get paginated team users with filtering and sorting",
+          "request": {
+            "name": "Get paginated team users with filtering and sorting",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search by name or email"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenantIds",
+                  "value": "<string>",
+                  "description": "Filter by tenant IDs (comma-separated)"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenantIds",
+                  "value": "<string>",
+                  "description": "Filter by tenant IDs (comma-separated)"
+                },
+                {
+                  "disabled": false,
+                  "key": "countryId",
+                  "value": "<number>",
+                  "description": "Filter by country ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Field to sort by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Sort order"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c75a6f29-f310-4857-9f07-4ea3bdded6bd",
+              "name": "Paginated list of team users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "john"
+                    },
+                    {
+                      "key": "tenantIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenantIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 123,\n      \"email\": \"john.doe@example.com\",\n      \"name\": \"John Doe\",\n      \"accessLevel\": \"branch\",\n      \"createdAt\": \"2024-01-15T10:30:00.000Z\",\n      \"lastLoginAt\": null,\n      \"tenants\": [\n        {\n          \"id\": \"tenant-1\",\n          \"name\": \"Berlin Branch\"\n        },\n        {\n          \"id\": \"tenant-1\",\n          \"name\": \"Berlin Branch\"\n        }\n      ]\n    },\n    {\n      \"id\": 123,\n      \"email\": \"john.doe@example.com\",\n      \"name\": \"John Doe\",\n      \"accessLevel\": \"branch\",\n      \"createdAt\": \"2024-01-15T10:30:00.000Z\",\n      \"lastLoginAt\": {},\n      \"tenants\": [\n        {\n          \"id\": \"tenant-1\",\n          \"name\": \"Berlin Branch\"\n        },\n        {\n          \"id\": \"tenant-1\",\n          \"name\": \"Berlin Branch\"\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"total\": 100,\n    \"page\": 1,\n    \"limit\": 20,\n    \"totalPages\": 5\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f12cc53e-27fb-4444-8bfa-1f12d779a5b4",
+          "name": "Create a new team user",
+          "request": {
+            "name": "Create a new team user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"accessLevel\": \"<string>\",\n  \"countryId\": \"<object,null>\",\n  \"zohoUserId\": \"<string>\",\n  \"tenantIds\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"defaultTenantId\": \"<object,null>\",\n  \"roles\": [\n    \"<array>\",\n    \"<array>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fa0db033-a72c-4e05-8ee4-70a3446f54bb",
+              "name": "User created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"name\": \"John Doe\",\n  \"accessLevel\": \"branch\",\n  \"countryId\": \"<object,null>\",\n  \"zohoUserId\": \"12345678901234567\",\n  \"tenantIds\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"defaultTenantId\": \"<object,null>\",\n  \"roles\": [\n    \"<array>\",\n    \"<array>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 123,\n  \"email\": \"john.doe@example.com\",\n  \"name\": \"John Doe\",\n  \"accessLevel\": \"branch\",\n  \"countryId\": null,\n  \"zohoUserId\": null,\n  \"defaultTenantId\": {},\n  \"createdAt\": \"2024-01-15T10:30:00.000Z\",\n  \"tenants\": [\n    {\n      \"id\": \"tenant-1\",\n      \"name\": \"Berlin Branch\"\n    },\n    {\n      \"id\": \"tenant-1\",\n      \"name\": \"Berlin Branch\"\n    }\n  ],\n  \"hiddenBranchCount\": 0,\n  \"roles\": [\n    [],\n    []\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7a9e7d1-5263-4385-989b-e783025249cf",
+              "name": "Email already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"name\": \"John Doe\",\n  \"accessLevel\": \"branch\",\n  \"countryId\": \"<object,null>\",\n  \"zohoUserId\": \"12345678901234567\",\n  \"tenantIds\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"defaultTenantId\": \"<object,null>\",\n  \"roles\": [\n    \"<array>\",\n    \"<array>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1174ba53-3de9-4404-a589-a7b958bb46ba",
+          "name": "Get current admin user access level info",
+          "request": {
+            "name": "Get current admin user access level info",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "users",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7beb5e06-e57d-4b21-9dda-7d58f844118a",
+              "name": "Current admin user access level info",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 123,\n  \"accessLevel\": \"branch\",\n  \"countryId\": null,\n  \"countryName\": null,\n  \"tenants\": [\n    [],\n    []\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0da363ee-a3af-43b9-b812-70ce2ef81b63",
+          "name": "Get branches accessible to the current user",
+          "request": {
+            "name": "Get branches accessible to the current user",
+            "description": {
+              "content": "Returns branches based on access level: GLOBAL users get all branches, COUNTRY users get branches in their country, BRANCH users get their assigned branches.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "users",
+                "me",
+                "branches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "940c1a16-bce7-4c8c-8513-022b15744dfa",
+              "name": "List of accessible branches",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    "me",
+                    "branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"branches\": [\n    [],\n    []\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0a7e7d0-6d38-45a2-9018-42dab1bd4aa7",
+          "name": "Get branches assignable to users for a given country",
+          "request": {
+            "name": "Get branches assignable to users for a given country",
+            "description": {
+              "content": "Returns branches that the current user can assign to other users. Used in user creation/edit forms for branch selection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "users",
+                "assignable-branches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "countryId",
+                  "value": "<number>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bcd7fd0b-5ccd-45c0-95b7-0f3fcaa8d537",
+              "name": "List of branches in the specified country",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    "assignable-branches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "countryId",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"branch-123\",\n    \"name\": \"Berlin Branch\",\n    \"zohoId\": null,\n    \"country\": {\n      \"id\": 1,\n      \"name\": \"Germany\",\n      \"countryCode\": \"DE\"\n    }\n  },\n  {\n    \"id\": \"branch-123\",\n    \"name\": \"Berlin Branch\",\n    \"zohoId\": null,\n    \"country\": {\n      \"id\": 1,\n      \"name\": \"Germany\",\n      \"countryCode\": \"DE\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f140046-6839-4af5-beae-eac6f08deba0",
+          "name": "Get a single team user by ID",
+          "request": {
+            "name": "Get a single team user by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff8eeadb-8970-4149-9c0f-37e5810a5656",
+              "name": "User details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 123,\n  \"email\": \"john.doe@example.com\",\n  \"name\": \"John Doe\",\n  \"accessLevel\": \"branch\",\n  \"countryId\": {},\n  \"zohoUserId\": {},\n  \"defaultTenantId\": {},\n  \"createdAt\": \"2024-01-15T10:30:00.000Z\",\n  \"tenants\": [\n    {\n      \"id\": \"tenant-1\",\n      \"name\": \"Berlin Branch\"\n    },\n    {\n      \"id\": \"tenant-1\",\n      \"name\": \"Berlin Branch\"\n    }\n  ],\n  \"hiddenBranchCount\": 0,\n  \"roles\": [\n    [],\n    []\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e68c87b-c92d-442d-b2d3-df7d87cde914",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebaba569-0d14-4a0e-93ea-8650b909258f",
+          "name": "Update a team user",
+          "request": {
+            "name": "Update a team user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"accessLevel\": \"<string>\",\n  \"countryId\": \"<object,null>\",\n  \"zohoUserId\": \"<object,null>\",\n  \"tenantIds\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"defaultTenantId\": \"<object,null>\",\n  \"roles\": [\n    \"<array>\",\n    \"<array>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4c804715-7b32-46ef-bb95-64fedfeeddaa",
+              "name": "User updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"name\": \"John Doe\",\n  \"accessLevel\": \"branch\",\n  \"countryId\": \"<object,null>\",\n  \"zohoUserId\": \"<object,null>\",\n  \"tenantIds\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"defaultTenantId\": \"<object,null>\",\n  \"roles\": [\n    \"<array>\",\n    \"<array>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 123,\n  \"email\": \"john.doe@example.com\",\n  \"name\": \"John Doe\",\n  \"accessLevel\": \"branch\",\n  \"countryId\": {},\n  \"zohoUserId\": {},\n  \"defaultTenantId\": {},\n  \"createdAt\": \"2024-01-15T10:30:00.000Z\",\n  \"tenants\": [\n    {\n      \"id\": \"tenant-1\",\n      \"name\": \"Berlin Branch\"\n    },\n    {\n      \"id\": \"tenant-1\",\n      \"name\": \"Berlin Branch\"\n    }\n  ],\n  \"hiddenBranchCount\": 0,\n  \"roles\": [\n    [],\n    []\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a9627cd-bffc-4ddc-9ac1-a2f06d9ccc95",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"name\": \"John Doe\",\n  \"accessLevel\": \"branch\",\n  \"countryId\": \"<object,null>\",\n  \"zohoUserId\": \"<object,null>\",\n  \"tenantIds\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"defaultTenantId\": \"<object,null>\",\n  \"roles\": [\n    \"<array>\",\n    \"<array>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "11e38d8d-63d7-462d-a6d7-f53a0bf10f39",
+              "name": "Email already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"name\": \"John Doe\",\n  \"accessLevel\": \"branch\",\n  \"countryId\": \"<object,null>\",\n  \"zohoUserId\": \"<object,null>\",\n  \"tenantIds\": [\n    \"<array>\",\n    \"<array>\"\n  ],\n  \"defaultTenantId\": \"<object,null>\",\n  \"roles\": [\n    \"<array>\",\n    \"<array>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd9dc219-a854-4065-a9c9-6118e0e59bd9",
+          "name": "Resend invitation email to a user",
+          "request": {
+            "name": "Resend invitation email to a user",
+            "description": {
+              "content": "Sends a password setup email to the user. If the user does not exist in Auth0, they will be created first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "users",
+                ":id",
+                "resend-invitation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "046db4c1-dc13-44fa-b783-fbf365d5ec0a",
+              "name": "Invitation email sent successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    ":id",
+                    "resend-invitation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f4dfa75a-70c1-4671-9757-9a98371b5f71",
+              "name": "Auth0 not configured or failed to send email",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    ":id",
+                    "resend-invitation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "50a04771-e471-4c29-9c9f-881fe2700ec0",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    ":id",
+                    "resend-invitation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://heartbeat.1komma5grad.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "443de36d-9d99-4329-ba0c-c0a9f3cbf19e",
+    "name": "Offer Tool Admin - Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Api definitions for Offer Tool",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,232 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Admin - Audit Logs API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Admin - Audit Logs
+paths:
+  /api/v1/admin/audit-logs:
+    get:
+      operationId: GetAuditLogsController_getAuditLogs_v1
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Page number (1-based)
+        schema:
+          minimum: 1
+          default: 1
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 20
+          type: number
+      - name: action
+        required: false
+        in: query
+        description: Filter by action type
+        schema:
+          example: created
+          type: string
+      - name: subjectType
+        required: false
+        in: query
+        description: Filter by subject type
+        schema:
+          example: User
+          type: string
+      - name: actorType
+        required: false
+        in: query
+        description: Filter by actor type
+        schema:
+          example: User
+          type: string
+      - name: traceId
+        required: false
+        in: query
+        description: Filter by trace ID (exact match)
+        schema:
+          example: abc-trace-123
+          type: string
+      - name: actorIdentifier
+        required: false
+        in: query
+        description: Filter by actor identifier (exact match)
+        schema:
+          example: '42'
+          type: string
+      - name: subjectIdentifier
+        required: false
+        in: query
+        description: Filter by subject identifier (exact match)
+        schema:
+          example: '123'
+          type: string
+      - name: startDate
+        required: false
+        in: query
+        description: Filter by start date (ISO 8601 format)
+        schema:
+          example: '2024-01-01T00:00:00.000Z'
+          type: string
+      - name: endDate
+        required: false
+        in: query
+        description: Filter by end date (ISO 8601 format)
+        schema:
+          example: '2024-12-31T23:59:59.999Z'
+          type: string
+      - name: sortBy
+        required: false
+        in: query
+        description: Field to sort by
+        schema:
+          $ref: '#/components/schemas/AuditLogSortField'
+      - name: sortOrder
+        required: false
+        in: query
+        description: Sort order
+        schema:
+          $ref: '#/components/schemas/SortOrder'
+      responses:
+        '200':
+          description: Paginated list of audit logs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAuditLogsResponseDto'
+      summary: Get paginated audit logs with filtering and sorting
+      tags:
+      - Admin - Audit Logs
+components:
+  schemas:
+    PaginationMetaDto:
+      type: object
+      properties:
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
+          example: 1
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
+      required:
+      - total
+      - page
+      - limit
+      - totalPages
+    AuditLogSortField:
+      type: string
+      enum:
+      - createdAt
+      - action
+      - subjectType
+      - actorType
+    AuditLogResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the audit log entry
+          example: 550e8400-e29b-41d4-a716-446655440000
+        action:
+          type: string
+          description: The action that was performed
+          example: created
+        description:
+          type: string
+          description: Human-readable description of the action
+          example: User created a new configuration
+        actorType:
+          type:
+          - object
+          - 'null'
+          description: Type of actor who performed the action
+          example: User
+        actorIdentifier:
+          type:
+          - object
+          - 'null'
+          description: Identifier of the actor
+          example: user@example.com
+        subjectType:
+          type:
+          - object
+          - 'null'
+          description: Type of subject the action was performed on
+          example: Configuration
+        subjectIdentifier:
+          type:
+          - object
+          - 'null'
+          description: Identifier of the subject
+          example: '12345'
+        traceId:
+          type:
+          - object
+          - 'null'
+          description: Trace ID for request correlation
+          example: abc123-def456
+        metadata:
+          type:
+          - object
+          - 'null'
+          description: Additional metadata about the action
+          example:
+            oldValue: A
+            newValue: B
+        createdAt:
+          type: string
+          description: Timestamp when the action was logged
+          example: '2024-01-15T10:30:00.000Z'
+      required:
+      - id
+      - action
+      - description
+      - actorType
+      - actorIdentifier
+      - subjectType
+      - subjectIdentifier
+      - traceId
+      - metadata
+      - createdAt
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+    PaginatedAuditLogsResponseDto:
+      type: object
+      properties:
+        data:
+          description: Array of audit log entries
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditLogResponseDto'
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
+      required:
+      - data
+      - meta
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

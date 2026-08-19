@@ -1,0 +1,1854 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "index",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IndexController_index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "HealthController_getHealthStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/_health"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "site",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CreateCustomerSiteController_handle_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers/:customerId/sites",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tenants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "TenantController_getTenants_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/tenant"
+          }
+        },
+        {
+          "info": {
+            "name": "TenantController_switchActiveTenant_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/tenant/switch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Auth0UserController_userExistsByEmail_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/auth0/user/exists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetUserProfileController_handle_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/users/me"
+          }
+        },
+        {
+          "info": {
+            "name": "UpdateUserController_handle_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v1/users/me",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Get all users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/users"
+          },
+          "docs": "Get all users"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "UserProfilePhotoController_handle_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/users/me/profile-picture"
+          }
+        },
+        {
+          "info": {
+            "name": "UserProfilePhotoController_delete_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/users/me/profile-picture"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sales Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all sales users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/users/sales-persons",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by name"
+              }
+            ]
+          },
+          "docs": "Get all sales users"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "payment-options",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetAllPaymentOptionsController_handle_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/payment-options"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get customer"
+        },
+        {
+          "info": {
+            "name": "Update a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v1/customers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a customer"
+        },
+        {
+          "info": {
+            "name": "Delete a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/customers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a customer"
+        },
+        {
+          "info": {
+            "name": "Get all customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers"
+          },
+          "docs": "Get all customers"
+        },
+        {
+          "info": {
+            "name": "Create a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/customers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a customer"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get customer details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/customers/:id/details",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Return the same customer information but with the sites associated"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Admin - Countries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all countries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/countries"
+          },
+          "docs": "Returns all countries with their currency and VAT configuration. This is reference data used for filtering, not an administered entity."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/product"
+          },
+          "docs": "List all products"
+        },
+        {
+          "info": {
+            "name": "Get product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/product/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "relationships",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of relationships to include (e.g., brochures)"
+              }
+            ]
+          },
+          "docs": "Get product"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Concepts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get public energy concepts/templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/concepts-public",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of concept (pv or heat). Defaults to pv."
+              }
+            ]
+          },
+          "docs": "Get public energy concepts/templates"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "EffectivePrice",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check simulation data for DE requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/effective-price/de/check-simulation-data"
+          },
+          "docs": "Check simulation data for DE requests"
+        },
+        {
+          "info": {
+            "name": "Calculate effective price for DE requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/effective-price/de",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculate effective price for DE requests"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CRM",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Reject an offer, this endpoint will be called by the CRM whenever an quote is rejected on their side",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/crm/reject-offer/:crmOfferId",
+            "params": [
+              {
+                "name": "crmOfferId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Reject an offer, this endpoint will be called by the CRM whenever an quote is rejected on their side"
+        },
+        {
+          "info": {
+            "name": "Get deal by ID (testing endpoint)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/crm/deals/:dealId",
+            "params": [
+              {
+                "name": "dealId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get deal by ID (testing endpoint)"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Configs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get config by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/configs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get config by ID"
+        },
+        {
+          "info": {
+            "name": "Send offer to GetAccept for a configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/configs/:id/send-offer",
+            "headers": [
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send offer to GetAccept for a configuration"
+        },
+        {
+          "info": {
+            "name": "Refresh a config's energy site info (grid/metering fees) from ESI.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/configs/:id/lookup-energy-service-data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refresh a config's energy site info (grid/metering fees) from ESI."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PDF",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate PDF for a configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/configs/:configId/pdf",
+            "headers": [
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate PDF for a configuration"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Admin - Audit Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get paginated audit logs with filtering and sorting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/audit-logs",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "Filter by action type"
+              },
+              {
+                "name": "subjectType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by subject type"
+              },
+              {
+                "name": "actorType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by actor type"
+              },
+              {
+                "name": "traceId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by trace ID (exact match)"
+              },
+              {
+                "name": "actorIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by actor identifier (exact match)"
+              },
+              {
+                "name": "subjectIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by subject identifier (exact match)"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by start date (ISO 8601 format)"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by end date (ISO 8601 format)"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ]
+          },
+          "docs": "Get paginated audit logs with filtering and sorting"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Admin - Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get paginated team users with filtering and sorting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/users",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by name or email"
+              },
+              {
+                "name": "tenantIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant IDs (comma-separated)"
+              },
+              {
+                "name": "countryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country ID"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ]
+          },
+          "docs": "Get paginated team users with filtering and sorting"
+        },
+        {
+          "info": {
+            "name": "Create a new team user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/admin/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new team user"
+        },
+        {
+          "info": {
+            "name": "Get current admin user access level info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/users/me"
+          },
+          "docs": "Get current admin user access level info"
+        },
+        {
+          "info": {
+            "name": "Get branches accessible to the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/users/me/branches"
+          },
+          "docs": "Returns branches based on access level: GLOBAL users get all branches, COUNTRY users get branches in their country, BRANCH users get their assigned branches."
+        },
+        {
+          "info": {
+            "name": "Get branches assignable to users for a given country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/users/assignable-branches",
+            "params": [
+              {
+                "name": "countryId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns branches that the current user can assign to other users. Used in user creation/edit forms for branch selection."
+        },
+        {
+          "info": {
+            "name": "Get a single team user by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single team user by ID"
+        },
+        {
+          "info": {
+            "name": "Update a team user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/admin/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a team user"
+        },
+        {
+          "info": {
+            "name": "Resend invitation email to a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/admin/users/:id/resend-invitation",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Sends a password setup email to the user. If the user does not exist in Auth0, they will be created first."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Admin - Branches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get paginated branches with filtering and sorting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/branches",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by branch name"
+              },
+              {
+                "name": "zohoIdSearch",
+                "value": "",
+                "type": "query",
+                "description": "Search by Zoho ID"
+              },
+              {
+                "name": "countryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country ID"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ]
+          },
+          "docs": "Get paginated branches with filtering and sorting"
+        },
+        {
+          "info": {
+            "name": "Create a new branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/admin/branches",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new branch"
+        },
+        {
+          "info": {
+            "name": "Get a branch by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/branches/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a branch by ID"
+        },
+        {
+          "info": {
+            "name": "Update a branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/admin/branches/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a branch"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Admin - Concepts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get paginated concepts with filtering and sorting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/concepts",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by template type"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Filter by scope (global = no tenant, branch = tenant-specific)"
+              },
+              {
+                "name": "visibility",
+                "value": "",
+                "type": "query",
+                "description": "Filter by visibility (visible or hidden)"
+              },
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by branch/tenant ID"
+              },
+              {
+                "name": "countryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country ID (for Global users)"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by concept name"
+              },
+              {
+                "name": "updatedFrom",
+                "value": "",
+                "type": "query",
+                "description": "Filter concepts updated on or after this date (ISO 8601, e.g. 2025-01-01T00:00:00.000Z)"
+              },
+              {
+                "name": "updatedTo",
+                "value": "",
+                "type": "query",
+                "description": "Filter concepts updated on or before this date (ISO 8601, e.g. 2025-12-31T23:59:59.999Z)"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ]
+          },
+          "docs": "Get paginated concepts with filtering and sorting"
+        },
+        {
+          "info": {
+            "name": "Create a new concept",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/admin/concepts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new concept"
+        },
+        {
+          "info": {
+            "name": "Get a concept by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/concepts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a concept by ID"
+        },
+        {
+          "info": {
+            "name": "Update a concept",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/admin/concepts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a concept"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Admin - Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get paginated global products list with filtering and sorting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/products",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by product name"
+              },
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by category ID"
+              },
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by brand ID"
+              },
+              {
+                "name": "countryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country ID (only for global admins)"
+              },
+              {
+                "name": "public",
+                "value": "",
+                "type": "query",
+                "description": "Filter by visibility (public)"
+              },
+              {
+                "name": "canbesold",
+                "value": "",
+                "type": "query",
+                "description": "Filter by can be sold status"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ]
+          },
+          "docs": "Returns all products (country-scoped based on user access level). Global admins can filter by country."
+        },
+        {
+          "info": {
+            "name": "Create a new product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/admin/products",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new product"
+        },
+        {
+          "info": {
+            "name": "Get a single product by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single product by ID"
+        },
+        {
+          "info": {
+            "name": "Update a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/v1/admin/products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a product"
+        },
+        {
+          "info": {
+            "name": "Get paginated pricebook products for a specific branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/pricebook",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "query",
+                "description": "Tenant/Branch ID to fetch pricebook for"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by product name"
+              },
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by category ID"
+              },
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by brand ID"
+              },
+              {
+                "name": "public",
+                "value": "",
+                "type": "query",
+                "description": "Filter by effective visibility (public)"
+              },
+              {
+                "name": "canbesold",
+                "value": "",
+                "type": "query",
+                "description": "Filter by effective can be sold status"
+              },
+              {
+                "name": "hasOverride",
+                "value": "",
+                "type": "query",
+                "description": "Filter by override status: true = only products with overrides, false = only products without overrides"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ]
+          },
+          "docs": "Returns products that are in the pricebook for the specified branch/tenant. User must have access to the branch."
+        },
+        {
+          "info": {
+            "name": "List all product categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/categories"
+          },
+          "docs": "List all product categories"
+        },
+        {
+          "info": {
+            "name": "List all product brands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/brands"
+          },
+          "docs": "List all product brands"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Admin - Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of roles the current user can assign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/roles"
+          },
+          "docs": "Returns roles filtered based on the current user's permissions. Super admins can assign all roles, while other users have restricted role assignment capabilities."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Admin - Maintenance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Backfill missing rows in config_hash_lookup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/admin/maintenance/backfill-config-hashes",
+            "params": [
+              {
+                "name": "batchSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of configs to process per batch"
+              }
+            ]
+          },
+          "docs": "Idempotent one-shot maintenance task. Queues a worker job that iterates over configs without a hash lookup row and inserts one using the runtime HashService. Progress and results are logged by the worker. Restricted to Superadmin."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Admin - Megasearch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search across multiple entities (users, branches) based on user permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/admin/megasearch",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per entity type"
+              }
+            ]
+          },
+          "docs": "Search across multiple entities (users, branches) based on user permissions"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "migration-frozen-state",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run all migration steps for a configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/migration-frozen-state/configs/:configId/migrate-all",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs all steps even if already migrated."
+              }
+            ]
+          },
+          "docs": "Triggers all migration services for the given configId. If force is true, cleans up existing migration data before running."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Migrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Migrate config products from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/migration-frozen-state/configs/:configId/config-products",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts category_id, category_name, brand_id, and brand_name from frozen_state JSON and updates config_products table. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config documents from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/migration-frozen-state/configs/:configId/config-documents",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts file entries from frozen_state JSON (from $.site.files[] and $.gewinnprognose.files[]) and inserts rows into config_documents table. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config table columns from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/migration-frozen-state/configs/:configId/config-table",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts roofSize and specificYieldBasedOnRoofAlignment from frozen_state JSON, and populates paymentOptionName, tenantName, countryName, and countryCurrency from related tables. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config_customer table from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/migration-frozen-state/configs/:configId/config-customer",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts customer address data from frozen_state.site.address JSON and populates/updates the config_customer table. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config_consumption table from effective_price_data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/migration-frozen-state/configs/:configId/config-consumption-table",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts consumption values (heat, mobility, household, fossil consumption) from effective_price_data JSON and populates the config_consumption table. Tracks migration status in MigrationFrozenStateConfig.configConsumptionsTable. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config margins from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/migration-frozen-state/configs/:configId/config-margins",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts margin data (total, pv, heat) from frozen_state JSON at $.margins and populates the config_margins table. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config_calculation_legacy table from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/migration-frozen-state/configs/:configId/config-calculation-legacy-table",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts calculation values (consumption, roof direction, specific yield, spot price, self-sufficiency) from frozen_state.gewinnprognose JSON and populates the config_calculation_legacy table. Tracks migration status in MigrationFrozenStateConfig.configCalculationLegacyTable. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config_calculation table from various sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/migration-frozen-state/configs/:configId/config-calculation-table",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Populates the config_calculation table using a fallback pattern: Frozen State (effective_price_data) -> Database Columns -> Calculated/Default Values. Tracks migration status in MigrationFrozenStateConfig.configCalculationTable. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config_metrics table from frozen_state and effective_price_data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/migration-frozen-state/configs/:configId/config-metrics",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts CO2 savings, PV power, storage capacity, and other metrics from frozen_state JSON (gewinnprognose, panels, batteries) and effective_price_data JSON. Populates config_metrics child table. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config_self_sufficiency table from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/migration-frozen-state/configs/:configId/config-self-sufficiency",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts scenario self-sufficiency (autarky) values from frozen_state.gewinnprognose.scenarios and populates the config_self_sufficiency table. Maps scenario keys (no, pv, pv_bat, hb, dp) to type values (unoptimized, pv, pv_optimized, heartbeat, dynamic_pulse). Tracks migration status in MigrationFrozenStateConfig.configSelfSufficiencyTable. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config market components from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/migration-frozen-state/configs/:configId/config-market-components",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts market component data from frozen_state JSON at $.angebot, $.angebot_combined, $.angebot_hp, or $.angebot_charger (first with data) and populates the config_market_components table. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config effective prices from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/migration-frozen-state/configs/:configId/config-effective-prices",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Computes effective price data from frozen_state.gewinnprognose (profit forecast scenarios) and populates the config_effective_price table with up to 11 rows per config (unoptimized, pv, dynamic_tariff x categories). Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Test",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Publish a test.ping event to the message bus for E2E PubSub verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/test/pubsub"
+          },
+          "docs": "Publish a test.ping event to the message bus for E2E PubSub verification"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Queue energy site info refresh for all configs on a site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/sites/:id/lookup-energy-service-data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Queue energy site info refresh for all configs on a site."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

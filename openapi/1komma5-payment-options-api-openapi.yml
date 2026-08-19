@@ -1,0 +1,39 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Payment Options API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: payment-options
+paths:
+  /api/v1/payment-options:
+    get:
+      operationId: GetAllPaymentOptionsController_handle_v1
+      parameters: []
+      responses:
+        2XX:
+          description: Return all payment options for the user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllPaymentOptionsDtoResponse'
+      tags:
+      - payment-options
+components:
+  schemas:
+    GetAllPaymentOptionsDtoResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the payment option
+        name:
+          type: string
+          description: The name of the payment option
+      required:
+      - id
+      - name
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

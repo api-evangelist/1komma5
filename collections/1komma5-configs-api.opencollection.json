@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Configs API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get config by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/configs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get config by ID"
+        },
+        {
+          "info": {
+            "name": "Send offer to GetAccept for a configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/configs/:id/send-offer",
+            "headers": [
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send offer to GetAccept for a configuration"
+        },
+        {
+          "info": {
+            "name": "Refresh a config's energy site info (grid/metering fees) from ESI.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/configs/:id/lookup-energy-service-data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refresh a config's energy site info (grid/metering fees) from ESI."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

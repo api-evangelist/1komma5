@@ -1,0 +1,46 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Tenants API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Tenants
+paths:
+  /api/v1/tenant:
+    get:
+      operationId: TenantController_getTenants_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Tenants
+  /api/v1/tenant/switch:
+    post:
+      operationId: TenantController_switchActiveTenant_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwitchTenantRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Tenants
+components:
+  schemas:
+    SwitchTenantRequestDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          description: ID of the tenant to switch to
+      required:
+      - tenantId
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

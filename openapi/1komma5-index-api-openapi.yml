@@ -1,0 +1,25 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Index API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: index
+paths:
+  /:
+    get:
+      operationId: IndexController_index
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/'
+      tags:
+      - index
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml

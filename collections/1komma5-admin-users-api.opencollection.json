@@ -1,0 +1,186 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Admin - Users API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin - Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get paginated team users with filtering and sorting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/users",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by name or email"
+              },
+              {
+                "name": "tenantIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant IDs (comma-separated)"
+              },
+              {
+                "name": "countryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country ID"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ]
+          },
+          "docs": "Get paginated team users with filtering and sorting"
+        },
+        {
+          "info": {
+            "name": "Create a new team user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new team user"
+        },
+        {
+          "info": {
+            "name": "Get current admin user access level info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/users/me"
+          },
+          "docs": "Get current admin user access level info"
+        },
+        {
+          "info": {
+            "name": "Get branches accessible to the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/users/me/branches"
+          },
+          "docs": "Returns branches based on access level: GLOBAL users get all branches, COUNTRY users get branches in their country, BRANCH users get their assigned branches."
+        },
+        {
+          "info": {
+            "name": "Get branches assignable to users for a given country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/users/assignable-branches",
+            "params": [
+              {
+                "name": "countryId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns branches that the current user can assign to other users. Used in user creation/edit forms for branch selection."
+        },
+        {
+          "info": {
+            "name": "Get a single team user by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single team user by ID"
+        },
+        {
+          "info": {
+            "name": "Update a team user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a team user"
+        },
+        {
+          "info": {
+            "name": "Resend invitation email to a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/users/:id/resend-invitation",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Sends a password setup email to the user. If the user does not exist in Auth0, they will be created first."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

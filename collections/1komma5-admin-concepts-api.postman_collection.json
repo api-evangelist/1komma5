@@ -1,0 +1,614 @@
+{
+  "item": [
+    {
+      "id": "d37a37b4-b175-4576-afd4-b8ff58e05783",
+      "name": "Admin - Concepts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0910e800-076a-4990-8661-5e3f507f218d",
+          "name": "Get paginated concepts with filtering and sorting",
+          "request": {
+            "name": "Get paginated concepts with filtering and sorting",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "concepts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by template type"
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "Filter by scope (global = no tenant, branch = tenant-specific)"
+                },
+                {
+                  "disabled": false,
+                  "key": "visibility",
+                  "value": "<string>",
+                  "description": "Filter by visibility (visible or hidden)"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenantId",
+                  "value": "<string>",
+                  "description": "Filter by branch/tenant ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "countryId",
+                  "value": "<number>",
+                  "description": "Filter by country ID (for Global users)"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search by concept name"
+                },
+                {
+                  "disabled": false,
+                  "key": "updatedFrom",
+                  "value": "<string>",
+                  "description": "Filter concepts updated on or after this date (ISO 8601, e.g. 2025-01-01T00:00:00.000Z)"
+                },
+                {
+                  "disabled": false,
+                  "key": "updatedTo",
+                  "value": "<string>",
+                  "description": "Filter concepts updated on or before this date (ISO 8601, e.g. 2025-12-31T23:59:59.999Z)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Field to sort by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Sort order"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc2d18c2-619c-441d-b8f2-688726438443",
+              "name": "Paginated list of concepts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "concepts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenantId",
+                      "value": "42"
+                    },
+                    {
+                      "key": "countryId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "search",
+                      "value": "Solar Basic"
+                    },
+                    {
+                      "key": "updatedFrom",
+                      "value": "2025-01-01T00:00:00.000Z"
+                    },
+                    {
+                      "key": "updatedTo",
+                      "value": "2025-12-31T23:59:59.999Z"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    [],\n    []\n  ],\n  \"meta\": {\n    \"total\": 100,\n    \"page\": 1,\n    \"limit\": 20,\n    \"totalPages\": 5\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ef3580d-4aff-4c34-934e-607c48bda4db",
+          "name": "Create a new concept",
+          "request": {
+            "name": "Create a new concept",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "concepts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7bf5643d-8a9f-4c48-819b-b0e6ef09b59a",
+              "name": "Concept created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "concepts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"PV Basic 10kWp\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"PV Basic 10kWp\",\n  \"templateType\": {},\n  \"templateVisible\": true,\n  \"templateMeta\": {\n    \"description\": \"Basic PV system with battery\"\n  },\n  \"templateImage\": null,\n  \"createdAt\": \"2024-01-15T10:30:00.000Z\",\n  \"updatedAt\": \"2024-06-20T14:00:00.000Z\",\n  \"scope\": \"global\",\n  \"tenant\": {\n    \"id\": \"tenant-123\",\n    \"name\": \"Berlin Branch\"\n  },\n  \"pricing\": {\n    \"totalNet\": 12500,\n    \"totalGross\": 14875,\n    \"vatRate\": 19,\n    \"currency\": \"EUR\"\n  },\n  \"products\": [\n    [],\n    []\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1751e91-77f1-4e6d-ae75-8e01a286f370",
+          "name": "Get a concept by ID",
+          "request": {
+            "name": "Get a concept by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "concepts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4bc57ec-0076-4bfb-ac1f-34fb654a7f62",
+              "name": "Concept found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "concepts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"PV Basic 10kWp\",\n  \"templateType\": {},\n  \"templateVisible\": true,\n  \"templateMeta\": {\n    \"description\": \"Basic PV system with battery\"\n  },\n  \"templateImage\": {},\n  \"createdAt\": \"2024-01-15T10:30:00.000Z\",\n  \"updatedAt\": \"2024-06-20T14:00:00.000Z\",\n  \"scope\": \"global\",\n  \"tenant\": {\n    \"id\": \"tenant-123\",\n    \"name\": \"Berlin Branch\"\n  },\n  \"pricing\": {\n    \"totalNet\": 12500,\n    \"totalGross\": 14875,\n    \"vatRate\": 19,\n    \"currency\": \"EUR\"\n  },\n  \"products\": [\n    [],\n    []\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d228246d-92e7-46ea-b715-d046a09dcc2c",
+              "name": "Concept not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "concepts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2bd6d1f4-ccea-410d-81db-64f104e6d5ea",
+          "name": "Update a concept",
+          "request": {
+            "name": "Update a concept",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "concepts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e46727c-6a1f-4821-ab7d-3a55b309ec26",
+              "name": "Concept updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "concepts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"PV Basic 10kWp\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"PV Basic 10kWp\",\n  \"templateType\": {},\n  \"templateVisible\": true,\n  \"templateMeta\": {\n    \"description\": \"Basic PV system with battery\"\n  },\n  \"templateImage\": {},\n  \"createdAt\": \"2024-01-15T10:30:00.000Z\",\n  \"updatedAt\": \"2024-06-20T14:00:00.000Z\",\n  \"scope\": \"global\",\n  \"tenant\": {\n    \"id\": \"tenant-123\",\n    \"name\": \"Berlin Branch\"\n  },\n  \"pricing\": {\n    \"totalNet\": 12500,\n    \"totalGross\": 14875,\n    \"vatRate\": 19,\n    \"currency\": \"EUR\"\n  },\n  \"products\": [\n    [],\n    []\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31582b84-0f24-499a-a74c-6743153bc15a",
+              "name": "Concept not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "concepts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"PV Basic 10kWp\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://heartbeat.1komma5grad.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b9b653f0-bb29-47c7-91fe-66b3c4535dac",
+    "name": "Offer Tool Admin - Concepts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Api definitions for Offer Tool",
+      "type": "text/plain"
+    }
+  }
+}

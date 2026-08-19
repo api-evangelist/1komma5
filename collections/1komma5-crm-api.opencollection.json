@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool CRM API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CRM",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Reject an offer, this endpoint will be called by the CRM whenever an quote is rejected on their side",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/crm/reject-offer/:crmOfferId",
+            "params": [
+              {
+                "name": "crmOfferId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Reject an offer, this endpoint will be called by the CRM whenever an quote is rejected on their side"
+        },
+        {
+          "info": {
+            "name": "Get deal by ID (testing endpoint)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/crm/deals/:dealId",
+            "params": [
+              {
+                "name": "dealId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get deal by ID (testing endpoint)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

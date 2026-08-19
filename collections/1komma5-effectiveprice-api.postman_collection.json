@@ -1,0 +1,239 @@
+{
+  "item": [
+    {
+      "id": "9f6c403a-3269-41e8-ba6a-6f847fb84190",
+      "name": "EffectivePrice",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9487d4e7-e696-41bd-a47d-b33c4e4a7637",
+          "name": "Check simulation data for DE requests",
+          "request": {
+            "name": "Check simulation data for DE requests",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "effective-price",
+                "de",
+                "check-simulation-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4d9ccf2-5697-4509-b0b2-ce8e840e453a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "effective-price",
+                    "de",
+                    "check-simulation-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53ee3e2b-e8a4-4de8-b7ed-22fb362c26cf",
+          "name": "Calculate effective price for DE requests",
+          "request": {
+            "name": "Calculate effective price for DE requests",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "effective-price",
+                "de"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"consumption\": {\n    \"household\": {\n      \"amountKwhPerYear\": \"<number>\"\n    },\n    \"heat\": {\n      \"amountKwhPerYear\": \"<number>\"\n    },\n    \"mobility\": {\n      \"amountKmPerYear\": \"<number>\",\n      \"kwhPer100km\": \"<number>\",\n      \"amountKwhPerYear\": \"<number>\"\n    }\n  },\n  \"fossilConsumption\": {\n    \"heat\": {\n      \"amountKwhPerYear\": \"<number>\",\n      \"priceMinorCurrencyUnitPerKwh\": \"<number>\",\n      \"additionalCosts\": \"<number>\",\n      \"priceTotalMajorCurrencyUnitPerYear\": \"<number>\"\n    },\n    \"mobility\": {\n      \"amountKmPerYear\": \"<number>\",\n      \"literPer100km\": \"<number>\",\n      \"priceMinorCurrencyUnitPerLiter\": \"<number>\",\n      \"amountLiterPerYear\": \"<number>\",\n      \"priceTotalMajorCurrencyUnitPerYear\": \"<number>\"\n    }\n  },\n  \"systemInstallationDate\": \"<string>\",\n  \"configurationCreatedAt\": \"<string>\",\n  \"pvProductionKwhPerYear\": \"<number>\",\n  \"pvPeakPowerKwp\": \"<number>\",\n  \"batteryCapacityKwh\": \"<number>\",\n  \"hasTimeVariableGridFees\": \"<boolean>\",\n  \"hasDynamicPulse\": \"<boolean>\",\n  \"fixedTariffGridCostsMinorCurrencyUnitPerKwh\": \"<number>\",\n  \"feedInMinorCurrencyUnitPerKwh\": \"<number>\",\n  \"pvProductionPriceMajorCurrencyUnitPerYear\": \"<number>\",\n  \"fixedGridFeesLeviesAndTaxesCtPerKwh\": \"<number>\",\n  \"isEligibleForParagraph14aSavings\": \"<boolean>\",\n  \"gridUsageWorkingPriceMinorCurrencyUnitPerKwh\": \"<number>\",\n  \"directMarketingEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "278fb5d7-aa23-426d-a178-e727e10efcf5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "effective-price",
+                    "de"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consumption\": {\n    \"household\": {\n      \"amountKwhPerYear\": \"<number>\"\n    },\n    \"heat\": {\n      \"amountKwhPerYear\": \"<number>\"\n    },\n    \"mobility\": {\n      \"amountKmPerYear\": \"<number>\",\n      \"kwhPer100km\": \"<number>\",\n      \"amountKwhPerYear\": \"<number>\"\n    }\n  },\n  \"fossilConsumption\": {\n    \"heat\": {\n      \"amountKwhPerYear\": \"<number>\",\n      \"priceMinorCurrencyUnitPerKwh\": \"<number>\",\n      \"additionalCosts\": \"<number>\",\n      \"priceTotalMajorCurrencyUnitPerYear\": \"<number>\"\n    },\n    \"mobility\": {\n      \"amountKmPerYear\": \"<number>\",\n      \"literPer100km\": \"<number>\",\n      \"priceMinorCurrencyUnitPerLiter\": \"<number>\",\n      \"amountLiterPerYear\": \"<number>\",\n      \"priceTotalMajorCurrencyUnitPerYear\": \"<number>\"\n    }\n  },\n  \"systemInstallationDate\": \"<string>\",\n  \"configurationCreatedAt\": \"<string>\",\n  \"pvProductionKwhPerYear\": \"<number>\",\n  \"pvPeakPowerKwp\": \"<number>\",\n  \"batteryCapacityKwh\": \"<number>\",\n  \"hasTimeVariableGridFees\": \"<boolean>\",\n  \"hasDynamicPulse\": \"<boolean>\",\n  \"fixedTariffGridCostsMinorCurrencyUnitPerKwh\": \"<number>\",\n  \"feedInMinorCurrencyUnitPerKwh\": \"<number>\",\n  \"pvProductionPriceMajorCurrencyUnitPerYear\": \"<number>\",\n  \"fixedGridFeesLeviesAndTaxesCtPerKwh\": \"<number>\",\n  \"isEligibleForParagraph14aSavings\": \"<boolean>\",\n  \"gridUsageWorkingPriceMinorCurrencyUnitPerKwh\": \"<number>\",\n  \"directMarketingEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pvProduction\": {\n    \"amountKwhPerYear\": 4809.663278770268,\n    \"priceMinorCurrencyUnitPerKwh\": 7633.690226966403,\n    \"priceTotalMajorCurrencyUnitPerYear\": 5180.266096499121,\n    \"priceMinorCurrencyUnitPerKwhWithoutInvestmentCost\": 2007.257685854633,\n    \"priceTotalWithoutInvestmentCostMajorCurrencyUnitPerYear\": 8603.201553707153,\n    \"priceMinorCurrencyUnitPerKwhWithout14aSavings\": 4825.28514430611,\n    \"savings14a\": {\n      \"module1\": 7719.439036623007,\n      \"module3\": 1898.6098553618458,\n      \"priceMinorCurrencyUnitPerKwh\": 9222.766356821026\n    },\n    \"directMarketing\": {\n      \"eegPriceMinorCurrencyUnitPerKwh\": 4360.705347948699,\n      \"bonusMinorCurrencyUnitPerKwh\": 4169.277005346324\n    }\n  },\n  \"gridUsage\": {\n    \"amountKwhPerYear\": 8983.70244336523,\n    \"priceMinorCurrencyUnitPerKwh\": 3023.022102066607,\n    \"priceTotalMajorCurrencyUnitPerYear\": 5560.680086608767,\n    \"priceMinorCurrencyUnitPerKwhWithoutInvestmentCost\": 2846.3497001739756,\n    \"priceTotalWithoutInvestmentCostMajorCurrencyUnitPerYear\": 7929.907686698938,\n    \"priceMinorCurrencyUnitPerKwhWithout14aSavings\": 1658.7407607372406,\n    \"savings14a\": {\n      \"module1\": 2686.072588884716,\n      \"module3\": 3953.3436182210003,\n      \"priceMinorCurrencyUnitPerKwh\": 2257.4470592740226\n    },\n    \"directMarketing\": {\n      \"eegPriceMinorCurrencyUnitPerKwh\": 6191.08283439666,\n      \"bonusMinorCurrencyUnitPerKwh\": 4198.349593482007\n    }\n  },\n  \"gridFeedin\": {\n    \"amountKwhPerYear\": 5863.328958641388,\n    \"priceMinorCurrencyUnitPerKwh\": 9927.201480105176,\n    \"priceTotalMajorCurrencyUnitPerYear\": 7970.7415611039305,\n    \"priceMinorCurrencyUnitPerKwhWithoutInvestmentCost\": 1228.6310572216719,\n    \"priceTotalWithoutInvestmentCostMajorCurrencyUnitPerYear\": 2325.0169364550734,\n    \"priceMinorCurrencyUnitPerKwhWithout14aSavings\": 6519.326452755072,\n    \"savings14a\": {\n      \"module1\": 6038.46570289902,\n      \"module3\": 4723.64488115629,\n      \"priceMinorCurrencyUnitPerKwh\": 4994.003738141872\n    },\n    \"directMarketing\": {\n      \"eegPriceMinorCurrencyUnitPerKwh\": 9638.694560343241,\n      \"bonusMinorCurrencyUnitPerKwh\": 3907.012978322952\n    }\n  },\n  \"effectivePrice\": {\n    \"amountKwhPerYear\": 2355.8887930440133,\n    \"priceMinorCurrencyUnitPerKwh\": 9574.192470348597,\n    \"priceTotalMajorCurrencyUnitPerYear\": 4444.002592385728,\n    \"priceMinorCurrencyUnitPerKwhWithoutInvestmentCost\": 8284.603211510052,\n    \"priceTotalWithoutInvestmentCostMajorCurrencyUnitPerYear\": 8736.726273898204,\n    \"priceMinorCurrencyUnitPerKwhWithout14aSavings\": 5777.589996167687,\n    \"savings14a\": {\n      \"module1\": 6700.59807415546,\n      \"module3\": 3364.7474926582368,\n      \"priceMinorCurrencyUnitPerKwh\": 286.77066671885854\n    },\n    \"directMarketing\": {\n      \"eegPriceMinorCurrencyUnitPerKwh\": 7420.644183136451,\n      \"bonusMinorCurrencyUnitPerKwh\": 2739.6066649079767\n    }\n  },\n  \"autarkyPct\": 7595.692710932963,\n  \"hasBattery\": false,\n  \"co2Savings\": {\n    \"annualKg\": 2257.7623874185306,\n    \"lifetimeKg\": 7902.903754218598,\n    \"annualTrees\": 9648.19782051335,\n    \"annualKmDrivenByCar\": 5611.307492529863\n  },\n  \"consumptionBasedBreakdown\": {\n    \"household\": {\n      \"energyType\": \"fossil\",\n      \"amountKwhPerYear\": 4059.004407734166,\n      \"amountKwhPerYearBatteryLoss\": 9592.996346441092,\n      \"priceMinorCurrencyUnitPerKwh\": 7825.789803810701,\n      \"priceTotalMajorCurrencyUnitPerYear\": 3442.3818234332616\n    },\n    \"heat\": {\n      \"energyType\": \"fossil\",\n      \"amountKwhPerYear\": 413.055056058067,\n      \"amountKwhPerYearBatteryLoss\": 135.31842478779032,\n      \"priceMinorCurrencyUnitPerKwh\": 4686.00448326179,\n      \"priceTotalMajorCurrencyUnitPerYear\": 6702.2234990202005,\n      \"additionalCosts\": 5641.145124992952\n    },\n    \"mobility\": {\n      \"energyType\": \"fossil\",\n      \"amountKwhPerYear\": 1404.5792029290228,\n      \"amountKwhPerYearBatteryLoss\": 9016.719038173298,\n      \"priceMinorCurrencyUnitPerKwh\": 5935.073887290609,\n      \"priceTotalMajorCurrencyUnitPerYear\": 6541.754185380265,\n      \"amountKmPerYear\": 8777.57365726258,\n      \"kwhPer100km\": 5987.18318166434,\n      \"literPer100km\": 5240.738844217702,\n      \"amountLiterPerYear\": 1745.1196378331902,\n      \"priceMinorCurrencyUnitPerLiter\": 4453.924930323258\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82443a31-8848-46a4-9d4e-494f2ef0c953",
+              "name": "Scenario not found or post-processed scenario missing",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "effective-price",
+                    "de"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consumption\": {\n    \"household\": {\n      \"amountKwhPerYear\": \"<number>\"\n    },\n    \"heat\": {\n      \"amountKwhPerYear\": \"<number>\"\n    },\n    \"mobility\": {\n      \"amountKmPerYear\": \"<number>\",\n      \"kwhPer100km\": \"<number>\",\n      \"amountKwhPerYear\": \"<number>\"\n    }\n  },\n  \"fossilConsumption\": {\n    \"heat\": {\n      \"amountKwhPerYear\": \"<number>\",\n      \"priceMinorCurrencyUnitPerKwh\": \"<number>\",\n      \"additionalCosts\": \"<number>\",\n      \"priceTotalMajorCurrencyUnitPerYear\": \"<number>\"\n    },\n    \"mobility\": {\n      \"amountKmPerYear\": \"<number>\",\n      \"literPer100km\": \"<number>\",\n      \"priceMinorCurrencyUnitPerLiter\": \"<number>\",\n      \"amountLiterPerYear\": \"<number>\",\n      \"priceTotalMajorCurrencyUnitPerYear\": \"<number>\"\n    }\n  },\n  \"systemInstallationDate\": \"<string>\",\n  \"configurationCreatedAt\": \"<string>\",\n  \"pvProductionKwhPerYear\": \"<number>\",\n  \"pvPeakPowerKwp\": \"<number>\",\n  \"batteryCapacityKwh\": \"<number>\",\n  \"hasTimeVariableGridFees\": \"<boolean>\",\n  \"hasDynamicPulse\": \"<boolean>\",\n  \"fixedTariffGridCostsMinorCurrencyUnitPerKwh\": \"<number>\",\n  \"feedInMinorCurrencyUnitPerKwh\": \"<number>\",\n  \"pvProductionPriceMajorCurrencyUnitPerYear\": \"<number>\",\n  \"fixedGridFeesLeviesAndTaxesCtPerKwh\": \"<number>\",\n  \"isEligibleForParagraph14aSavings\": \"<boolean>\",\n  \"gridUsageWorkingPriceMinorCurrencyUnitPerKwh\": \"<number>\",\n  \"directMarketingEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://heartbeat.1komma5grad.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9aa0d86f-9296-42b8-ad4c-ba87bdea20a3",
+    "name": "Offer Tool Effective Price API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Api definitions for Offer Tool",
+      "type": "text/plain"
+    }
+  }
+}

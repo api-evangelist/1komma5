@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Site API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "site",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CreateCustomerSiteController_handle_v1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/customers/:customerId/sites",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

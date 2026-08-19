@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Admin - Megasearch API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin - Megasearch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search across multiple entities (users, branches) based on user permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/megasearch",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per entity type"
+              }
+            ]
+          },
+          "docs": "Search across multiple entities (users, branches) based on user permissions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

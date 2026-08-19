@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Admin - Audit Logs API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin - Audit Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get paginated audit logs with filtering and sorting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/admin/audit-logs",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "Filter by action type"
+              },
+              {
+                "name": "subjectType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by subject type"
+              },
+              {
+                "name": "actorType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by actor type"
+              },
+              {
+                "name": "traceId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by trace ID (exact match)"
+              },
+              {
+                "name": "actorIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by actor identifier (exact match)"
+              },
+              {
+                "name": "subjectIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by subject identifier (exact match)"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by start date (ISO 8601 format)"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by end date (ISO 8601 format)"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ]
+          },
+          "docs": "Get paginated audit logs with filtering and sorting"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,306 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Offer Tool Migrations API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Migrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Migrate config products from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/migration-frozen-state/configs/:configId/config-products",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts category_id, category_name, brand_id, and brand_name from frozen_state JSON and updates config_products table. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config documents from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/migration-frozen-state/configs/:configId/config-documents",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts file entries from frozen_state JSON (from $.site.files[] and $.gewinnprognose.files[]) and inserts rows into config_documents table. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config table columns from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/migration-frozen-state/configs/:configId/config-table",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts roofSize and specificYieldBasedOnRoofAlignment from frozen_state JSON, and populates paymentOptionName, tenantName, countryName, and countryCurrency from related tables. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config_customer table from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/migration-frozen-state/configs/:configId/config-customer",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts customer address data from frozen_state.site.address JSON and populates/updates the config_customer table. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config_consumption table from effective_price_data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/migration-frozen-state/configs/:configId/config-consumption-table",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts consumption values (heat, mobility, household, fossil consumption) from effective_price_data JSON and populates the config_consumption table. Tracks migration status in MigrationFrozenStateConfig.configConsumptionsTable. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config margins from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/migration-frozen-state/configs/:configId/config-margins",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts margin data (total, pv, heat) from frozen_state JSON at $.margins and populates the config_margins table. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config_calculation_legacy table from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/migration-frozen-state/configs/:configId/config-calculation-legacy-table",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts calculation values (consumption, roof direction, specific yield, spot price, self-sufficiency) from frozen_state.gewinnprognose JSON and populates the config_calculation_legacy table. Tracks migration status in MigrationFrozenStateConfig.configCalculationLegacyTable. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config_calculation table from various sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/migration-frozen-state/configs/:configId/config-calculation-table",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Populates the config_calculation table using a fallback pattern: Frozen State (effective_price_data) -> Database Columns -> Calculated/Default Values. Tracks migration status in MigrationFrozenStateConfig.configCalculationTable. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config_metrics table from frozen_state and effective_price_data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/migration-frozen-state/configs/:configId/config-metrics",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts CO2 savings, PV power, storage capacity, and other metrics from frozen_state JSON (gewinnprognose, panels, batteries) and effective_price_data JSON. Populates config_metrics child table. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config_self_sufficiency table from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/migration-frozen-state/configs/:configId/config-self-sufficiency",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts scenario self-sufficiency (autarky) values from frozen_state.gewinnprognose.scenarios and populates the config_self_sufficiency table. Maps scenario keys (no, pv, pv_bat, hb, dp) to type values (unoptimized, pv, pv_optimized, heartbeat, dynamic_pulse). Tracks migration status in MigrationFrozenStateConfig.configSelfSufficiencyTable. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config market components from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/migration-frozen-state/configs/:configId/config-market-components",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Extracts market component data from frozen_state JSON at $.angebot, $.angebot_combined, $.angebot_hp, or $.angebot_charger (first with data) and populates the config_market_components table. Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        },
+        {
+          "info": {
+            "name": "Migrate config effective prices from frozen_state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://heartbeat.1komma5grad.com/api/v1/migration-frozen-state/configs/:configId/config-effective-prices",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, re-runs the migration even if it was already completed successfully. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Computes effective price data from frozen_state.gewinnprognose (profit forecast scenarios) and populates the config_effective_price table with up to 11 rows per config (unoptimized, pv, dynamic_tariff x categories). Tracks migration status in MigrationFrozenStateConfig. Returns early if migration was already completed successfully (unless force=true)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

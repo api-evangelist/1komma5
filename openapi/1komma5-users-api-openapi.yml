@@ -1,0 +1,341 @@
+openapi: 3.2.0
+info:
+  title: Offer Tool Users API
+  description: Api definitions for Offer Tool
+  version: '1.0'
+  contact: {}
+tags:
+- name: Users
+paths:
+  /api/v1/auth0/user/exists:
+    post:
+      operationId: Auth0UserController_userExistsByEmail_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckUserAuth0RequestDto'
+      responses:
+        '200':
+          description: Check if user exists in Auth0
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckAuth0UserResponseDto'
+      tags:
+      - Users
+  /api/v1/users/me:
+    put:
+      operationId: UpdateUserController_handle_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequestDto'
+      responses:
+        2XX:
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfileResponseDto'
+      tags:
+      - Users
+    get:
+      operationId: GetUserProfileController_handle_v1
+      parameters: []
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfileResponseDto'
+      tags:
+      - Users
+  /api/v1/users:
+    get:
+      operationId: GetAllUsersController_getUsers_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDto'
+      summary: Get all users
+      tags:
+      - Users
+  /api/v1/users/me/profile-picture:
+    post:
+      operationId: UserProfilePhotoController_handle_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Users
+    delete:
+      operationId: UserProfilePhotoController_delete_v1
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Users
+components:
+  schemas:
+    UpdateUserRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name that will be updated
+        calendarUrl:
+          type: string
+          description: Optional calendar URL to book appointments
+      required:
+      - name
+    CountryCode:
+      type: string
+      enum:
+      - DE
+      - DK
+      - SE
+      - NL
+    UserProfileResponseDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: The unique identifier of the user
+        name:
+          type: string
+          description: The name of the user
+        email:
+          type: string
+          description: The email address of the user
+        phone:
+          type:
+          - object
+          - 'null'
+          description: The phone number of the user
+        currency:
+          description: The currency used by the user
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+        country:
+          description: The country details of the user
+          allOf:
+          - $ref: '#/components/schemas/CountryDto'
+        profilePhotoUrl:
+          type:
+          - object
+          - 'null'
+          description: The profile photo URL of the user
+        calendarUrl:
+          type:
+          - object
+          - 'null'
+          description: The URL to book an appointment with the user
+        permissions:
+          description: The permissions assigned to the user
+          items:
+            type: array
+          type: array
+        roles:
+          description: The roles assigned to the user
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        abilities:
+          description: The computed abilities (subject/action pairs) for the user
+          items:
+            type: array
+          type: array
+        tenant:
+          description: The tenant details of the user
+          allOf:
+          - $ref: '#/components/schemas/TenantDto'
+        accessLevel:
+          description: The access level of the user (global, country, or branch)
+          example: branch
+          allOf:
+          - $ref: '#/components/schemas/AccessLevel'
+      required:
+      - id
+      - name
+      - email
+      - currency
+      - permissions
+      - abilities
+      - accessLevel
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: number
+        tenantId:
+          type:
+          - string
+          - 'null'
+        countryId:
+          type:
+          - number
+          - 'null'
+        name:
+          type: string
+        email:
+          type: string
+        currentTeamId:
+          type:
+          - number
+          - 'null'
+        profilePhotoPath:
+          type:
+          - string
+          - 'null'
+        calendarUrl:
+          type:
+          - string
+          - 'null'
+        phone:
+          type:
+          - string
+          - 'null'
+        isTeam:
+          type:
+          - boolean
+          - 'null'
+        isTemplateUser:
+          type:
+          - boolean
+          - 'null'
+        zohoId:
+          type:
+          - string
+          - 'null'
+        zohoUserId:
+          type:
+          - string
+          - 'null'
+        tenantIdHeat:
+          type:
+          - string
+          - 'null'
+        activeTenantId:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - tenantId
+      - countryId
+      - name
+      - email
+      - currentTeamId
+      - profilePhotoPath
+      - calendarUrl
+      - phone
+      - isTeam
+      - isTemplateUser
+      - zohoId
+      - zohoUserId
+      - tenantIdHeat
+      - activeTenantId
+    Locale:
+      type: string
+      enum:
+      - de-DE
+      - da-DK
+      - en-US
+      - sv-SE
+      - nl-NL
+    TenantDto:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        country:
+          $ref: '#/components/schemas/CountryDto'
+        isEnabledHeatpump:
+          type: boolean
+      required:
+      - name
+      - id
+      - country
+    CountryDto:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+          description: Country name
+        countryCode:
+          allOf:
+          - $ref: '#/components/schemas/CountryCode'
+        locale:
+          allOf:
+          - $ref: '#/components/schemas/Locale'
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+        vatRate:
+          type: number
+          description: Default VAT rate as percentage
+      required:
+      - id
+      - name
+      - countryCode
+      - locale
+      - currency
+      - vatRate
+    Currency:
+      type: string
+      enum:
+      - EUR
+      - DKK
+      - SEK
+    CheckUserAuth0RequestDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: foo@bar.com
+      required:
+      - email
+    CheckAuth0UserResponseDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: The unique identifier of the user
+          example: 1
+        email:
+          type: string
+          description: The email address of the user
+          example: foo@bar.com
+      required:
+      - id
+      - email
+    AccessLevel:
+      type: string
+      enum:
+      - global
+      - country
+      - branch
+servers:
+- url: https://heartbeat.1komma5grad.com
+  description: Base URL reconciled from apis.yml
