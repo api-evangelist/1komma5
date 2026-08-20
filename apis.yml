@@ -155,6 +155,8 @@ apis:
   humanURL: https://api.offer.1komma5grad.com/
   baseURL: https://api.offer.1komma5grad.com
   tags:
+  - Admin Users
+  tags_raw:
   - Admin - Users
   properties:
   - type: OpenAPI
@@ -239,6 +241,8 @@ apis:
   humanURL: https://api.offer.1komma5grad.com/
   baseURL: https://api.offer.1komma5grad.com
   tags:
+  - Index
+  tags_raw:
   - index
   properties:
   - type: OpenAPI
@@ -276,6 +280,8 @@ apis:
   humanURL: https://api.offer.1komma5grad.com/
   baseURL: https://api.offer.1komma5grad.com
   tags:
+  - Payment Options
+  tags_raw:
   - payment-options
   properties:
   - type: OpenAPI
@@ -300,6 +306,8 @@ apis:
   humanURL: https://api.offer.1komma5grad.com/
   baseURL: https://api.offer.1komma5grad.com
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -324,6 +332,8 @@ apis:
   humanURL: https://api.offer.1komma5grad.com/
   baseURL: https://api.offer.1komma5grad.com
   tags:
+  - Site
+  tags_raw:
   - site
   properties:
   - type: OpenAPI
@@ -359,7 +369,8 @@ apis:
   description: The Test API from 1KOMMA5° — 1 operation(s) for test.
   humanURL: https://api.offer.1komma5grad.com/
   baseURL: https://api.offer.1komma5grad.com
-  tags:
+  tags: []
+  tags_raw:
   - Test
   properties:
   - type: OpenAPI
@@ -372,6 +383,8 @@ apis:
   humanURL: https://api.offer.1komma5grad.com/
   baseURL: https://api.offer.1komma5grad.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
