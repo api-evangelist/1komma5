@@ -12,6 +12,18 @@ description: '1KOMMA5° (1Komma5 Grad) is a Hamburg, Germany headquartered smart
   sales and partner network, an Auth0-backed OIDC provider at auth.1komma5grad.com,
   and the undocumented Heartbeat customer API that its mobile apps and community-built
   Home Assistant integrations consume.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://1komma5.com/icon.svg
 url: https://raw.githubusercontent.com/api-evangelist/1komma5/refs/heads/main/apis.yml
 x-type: company
