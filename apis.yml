@@ -409,6 +409,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/1komma5-capability-edges.yml
+  name: 1KOMMA5° Business Capability Map
 - type: MCPServer
   url: mcp/1komma5-mcp.yml
 - type: Overlay
