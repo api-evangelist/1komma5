@@ -167,7 +167,7 @@ apis:
   humanURL: https://api.offer.1komma5grad.com/
   baseURL: https://api.offer.1komma5grad.com
   tags:
-  - Admin Users
+  - Admin - Users
   tags_raw:
   - Admin - Users
   properties:
@@ -292,7 +292,7 @@ apis:
   humanURL: https://api.offer.1komma5grad.com/
   baseURL: https://api.offer.1komma5grad.com
   tags:
-  - Payment Options
+  - payment-options
   tags_raw:
   - payment-options
   properties:
