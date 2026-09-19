@@ -169,6 +169,8 @@ apis:
   humanURL: https://api.offer.1komma5grad.com/
   baseURL: https://api.offer.1komma5grad.com
   tags:
+  - Admin Roles
+  tags_raw:
   - Admin - Roles
   properties:
   - type: OpenAPI
