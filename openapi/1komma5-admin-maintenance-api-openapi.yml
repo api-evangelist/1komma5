@@ -4,14 +4,13 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
 - name: Admin - Maintenance
 paths:
   /api/v1/admin/maintenance/backfill-config-hashes:
     post:
-      description: Idempotent one-shot maintenance task. Queues a worker job that iterates over configs
-        without a hash lookup row and inserts one using the runtime HashService. Progress and results
-        are logged by the worker. Restricted to Superadmin.
+      description: Idempotent one-shot maintenance task. Queues a worker job that iterates over configs without a hash lookup row and inserts one using the runtime HashService. Progress and results are logged by the worker. Restricted to Superadmin.
       operationId: BackfillConfigHashesController_backfillConfigHashes_v1
       parameters:
       - name: batchSize
@@ -47,6 +46,3 @@ components:
       required:
       - queued
       - batchSize
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml

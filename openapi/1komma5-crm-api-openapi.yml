@@ -4,6 +4,7 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
 - name: CRM
 paths:
@@ -19,8 +20,7 @@ paths:
       responses:
         '200':
           description: ''
-      summary: Reject an offer, this endpoint will be called by the CRM whenever an quote is rejected
-        on their side
+      summary: Reject an offer, this endpoint will be called by the CRM whenever an quote is…
       tags:
       - CRM
   /api/v1/crm/deals/{dealId}:
@@ -38,6 +38,3 @@ paths:
       summary: Get deal by ID (testing endpoint)
       tags:
       - CRM
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml

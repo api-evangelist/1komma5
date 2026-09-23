@@ -4,6 +4,7 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
 - name: Admin - Concepts
 paths:
@@ -171,17 +172,6 @@ paths:
       - Admin - Concepts
 components:
   schemas:
-    CreateAdminConceptDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Concept name
-          example: PV Basic 10kWp
-          minLength: 1
-          maxLength: 255
-      required:
-      - name
     ConceptListItemDto:
       type: object
       properties:
@@ -262,12 +252,7 @@ components:
       enum:
       - global
       - branch
-    ConceptSortField:
-      type: string
-      enum:
-      - name
-      - createdAt
-    UpdateAdminConceptDto:
+    CreateAdminConceptDto:
       type: object
       properties:
         name:
@@ -276,30 +261,8 @@ components:
           example: PV Basic 10kWp
           minLength: 1
           maxLength: 255
-    PaginationMetaDto:
-      type: object
-      properties:
-        total:
-          type: number
-          description: Total number of items
-          example: 100
-        page:
-          type: number
-          description: Current page number
-          example: 1
-        limit:
-          type: number
-          description: Number of items per page
-          example: 20
-        totalPages:
-          type: number
-          description: Total number of pages
-          example: 5
       required:
-      - total
-      - page
-      - limit
-      - totalPages
+      - name
     ConceptTemplateType:
       type: string
       enum:
@@ -308,6 +271,21 @@ components:
       - spnach
       - pvwp
       - mg
+    PaginatedConceptsResponseDto:
+      type: object
+      properties:
+        data:
+          description: List of concepts
+          items:
+            type: array
+          type: array
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
+      required:
+      - data
+      - meta
     ConceptPricingDto:
       type: object
       properties:
@@ -332,26 +310,6 @@ components:
       - totalGross
       - vatRate
       - currency
-    ConceptVisibility:
-      type: string
-      enum:
-      - visible
-      - hidden
-    PaginatedConceptsResponseDto:
-      type: object
-      properties:
-        data:
-          description: List of concepts
-          items:
-            type: array
-          type: array
-        meta:
-          description: Pagination metadata
-          allOf:
-          - $ref: '#/components/schemas/PaginationMetaDto'
-      required:
-      - data
-      - meta
     SortOrder:
       type: string
       enum:
@@ -371,6 +329,46 @@ components:
       required:
       - id
       - name
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml
+    UpdateAdminConceptDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Concept name
+          example: PV Basic 10kWp
+          minLength: 1
+          maxLength: 255
+    ConceptSortField:
+      type: string
+      enum:
+      - name
+      - createdAt
+    PaginationMetaDto:
+      type: object
+      properties:
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
+          example: 1
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
+      required:
+      - total
+      - page
+      - limit
+      - totalPages
+    ConceptVisibility:
+      type: string
+      enum:
+      - visible
+      - hidden

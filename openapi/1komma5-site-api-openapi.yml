@@ -4,8 +4,9 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
-- name: site
+- name: Site
 paths:
   /api/v1/customers/{customerId}/sites:
     post:
@@ -26,12 +27,11 @@ paths:
         '201':
           description: Created customer site
       tags:
-      - site
+      - Site
+      summary: Create customer site controller handle v1
+      x-summary-source: derived
 components:
   schemas:
     CreateCustomerSiteRequestDto:
       type: object
       properties: {}
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml

@@ -4,6 +4,7 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
 - name: Concepts
 paths:
@@ -32,6 +33,3 @@ paths:
       summary: Get public energy concepts/templates
       tags:
       - Concepts
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml

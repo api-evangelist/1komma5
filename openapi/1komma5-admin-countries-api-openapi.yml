@@ -4,13 +4,13 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
 - name: Admin - Countries
 paths:
   /api/v1/admin/countries:
     get:
-      description: Returns all countries with their currency and VAT configuration. This is reference
-        data used for filtering, not an administered entity.
+      description: Returns all countries with their currency and VAT configuration. This is reference data used for filtering, not an administered entity.
       operationId: GetCountriesController_getCountries_v1
       parameters: []
       responses:
@@ -27,12 +27,6 @@ paths:
       - Admin - Countries
 components:
   schemas:
-    Currency:
-      type: string
-      enum:
-      - EUR
-      - DKK
-      - SEK
     CountryDto:
       type: object
       properties:
@@ -60,6 +54,12 @@ components:
       - locale
       - currency
       - vatRate
+    Currency:
+      type: string
+      enum:
+      - EUR
+      - DKK
+      - SEK
     Locale:
       type: string
       enum:
@@ -75,6 +75,3 @@ components:
       - DK
       - SE
       - NL
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml

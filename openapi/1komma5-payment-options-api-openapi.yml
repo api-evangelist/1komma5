@@ -4,8 +4,9 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
-- name: payment-options
+- name: Payment Options
 paths:
   /api/v1/payment-options:
     get:
@@ -19,7 +20,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetAllPaymentOptionsDtoResponse'
       tags:
-      - payment-options
+      - Payment Options
+      summary: Get all payment options controller handle v1
+      x-summary-source: derived
 components:
   schemas:
     GetAllPaymentOptionsDtoResponse:
@@ -34,6 +37,3 @@ components:
       required:
       - id
       - name
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml

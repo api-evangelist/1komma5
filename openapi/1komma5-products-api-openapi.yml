@@ -4,6 +4,7 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
 - name: Products
 paths:
@@ -58,51 +59,6 @@ components:
       required:
       - id
       - name
-    MediaDTO:
-      type: object
-      properties:
-        id:
-          type:
-          - number
-          - 'null'
-        normal:
-          type:
-          - string
-          - 'null'
-        thumb:
-          type:
-          - string
-          - 'null'
-        url:
-          type: string
-      required:
-      - url
-    BrandDTO:
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
-      required:
-      - id
-      - name
-    ProductGetAllResponse:
-      type: object
-      properties:
-        products:
-          description: List of products
-          items:
-            type: array
-          type: array
-        categories:
-          description: List of categories associated with the products
-          items:
-            type: array
-          type: array
-      required:
-      - products
-      - categories
     PriceDTO:
       type: object
       properties:
@@ -170,6 +126,48 @@ components:
       - canEditCustomPrice
       - canEditCustomInvoiceLine
       - canEditOffer
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml
+    ProductGetAllResponse:
+      type: object
+      properties:
+        products:
+          description: List of products
+          items:
+            type: array
+          type: array
+        categories:
+          description: List of categories associated with the products
+          items:
+            type: array
+          type: array
+      required:
+      - products
+      - categories
+    BrandDTO:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+      required:
+      - id
+      - name
+    MediaDTO:
+      type: object
+      properties:
+        id:
+          type:
+          - number
+          - 'null'
+        normal:
+          type:
+          - string
+          - 'null'
+        thumb:
+          type:
+          - string
+          - 'null'
+        url:
+          type: string
+      required:
+      - url

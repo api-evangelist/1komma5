@@ -4,6 +4,7 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
 - name: PDF
 paths:
@@ -47,6 +48,12 @@ paths:
       - PDF
 components:
   schemas:
+    OfferTypeEnum:
+      type: string
+      enum:
+      - pv
+      - heat
+      - charger
     GeneratePdfDto:
       type: object
       properties:
@@ -73,12 +80,3 @@ components:
           description: Error message if generation failed
       required:
       - success
-    OfferTypeEnum:
-      type: string
-      enum:
-      - pv
-      - heat
-      - charger
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml

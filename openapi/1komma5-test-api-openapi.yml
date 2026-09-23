@@ -4,6 +4,7 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
 - name: Test
 paths:
@@ -17,6 +18,3 @@ paths:
       summary: Publish a test.ping event to the message bus for E2E PubSub verification
       tags:
       - Test
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml

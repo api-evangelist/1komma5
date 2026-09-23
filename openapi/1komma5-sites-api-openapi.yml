@@ -4,6 +4,7 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
 - name: Sites
 paths:
@@ -25,9 +26,6 @@ paths:
                 properties:
                   queued:
                     type: boolean
-      summary: Queue energy site info refresh for all configs on a site.
+      summary: Queue energy site info refresh for all configs on a site
       tags:
       - Sites
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml

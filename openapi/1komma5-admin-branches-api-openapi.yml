@@ -4,6 +4,7 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
 - name: Admin - Branches
 paths:
@@ -139,30 +140,15 @@ paths:
       - Admin - Branches
 components:
   schemas:
-    AdminBranchCountryDto:
+    UpdateAdminBranchDto:
       type: object
       properties:
-        id:
-          type: number
-          description: Country ID
-          example: 1
         name:
           type: string
-          description: Country name
-          example: Germany
-        countryCode:
-          type: string
-          description: Country code (ISO 3166-1 alpha-2)
-          example: DE
-      required:
-      - id
-      - name
-      - countryCode
-    AdminBranchSortField:
-      type: string
-      enum:
-      - name
-      - zohoId
+          description: Branch name
+          example: Berlin Branch
+          minLength: 1
+          maxLength: 255
     PaginatedAdminBranchesResponseDto:
       type: object
       properties:
@@ -178,41 +164,6 @@ components:
       required:
       - data
       - meta
-    PaginationMetaDto:
-      type: object
-      properties:
-        total:
-          type: number
-          description: Total number of items
-          example: 100
-        page:
-          type: number
-          description: Current page number
-          example: 1
-        limit:
-          type: number
-          description: Number of items per page
-          example: 20
-        totalPages:
-          type: number
-          description: Total number of pages
-          example: 5
-      required:
-      - total
-      - page
-      - limit
-      - totalPages
-    CreateAdminBranchDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Branch name
-          example: Berlin Branch
-          minLength: 1
-          maxLength: 255
-      required:
-      - name
     AdminBranchDto:
       type: object
       properties:
@@ -239,7 +190,36 @@ components:
       - name
       - zohoId
       - country
-    UpdateAdminBranchDto:
+    AdminBranchCountryDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Country ID
+          example: 1
+        name:
+          type: string
+          description: Country name
+          example: Germany
+        countryCode:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2)
+          example: DE
+      required:
+      - id
+      - name
+      - countryCode
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+    AdminBranchSortField:
+      type: string
+      enum:
+      - name
+      - zohoId
+    CreateAdminBranchDto:
       type: object
       properties:
         name:
@@ -248,11 +228,29 @@ components:
           example: Berlin Branch
           minLength: 1
           maxLength: 255
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml
+      required:
+      - name
+    PaginationMetaDto:
+      type: object
+      properties:
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
+          example: 1
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
+      required:
+      - total
+      - page
+      - limit
+      - totalPages

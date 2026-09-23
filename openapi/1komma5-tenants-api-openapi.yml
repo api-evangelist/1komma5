@@ -4,6 +4,7 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
 - name: Tenants
 paths:
@@ -16,6 +17,8 @@ paths:
           description: ''
       tags:
       - Tenants
+      summary: Tenant controller get tenants v1
+      x-summary-source: derived
   /api/v1/tenant/switch:
     post:
       operationId: TenantController_switchActiveTenant_v1
@@ -31,6 +34,8 @@ paths:
           description: ''
       tags:
       - Tenants
+      summary: Tenant controller switch active tenant v1
+      x-summary-source: derived
 components:
   schemas:
     SwitchTenantRequestDto:
@@ -41,6 +46,3 @@ components:
           description: ID of the tenant to switch to
       required:
       - tenantId
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml

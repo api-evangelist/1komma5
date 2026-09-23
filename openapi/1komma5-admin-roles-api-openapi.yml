@@ -4,13 +4,13 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
-- name: Admin - Roles
+- name: Admin Roles
 paths:
   /api/v1/admin/roles:
     get:
-      description: Returns roles filtered based on the current user's permissions. Super admins can assign
-        all roles, while other users have restricted role assignment capabilities.
+      description: Returns roles filtered based on the current user's permissions. Super admins can assign all roles, while other users have restricted role assignment capabilities.
       operationId: GetAssignableRolesController_getAssignableRoles_v1
       parameters: []
       responses:
@@ -22,19 +22,9 @@ paths:
                 $ref: '#/components/schemas/AssignableRolesResponseDto'
       summary: Get list of roles the current user can assign
       tags:
-      - Admin - Roles
+      - Admin Roles
 components:
   schemas:
-    AssignableRolesResponseDto:
-      type: object
-      properties:
-        roles:
-          description: List of roles the current user can assign
-          type: array
-          items:
-            $ref: '#/components/schemas/RoleDto'
-      required:
-      - roles
     RoleDto:
       type: object
       properties:
@@ -57,6 +47,13 @@ components:
       - name
       - displayName
       - category
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml
+    AssignableRolesResponseDto:
+      type: object
+      properties:
+        roles:
+          description: List of roles the current user can assign
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleDto'
+      required:
+      - roles

@@ -4,6 +4,7 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
 - name: Users
 paths:
@@ -26,6 +27,8 @@ paths:
                 $ref: '#/components/schemas/CheckAuth0UserResponseDto'
       tags:
       - Users
+      summary: Auth0 user controller user exists by email v1
+      x-summary-source: derived
   /api/v1/users/me:
     put:
       operationId: UpdateUserController_handle_v1
@@ -45,6 +48,8 @@ paths:
                 $ref: '#/components/schemas/UserProfileResponseDto'
       tags:
       - Users
+      summary: Update user controller handle v1
+      x-summary-source: derived
     get:
       operationId: GetUserProfileController_handle_v1
       parameters: []
@@ -57,6 +62,8 @@ paths:
                 $ref: '#/components/schemas/UserProfileResponseDto'
       tags:
       - Users
+      summary: Get user profile controller handle v1
+      x-summary-source: derived
   /api/v1/users:
     get:
       operationId: GetAllUsersController_getUsers_v1
@@ -82,6 +89,8 @@ paths:
           description: ''
       tags:
       - Users
+      summary: User profile photo controller handle v1
+      x-summary-source: derived
     delete:
       operationId: UserProfilePhotoController_delete_v1
       parameters: []
@@ -90,19 +99,33 @@ paths:
           description: ''
       tags:
       - Users
+      summary: User profile photo controller delete v1
+      x-summary-source: derived
 components:
   schemas:
-    UpdateUserRequestDto:
+    TenantDto:
       type: object
       properties:
         name:
           type: string
-          description: The name that will be updated
-        calendarUrl:
+        id:
           type: string
-          description: Optional calendar URL to book appointments
+        country:
+          $ref: '#/components/schemas/CountryDto'
+        isEnabledHeatpump:
+          type: boolean
       required:
       - name
+      - id
+      - country
+    Locale:
+      type: string
+      enum:
+      - de-DE
+      - da-DK
+      - en-US
+      - sv-SE
+      - nl-NL
     CountryCode:
       type: string
       enum:
@@ -110,75 +133,20 @@ components:
       - DK
       - SE
       - NL
-    UserProfileResponseDto:
+    CheckAuth0UserResponseDto:
       type: object
       properties:
         id:
           type: number
           description: The unique identifier of the user
-        name:
-          type: string
-          description: The name of the user
+          example: 1
         email:
           type: string
           description: The email address of the user
-        phone:
-          type:
-          - object
-          - 'null'
-          description: The phone number of the user
-        currency:
-          description: The currency used by the user
-          allOf:
-          - $ref: '#/components/schemas/Currency'
-        country:
-          description: The country details of the user
-          allOf:
-          - $ref: '#/components/schemas/CountryDto'
-        profilePhotoUrl:
-          type:
-          - object
-          - 'null'
-          description: The profile photo URL of the user
-        calendarUrl:
-          type:
-          - object
-          - 'null'
-          description: The URL to book an appointment with the user
-        permissions:
-          description: The permissions assigned to the user
-          items:
-            type: array
-          type: array
-        roles:
-          description: The roles assigned to the user
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        abilities:
-          description: The computed abilities (subject/action pairs) for the user
-          items:
-            type: array
-          type: array
-        tenant:
-          description: The tenant details of the user
-          allOf:
-          - $ref: '#/components/schemas/TenantDto'
-        accessLevel:
-          description: The access level of the user (global, country, or branch)
-          example: branch
-          allOf:
-          - $ref: '#/components/schemas/AccessLevel'
+          example: foo@bar.com
       required:
       - id
-      - name
       - email
-      - currency
-      - permissions
-      - abilities
-      - accessLevel
     UserDto:
       type: object
       properties:
@@ -252,29 +220,23 @@ components:
       - zohoUserId
       - tenantIdHeat
       - activeTenantId
-    Locale:
+    Currency:
       type: string
       enum:
-      - de-DE
-      - da-DK
-      - en-US
-      - sv-SE
-      - nl-NL
-    TenantDto:
+      - EUR
+      - DKK
+      - SEK
+    UpdateUserRequestDto:
       type: object
       properties:
         name:
           type: string
-        id:
+          description: The name that will be updated
+        calendarUrl:
           type: string
-        country:
-          $ref: '#/components/schemas/CountryDto'
-        isEnabledHeatpump:
-          type: boolean
+          description: Optional calendar URL to book appointments
       required:
       - name
-      - id
-      - country
     CountryDto:
       type: object
       properties:
@@ -302,12 +264,6 @@ components:
       - locale
       - currency
       - vatRate
-    Currency:
-      type: string
-      enum:
-      - EUR
-      - DKK
-      - SEK
     CheckUserAuth0RequestDto:
       type: object
       properties:
@@ -316,26 +272,78 @@ components:
           example: foo@bar.com
       required:
       - email
-    CheckAuth0UserResponseDto:
-      type: object
-      properties:
-        id:
-          type: number
-          description: The unique identifier of the user
-          example: 1
-        email:
-          type: string
-          description: The email address of the user
-          example: foo@bar.com
-      required:
-      - id
-      - email
     AccessLevel:
       type: string
       enum:
       - global
       - country
       - branch
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml
+    UserProfileResponseDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: The unique identifier of the user
+        name:
+          type: string
+          description: The name of the user
+        email:
+          type: string
+          description: The email address of the user
+        phone:
+          type:
+          - object
+          - 'null'
+          description: The phone number of the user
+        currency:
+          description: The currency used by the user
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+        country:
+          description: The country details of the user
+          allOf:
+          - $ref: '#/components/schemas/CountryDto'
+        profilePhotoUrl:
+          type:
+          - object
+          - 'null'
+          description: The profile photo URL of the user
+        calendarUrl:
+          type:
+          - object
+          - 'null'
+          description: The URL to book an appointment with the user
+        permissions:
+          description: The permissions assigned to the user
+          items:
+            type: array
+          type: array
+        roles:
+          description: The roles assigned to the user
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        abilities:
+          description: The computed abilities (subject/action pairs) for the user
+          items:
+            type: array
+          type: array
+        tenant:
+          description: The tenant details of the user
+          allOf:
+          - $ref: '#/components/schemas/TenantDto'
+        accessLevel:
+          description: The access level of the user (global, country, or branch)
+          example: branch
+          allOf:
+          - $ref: '#/components/schemas/AccessLevel'
+      required:
+      - id
+      - name
+      - email
+      - currency
+      - permissions
+      - abilities
+      - accessLevel

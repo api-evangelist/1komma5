@@ -4,13 +4,13 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
 - name: migration-frozen-state
 paths:
   /api/migration-frozen-state/configs/{configId}/migrate-all:
     post:
-      description: Triggers all migration services for the given configId. If force is true, cleans up
-        existing migration data before running.
+      description: Triggers all migration services for the given configId. If force is true, cleans up existing migration data before running.
       operationId: ConfigMigrationOrchestratorController_migrateAll
       parameters:
       - name: configId
@@ -36,26 +36,6 @@ paths:
       - migration-frozen-state
 components:
   schemas:
-    MigrationSummaryDto:
-      type: object
-      properties:
-        total:
-          type: number
-          example: 12
-        succeeded:
-          type: number
-          example: 10
-        skipped:
-          type: number
-          example: 1
-        failed:
-          type: number
-          example: 1
-      required:
-      - total
-      - succeeded
-      - skipped
-      - failed
     ConfigMigrationOrchestratorResponseDto:
       type: object
       properties:
@@ -76,6 +56,23 @@ components:
       - success
       - steps
       - summary
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml
+    MigrationSummaryDto:
+      type: object
+      properties:
+        total:
+          type: number
+          example: 12
+        succeeded:
+          type: number
+          example: 10
+        skipped:
+          type: number
+          example: 1
+        failed:
+          type: number
+          example: 1
+      required:
+      - total
+      - succeeded
+      - skipped
+      - failed

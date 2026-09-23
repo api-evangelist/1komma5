@@ -4,8 +4,9 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
-- name: Admin - Users
+- name: Admin Users
 paths:
   /api/v1/admin/users:
     get:
@@ -72,7 +73,7 @@ paths:
                 $ref: '#/components/schemas/PaginatedAdminUsersResponseDto'
       summary: Get paginated team users with filtering and sorting
       tags:
-      - Admin - Users
+      - Admin Users
     post:
       operationId: CreateAdminUserController_createAdminUser_v1
       parameters: []
@@ -93,7 +94,7 @@ paths:
           description: Email already exists
       summary: Create a new team user
       tags:
-      - Admin - Users
+      - Admin Users
   /api/v1/admin/users/me:
     get:
       operationId: GetCurrentAdminUserController_getCurrentAdminUser_v1
@@ -107,11 +108,10 @@ paths:
                 $ref: '#/components/schemas/CurrentAdminUserResponseDto'
       summary: Get current admin user access level info
       tags:
-      - Admin - Users
+      - Admin Users
   /api/v1/admin/users/me/branches:
     get:
-      description: 'Returns branches based on access level: GLOBAL users get all branches, COUNTRY users
-        get branches in their country, BRANCH users get their assigned branches.'
+      description: 'Returns branches based on access level: GLOBAL users get all branches, COUNTRY users get branches in their country, BRANCH users get their assigned branches.'
       operationId: GetMyBranchesController_getMyBranches_v1
       parameters: []
       responses:
@@ -123,11 +123,10 @@ paths:
                 $ref: '#/components/schemas/MyBranchesResponseDto'
       summary: Get branches accessible to the current user
       tags:
-      - Admin - Users
+      - Admin Users
   /api/v1/admin/users/assignable-branches:
     get:
-      description: Returns branches that the current user can assign to other users. Used in user creation/edit
-        forms for branch selection.
+      description: Returns branches that the current user can assign to other users. Used in user creation/edit forms for branch selection.
       operationId: GetAssignableBranchesController_getAssignableBranches_v1
       parameters:
       - name: countryId
@@ -146,7 +145,7 @@ paths:
                   $ref: '#/components/schemas/AdminBranchDto'
       summary: Get branches assignable to users for a given country
       tags:
-      - Admin - Users
+      - Admin Users
   /api/v1/admin/users/{id}:
     get:
       operationId: GetAdminUserController_getAdminUser_v1
@@ -167,7 +166,7 @@ paths:
           description: User not found
       summary: Get a single team user by ID
       tags:
-      - Admin - Users
+      - Admin Users
     patch:
       operationId: UpdateAdminUserController_updateAdminUser_v1
       parameters:
@@ -195,11 +194,10 @@ paths:
           description: Email already exists
       summary: Update a team user
       tags:
-      - Admin - Users
+      - Admin Users
   /api/v1/admin/users/{id}/resend-invitation:
     post:
-      description: Sends a password setup email to the user. If the user does not exist in Auth0, they
-        will be created first.
+      description: Sends a password setup email to the user. If the user does not exist in Auth0, they will be created first.
       operationId: ResendInvitationController_resendInvitation_v1
       parameters:
       - name: id
@@ -216,29 +214,10 @@ paths:
           description: User not found
       summary: Resend invitation email to a user
       tags:
-      - Admin - Users
+      - Admin Users
 components:
   schemas:
-    AdminBranchCountryDto:
-      type: object
-      properties:
-        id:
-          type: number
-          description: Country ID
-          example: 1
-        name:
-          type: string
-          description: Country name
-          example: Germany
-        countryCode:
-          type: string
-          description: Country code (ISO 3166-1 alpha-2)
-          example: DE
-      required:
-      - id
-      - name
-      - countryCode
-    UpdateAdminUserDto:
+    CreateAdminUserDto:
       type: object
       properties:
         email:
@@ -250,13 +229,10 @@ components:
           description: User full name
           example: John Doe
         accessLevel:
-          type: string
           description: Access level determining the scope of data the user can access
           example: branch
-          enum:
-          - global
-          - country
-          - branch
+          allOf:
+          - $ref: '#/components/schemas/AccessLevel'
         countryId:
           type:
           - object
@@ -264,10 +240,8 @@ components:
           description: Country ID. Required for COUNTRY and BRANCH access levels.
           example: 1
         zohoUserId:
-          type:
-          - object
-          - 'null'
-          description: Zoho User ID (can be null to clear)
+          type: string
+          description: Zoho User ID
           example: '12345678901234567'
         tenantIds:
           description: List of tenant/branch IDs to assign to the user
@@ -281,89 +255,20 @@ components:
           type:
           - object
           - 'null'
-          description: Default tenant/branch ID (can be null for central users to clear)
+          description: Default tenant/branch ID. Central users can leave this null.
           example: tenant-1
         roles:
-          description: Role names to assign to the user (replaces existing roles)
+          description: Role names to assign to the user
           example:
           - sales
           - branch lead
           type: array
           items:
             type: array
-    PaginationMetaDto:
-      type: object
-      properties:
-        total:
-          type: number
-          description: Total number of items
-          example: 100
-        page:
-          type: number
-          description: Current page number
-          example: 1
-        limit:
-          type: number
-          description: Number of items per page
-          example: 20
-        totalPages:
-          type: number
-          description: Total number of pages
-          example: 5
       required:
-      - total
-      - page
-      - limit
-      - totalPages
-    AdminUserTenantDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Tenant ID
-          example: tenant-1
-        name:
-          type: string
-          description: Tenant name (branch name)
-          example: Berlin Branch
-      required:
-      - id
+      - email
       - name
-    CurrentAdminUserResponseDto:
-      type: object
-      properties:
-        id:
-          type: number
-          description: User ID
-          example: 123
-        accessLevel:
-          description: Access level determining the scope of data the user can access
-          example: branch
-          allOf:
-          - $ref: '#/components/schemas/AccessLevel'
-        countryId:
-          type:
-          - object
-          - 'null'
-          description: Country ID (null for GLOBAL users)
-          example: 1
-        countryName:
-          type:
-          - object
-          - 'null'
-          description: Country name (null for GLOBAL users)
-          example: Germany
-        tenants:
-          description: List of tenants the user has access to (for BRANCH level users)
-          items:
-            type: array
-          type: array
-      required:
-      - id
       - accessLevel
-      - countryId
-      - countryName
-      - tenants
     AdminUserDetailResponseDto:
       type: object
       properties:
@@ -435,6 +340,174 @@ components:
       - tenants
       - hiddenBranchCount
       - roles
+    PaginatedAdminUsersResponseDto:
+      type: object
+      properties:
+        data:
+          description: Array of user entries
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminUserResponseDto'
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
+      required:
+      - data
+      - meta
+    UpdateAdminUserDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: User email address
+          example: john.doe@example.com
+        name:
+          type: string
+          description: User full name
+          example: John Doe
+        accessLevel:
+          type: string
+          description: Access level determining the scope of data the user can access
+          example: branch
+          enum:
+          - global
+          - country
+          - branch
+        countryId:
+          type:
+          - object
+          - 'null'
+          description: Country ID. Required for COUNTRY and BRANCH access levels.
+          example: 1
+        zohoUserId:
+          type:
+          - object
+          - 'null'
+          description: Zoho User ID (can be null to clear)
+          example: '12345678901234567'
+        tenantIds:
+          description: List of tenant/branch IDs to assign to the user
+          example:
+          - tenant-1
+          - tenant-2
+          type: array
+          items:
+            type: array
+        defaultTenantId:
+          type:
+          - object
+          - 'null'
+          description: Default tenant/branch ID (can be null for central users to clear)
+          example: tenant-1
+        roles:
+          description: Role names to assign to the user (replaces existing roles)
+          example:
+          - sales
+          - branch lead
+          type: array
+          items:
+            type: array
+    AdminBranchDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Branch ID
+          example: branch-123
+        name:
+          type: string
+          description: Branch name
+          example: Berlin Branch
+        zohoId:
+          type:
+          - object
+          - 'null'
+          description: Zoho CRM ID
+          example: '12345678'
+        country:
+          description: Country information
+          allOf:
+          - $ref: '#/components/schemas/AdminBranchCountryDto'
+      required:
+      - id
+      - name
+      - zohoId
+      - country
+    AccessLevel:
+      type: string
+      enum:
+      - global
+      - country
+      - branch
+    AdminUserTenantDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Tenant ID
+          example: tenant-1
+        name:
+          type: string
+          description: Tenant name (branch name)
+          example: Berlin Branch
+      required:
+      - id
+      - name
+    CurrentAdminUserResponseDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: User ID
+          example: 123
+        accessLevel:
+          description: Access level determining the scope of data the user can access
+          example: branch
+          allOf:
+          - $ref: '#/components/schemas/AccessLevel'
+        countryId:
+          type:
+          - object
+          - 'null'
+          description: Country ID (null for GLOBAL users)
+          example: 1
+        countryName:
+          type:
+          - object
+          - 'null'
+          description: Country name (null for GLOBAL users)
+          example: Germany
+        tenants:
+          description: List of tenants the user has access to (for BRANCH level users)
+          items:
+            type: array
+          type: array
+      required:
+      - id
+      - accessLevel
+      - countryId
+      - countryName
+      - tenants
+    AdminBranchCountryDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Country ID
+          example: 1
+        name:
+          type: string
+          description: Country name
+          example: Germany
+        countryCode:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2)
+          example: DE
+      required:
+      - id
+      - name
+      - countryCode
     AdminUserResponseDto:
       type: object
       properties:
@@ -478,6 +551,11 @@ components:
       - createdAt
       - lastLoginAt
       - tenants
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
     MyBranchesResponseDto:
       type: object
       properties:
@@ -495,110 +573,27 @@ components:
       - name
       - email
       - lastLoginAt
-    AdminBranchDto:
+    PaginationMetaDto:
       type: object
       properties:
-        id:
-          type: string
-          description: Branch ID
-          example: branch-123
-        name:
-          type: string
-          description: Branch name
-          example: Berlin Branch
-        zohoId:
-          type:
-          - object
-          - 'null'
-          description: Zoho CRM ID
-          example: '12345678'
-        country:
-          description: Country information
-          allOf:
-          - $ref: '#/components/schemas/AdminBranchCountryDto'
-      required:
-      - id
-      - name
-      - zohoId
-      - country
-    PaginatedAdminUsersResponseDto:
-      type: object
-      properties:
-        data:
-          description: Array of user entries
-          type: array
-          items:
-            $ref: '#/components/schemas/AdminUserResponseDto'
-        meta:
-          description: Pagination metadata
-          allOf:
-          - $ref: '#/components/schemas/PaginationMetaDto'
-      required:
-      - data
-      - meta
-    AccessLevel:
-      type: string
-      enum:
-      - global
-      - country
-      - branch
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-    CreateAdminUserDto:
-      type: object
-      properties:
-        email:
-          type: string
-          description: User email address
-          example: john.doe@example.com
-        name:
-          type: string
-          description: User full name
-          example: John Doe
-        accessLevel:
-          description: Access level determining the scope of data the user can access
-          example: branch
-          allOf:
-          - $ref: '#/components/schemas/AccessLevel'
-        countryId:
-          type:
-          - object
-          - 'null'
-          description: Country ID. Required for COUNTRY and BRANCH access levels.
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
           example: 1
-        zohoUserId:
-          type: string
-          description: Zoho User ID
-          example: '12345678901234567'
-        tenantIds:
-          description: List of tenant/branch IDs to assign to the user
-          example:
-          - tenant-1
-          - tenant-2
-          type: array
-          items:
-            type: array
-        defaultTenantId:
-          type:
-          - object
-          - 'null'
-          description: Default tenant/branch ID. Central users can leave this null.
-          example: tenant-1
-        roles:
-          description: Role names to assign to the user
-          example:
-          - sales
-          - branch lead
-          type: array
-          items:
-            type: array
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
       required:
-      - email
-      - name
-      - accessLevel
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml
+      - total
+      - page
+      - limit
+      - totalPages

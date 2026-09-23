@@ -4,6 +4,7 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
 - name: Admin - Audit Logs
 paths:
@@ -108,30 +109,6 @@ paths:
       - Admin - Audit Logs
 components:
   schemas:
-    PaginationMetaDto:
-      type: object
-      properties:
-        total:
-          type: number
-          description: Total number of items
-          example: 100
-        page:
-          type: number
-          description: Current page number
-          example: 1
-        limit:
-          type: number
-          description: Number of items per page
-          example: 20
-        totalPages:
-          type: number
-          description: Total number of pages
-          example: 5
-      required:
-      - total
-      - page
-      - limit
-      - totalPages
     AuditLogSortField:
       type: string
       enum:
@@ -139,6 +116,21 @@ components:
       - action
       - subjectType
       - actorType
+    PaginatedAuditLogsResponseDto:
+      type: object
+      properties:
+        data:
+          description: Array of audit log entries
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditLogResponseDto'
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
+      required:
+      - data
+      - meta
     AuditLogResponseDto:
       type: object
       properties:
@@ -212,21 +204,27 @@ components:
       enum:
       - asc
       - desc
-    PaginatedAuditLogsResponseDto:
+    PaginationMetaDto:
       type: object
       properties:
-        data:
-          description: Array of audit log entries
-          type: array
-          items:
-            $ref: '#/components/schemas/AuditLogResponseDto'
-        meta:
-          description: Pagination metadata
-          allOf:
-          - $ref: '#/components/schemas/PaginationMetaDto'
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
+          example: 1
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
       required:
-      - data
-      - meta
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml
+      - total
+      - page
+      - limit
+      - totalPages

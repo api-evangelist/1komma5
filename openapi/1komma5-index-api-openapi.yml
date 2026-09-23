@@ -4,8 +4,9 @@ info:
   description: Api definitions for Offer Tool
   version: '1.0'
   contact: {}
+servers: []
 tags:
-- name: index
+- name: Index
 paths:
   /:
     get:
@@ -19,7 +20,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/'
       tags:
-      - index
-servers:
-- url: https://heartbeat.1komma5grad.com
-  description: Base URL reconciled from apis.yml
+      - Index
+      summary: Index controller index
+      x-summary-source: derived
