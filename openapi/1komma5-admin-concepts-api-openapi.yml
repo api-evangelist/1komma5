@@ -172,6 +172,20 @@ paths:
       - Admin - Concepts
 components:
   schemas:
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+    UpdateAdminConceptDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Concept name
+          example: PV Basic 10kWp
+          minLength: 1
+          maxLength: 255
     ConceptListItemDto:
       type: object
       properties:
@@ -252,97 +266,6 @@ components:
       enum:
       - global
       - branch
-    CreateAdminConceptDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Concept name
-          example: PV Basic 10kWp
-          minLength: 1
-          maxLength: 255
-      required:
-      - name
-    ConceptTemplateType:
-      type: string
-      enum:
-      - pv
-      - wp
-      - spnach
-      - pvwp
-      - mg
-    PaginatedConceptsResponseDto:
-      type: object
-      properties:
-        data:
-          description: List of concepts
-          items:
-            type: array
-          type: array
-        meta:
-          description: Pagination metadata
-          allOf:
-          - $ref: '#/components/schemas/PaginationMetaDto'
-      required:
-      - data
-      - meta
-    ConceptPricingDto:
-      type: object
-      properties:
-        totalNet:
-          type: number
-          description: Total net price (excl. VAT)
-          example: 12500
-        totalGross:
-          type: number
-          description: Total gross price (incl. VAT)
-          example: 14875
-        vatRate:
-          type: number
-          description: VAT rate as percentage
-          example: 19
-        currency:
-          type: string
-          description: Currency code
-          example: EUR
-      required:
-      - totalNet
-      - totalGross
-      - vatRate
-      - currency
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-    ConceptTenantDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Tenant ID
-          example: tenant-123
-        name:
-          type: string
-          description: Tenant name
-          example: Berlin Branch
-      required:
-      - id
-      - name
-    UpdateAdminConceptDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Concept name
-          example: PV Basic 10kWp
-          minLength: 1
-          maxLength: 255
-    ConceptSortField:
-      type: string
-      enum:
-      - name
-      - createdAt
     PaginationMetaDto:
       type: object
       properties:
@@ -367,8 +290,85 @@ components:
       - page
       - limit
       - totalPages
+    CreateAdminConceptDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Concept name
+          example: PV Basic 10kWp
+          minLength: 1
+          maxLength: 255
+      required:
+      - name
     ConceptVisibility:
       type: string
       enum:
       - visible
       - hidden
+    ConceptSortField:
+      type: string
+      enum:
+      - name
+      - createdAt
+    ConceptPricingDto:
+      type: object
+      properties:
+        totalNet:
+          type: number
+          description: Total net price (excl. VAT)
+          example: 12500
+        totalGross:
+          type: number
+          description: Total gross price (incl. VAT)
+          example: 14875
+        vatRate:
+          type: number
+          description: VAT rate as percentage
+          example: 19
+        currency:
+          type: string
+          description: Currency code
+          example: EUR
+      required:
+      - totalNet
+      - totalGross
+      - vatRate
+      - currency
+    ConceptTemplateType:
+      type: string
+      enum:
+      - pv
+      - wp
+      - spnach
+      - pvwp
+      - mg
+    ConceptTenantDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Tenant ID
+          example: tenant-123
+        name:
+          type: string
+          description: Tenant name
+          example: Berlin Branch
+      required:
+      - id
+      - name
+    PaginatedConceptsResponseDto:
+      type: object
+      properties:
+        data:
+          description: List of concepts
+          items:
+            type: array
+          type: array
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
+      required:
+      - data
+      - meta

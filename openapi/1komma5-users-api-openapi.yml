@@ -118,35 +118,41 @@ components:
       - name
       - id
       - country
-    Locale:
-      type: string
-      enum:
-      - de-DE
-      - da-DK
-      - en-US
-      - sv-SE
-      - nl-NL
-    CountryCode:
-      type: string
-      enum:
-      - DE
-      - DK
-      - SE
-      - NL
-    CheckAuth0UserResponseDto:
+    CheckUserAuth0RequestDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: foo@bar.com
+      required:
+      - email
+    CountryDto:
       type: object
       properties:
         id:
           type: number
-          description: The unique identifier of the user
-          example: 1
-        email:
+        name:
           type: string
-          description: The email address of the user
-          example: foo@bar.com
+          description: Country name
+        countryCode:
+          allOf:
+          - $ref: '#/components/schemas/CountryCode'
+        locale:
+          allOf:
+          - $ref: '#/components/schemas/Locale'
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+        vatRate:
+          type: number
+          description: Default VAT rate as percentage
       required:
       - id
-      - email
+      - name
+      - countryCode
+      - locale
+      - currency
+      - vatRate
     UserDto:
       type: object
       properties:
@@ -220,12 +226,14 @@ components:
       - zohoUserId
       - tenantIdHeat
       - activeTenantId
-    Currency:
+    Locale:
       type: string
       enum:
-      - EUR
-      - DKK
-      - SEK
+      - de-DE
+      - da-DK
+      - en-US
+      - sv-SE
+      - nl-NL
     UpdateUserRequestDto:
       type: object
       properties:
@@ -237,47 +245,6 @@ components:
           description: Optional calendar URL to book appointments
       required:
       - name
-    CountryDto:
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
-          description: Country name
-        countryCode:
-          allOf:
-          - $ref: '#/components/schemas/CountryCode'
-        locale:
-          allOf:
-          - $ref: '#/components/schemas/Locale'
-        currency:
-          allOf:
-          - $ref: '#/components/schemas/Currency'
-        vatRate:
-          type: number
-          description: Default VAT rate as percentage
-      required:
-      - id
-      - name
-      - countryCode
-      - locale
-      - currency
-      - vatRate
-    CheckUserAuth0RequestDto:
-      type: object
-      properties:
-        email:
-          type: string
-          example: foo@bar.com
-      required:
-      - email
-    AccessLevel:
-      type: string
-      enum:
-      - global
-      - country
-      - branch
     UserProfileResponseDto:
       type: object
       properties:
@@ -347,3 +314,36 @@ components:
       - permissions
       - abilities
       - accessLevel
+    AccessLevel:
+      type: string
+      enum:
+      - global
+      - country
+      - branch
+    Currency:
+      type: string
+      enum:
+      - EUR
+      - DKK
+      - SEK
+    CheckAuth0UserResponseDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: The unique identifier of the user
+          example: 1
+        email:
+          type: string
+          description: The email address of the user
+          example: foo@bar.com
+      required:
+      - id
+      - email
+    CountryCode:
+      type: string
+      enum:
+      - DE
+      - DK
+      - SE
+      - NL

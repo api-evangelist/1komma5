@@ -140,6 +140,11 @@ paths:
       - Admin - Branches
 components:
   schemas:
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
     UpdateAdminBranchDto:
       type: object
       properties:
@@ -149,71 +154,6 @@ components:
           example: Berlin Branch
           minLength: 1
           maxLength: 255
-    PaginatedAdminBranchesResponseDto:
-      type: object
-      properties:
-        data:
-          description: List of branches
-          items:
-            type: array
-          type: array
-        meta:
-          description: Pagination metadata
-          allOf:
-          - $ref: '#/components/schemas/PaginationMetaDto'
-      required:
-      - data
-      - meta
-    AdminBranchDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Branch ID
-          example: branch-123
-        name:
-          type: string
-          description: Branch name
-          example: Berlin Branch
-        zohoId:
-          type:
-          - object
-          - 'null'
-          description: Zoho CRM ID
-          example: '12345678'
-        country:
-          description: Country information
-          allOf:
-          - $ref: '#/components/schemas/AdminBranchCountryDto'
-      required:
-      - id
-      - name
-      - zohoId
-      - country
-    AdminBranchCountryDto:
-      type: object
-      properties:
-        id:
-          type: number
-          description: Country ID
-          example: 1
-        name:
-          type: string
-          description: Country name
-          example: Germany
-        countryCode:
-          type: string
-          description: Country code (ISO 3166-1 alpha-2)
-          example: DE
-      required:
-      - id
-      - name
-      - countryCode
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
     AdminBranchSortField:
       type: string
       enum:
@@ -254,3 +194,63 @@ components:
       - page
       - limit
       - totalPages
+    AdminBranchDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Branch ID
+          example: branch-123
+        name:
+          type: string
+          description: Branch name
+          example: Berlin Branch
+        zohoId:
+          type:
+          - object
+          - 'null'
+          description: Zoho CRM ID
+          example: '12345678'
+        country:
+          description: Country information
+          allOf:
+          - $ref: '#/components/schemas/AdminBranchCountryDto'
+      required:
+      - id
+      - name
+      - zohoId
+      - country
+    PaginatedAdminBranchesResponseDto:
+      type: object
+      properties:
+        data:
+          description: List of branches
+          items:
+            type: array
+          type: array
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
+      required:
+      - data
+      - meta
+    AdminBranchCountryDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Country ID
+          example: 1
+        name:
+          type: string
+          description: Country name
+          example: Germany
+        countryCode:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2)
+          example: DE
+      required:
+      - id
+      - name
+      - countryCode

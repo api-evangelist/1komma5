@@ -285,31 +285,12 @@ paths:
       - Admin - Products
 components:
   schemas:
-    PaginationMetaDto:
-      type: object
-      properties:
-        total:
-          type: number
-          description: Total number of items
-          example: 100
-        page:
-          type: number
-          description: Current page number
-          example: 1
-        limit:
-          type: number
-          description: Number of items per page
-          example: 20
-        totalPages:
-          type: number
-          description: Total number of pages
-          example: 5
-      required:
-      - total
-      - page
-      - limit
-      - totalPages
-    CreateAdminProductDto:
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+    UpdateAdminProductDto:
       type: object
       properties:
         name:
@@ -318,7 +299,64 @@ components:
           example: Solar Panel XL
           minLength: 1
           maxLength: 255
+    AdminProductSortField:
+      type: string
+      enum:
+      - name
+      - createdAt
+      - price
+      - category
+    CategoryDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Category ID
+        name:
+          type: string
+          description: Category name
       required:
+      - id
+      - name
+    PricebookOverridesDto:
+      type: object
+      properties:
+        price:
+          type:
+          - object
+          - 'null'
+          description: Overridden price
+        factor:
+          type:
+          - object
+          - 'null'
+          description: Overridden factor
+        public:
+          type:
+          - object
+          - 'null'
+          description: Overridden visibility
+        canbesold:
+          type:
+          - object
+          - 'null'
+          description: Overridden canbesold
+      required:
+      - price
+      - factor
+      - public
+      - canbesold
+    BrandDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Brand ID
+        name:
+          type: string
+          description: Brand name
+      required:
+      - id
       - name
     AdminPricebookProductDto:
       type: object
@@ -414,52 +452,30 @@ components:
       - effectiveFactor
       - effectivePublic
       - effectiveCanbesold
-    PaginatedAdminProductsResponseDto:
+    PaginationMetaDto:
       type: object
       properties:
-        data:
-          description: List of products
-          type: array
-          items:
-            $ref: '#/components/schemas/AdminProductDto'
-        meta:
-          description: Pagination metadata
-          allOf:
-          - $ref: '#/components/schemas/PaginationMetaDto'
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
+          example: 1
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
       required:
-      - data
-      - meta
-    PaginatedAdminPricebookResponseDto:
-      type: object
-      properties:
-        data:
-          description: List of pricebook products
-          type: array
-          items:
-            $ref: '#/components/schemas/AdminPricebookProductDto'
-        meta:
-          description: Pagination metadata
-          allOf:
-          - $ref: '#/components/schemas/PaginationMetaDto'
-      required:
-      - data
-      - meta
-    AdminProductSortField:
-      type: string
-      enum:
-      - name
-      - createdAt
-      - price
-      - category
-    UpdateAdminProductDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Product name
-          example: Solar Panel XL
-          minLength: 1
-          maxLength: 255
+      - total
+      - page
+      - limit
+      - totalPages
     AdminProductDto:
       type: object
       properties:
@@ -533,60 +549,44 @@ components:
       - countryId
       - countryCode
       - vatType
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-    PricebookOverridesDto:
+    PaginatedAdminPricebookResponseDto:
       type: object
       properties:
-        price:
-          type:
-          - object
-          - 'null'
-          description: Overridden price
-        factor:
-          type:
-          - object
-          - 'null'
-          description: Overridden factor
-        public:
-          type:
-          - object
-          - 'null'
-          description: Overridden visibility
-        canbesold:
-          type:
-          - object
-          - 'null'
-          description: Overridden canbesold
+        data:
+          description: List of pricebook products
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminPricebookProductDto'
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
       required:
-      - price
-      - factor
-      - public
-      - canbesold
-    BrandDto:
+      - data
+      - meta
+    CreateAdminProductDto:
       type: object
       properties:
-        id:
-          type: number
-          description: Brand ID
         name:
           type: string
-          description: Brand name
+          description: Product name
+          example: Solar Panel XL
+          minLength: 1
+          maxLength: 255
       required:
-      - id
       - name
-    CategoryDto:
+    PaginatedAdminProductsResponseDto:
       type: object
       properties:
-        id:
-          type: number
-          description: Category ID
-        name:
-          type: string
-          description: Category name
+        data:
+          description: List of products
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminProductDto'
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
       required:
-      - id
-      - name
+      - data
+      - meta

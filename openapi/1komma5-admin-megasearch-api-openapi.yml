@@ -41,26 +41,6 @@ paths:
       - Admin - Megasearch
 components:
   schemas:
-    MegasearchGroupDto:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Entity type identifier
-          example: user
-        label:
-          type: string
-          description: Human-readable label for the group
-          example: Users
-        results:
-          description: Search results in this group
-          type: array
-          items:
-            $ref: '#/components/schemas/MegasearchResultDto'
-      required:
-      - type
-      - label
-      - results
     MegasearchResponseDto:
       type: object
       properties:
@@ -104,6 +84,40 @@ components:
       - id
       - title
       - url
+    MegasearchMetaDto:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The search query that was executed
+          example: john
+        totalResults:
+          type: number
+          description: Total number of results across all groups
+          example: 5
+      required:
+      - query
+      - totalResults
+    MegasearchGroupDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Entity type identifier
+          example: user
+        label:
+          type: string
+          description: Human-readable label for the group
+          example: Users
+        results:
+          description: Search results in this group
+          type: array
+          items:
+            $ref: '#/components/schemas/MegasearchResultDto'
+      required:
+      - type
+      - label
+      - results
     MegasearchResultTagDto:
       type: object
       properties:
@@ -122,17 +136,3 @@ components:
       required:
       - label
       - variant
-    MegasearchMetaDto:
-      type: object
-      properties:
-        query:
-          type: string
-          description: The search query that was executed
-          example: john
-        totalResults:
-          type: number
-          description: Total number of results across all groups
-          example: 5
-      required:
-      - query
-      - totalResults

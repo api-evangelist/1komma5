@@ -217,6 +217,181 @@ paths:
       - Admin Users
 components:
   schemas:
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+    AdminUserTenantDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Tenant ID
+          example: tenant-1
+        name:
+          type: string
+          description: Tenant name (branch name)
+          example: Berlin Branch
+      required:
+      - id
+      - name
+    CurrentAdminUserResponseDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: User ID
+          example: 123
+        accessLevel:
+          description: Access level determining the scope of data the user can access
+          example: branch
+          allOf:
+          - $ref: '#/components/schemas/AccessLevel'
+        countryId:
+          type:
+          - object
+          - 'null'
+          description: Country ID (null for GLOBAL users)
+          example: 1
+        countryName:
+          type:
+          - object
+          - 'null'
+          description: Country name (null for GLOBAL users)
+          example: Germany
+        tenants:
+          description: List of tenants the user has access to (for BRANCH level users)
+          items:
+            type: array
+          type: array
+      required:
+      - id
+      - accessLevel
+      - countryId
+      - countryName
+      - tenants
+    AdminUserSortField:
+      type: string
+      enum:
+      - createdAt
+      - name
+      - email
+      - lastLoginAt
+    PaginationMetaDto:
+      type: object
+      properties:
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
+          example: 1
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
+      required:
+      - total
+      - page
+      - limit
+      - totalPages
+    AdminBranchDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Branch ID
+          example: branch-123
+        name:
+          type: string
+          description: Branch name
+          example: Berlin Branch
+        zohoId:
+          type:
+          - object
+          - 'null'
+          description: Zoho CRM ID
+          example: '12345678'
+        country:
+          description: Country information
+          allOf:
+          - $ref: '#/components/schemas/AdminBranchCountryDto'
+      required:
+      - id
+      - name
+      - zohoId
+      - country
+    AccessLevel:
+      type: string
+      enum:
+      - global
+      - country
+      - branch
+    PaginatedAdminUsersResponseDto:
+      type: object
+      properties:
+        data:
+          description: Array of user entries
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminUserResponseDto'
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
+      required:
+      - data
+      - meta
+    AdminUserResponseDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Unique identifier of the user
+          example: 123
+        email:
+          type: string
+          description: User email address
+          example: john.doe@example.com
+        name:
+          type: string
+          description: User full name
+          example: John Doe
+        accessLevel:
+          description: Access level determining the scope of data the user can access
+          example: branch
+          allOf:
+          - $ref: '#/components/schemas/AccessLevel'
+        createdAt:
+          type: string
+          description: Timestamp when the user was created
+          example: '2024-01-15T10:30:00.000Z'
+        lastLoginAt:
+          type:
+          - object
+          - 'null'
+          description: Timestamp of last login
+          example: '2024-06-20T14:45:00.000Z'
+        tenants:
+          description: Tenants (branches) the user belongs to
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminUserTenantDto'
+      required:
+      - id
+      - email
+      - name
+      - accessLevel
+      - createdAt
+      - lastLoginAt
+      - tenants
     CreateAdminUserDto:
       type: object
       properties:
@@ -340,21 +515,35 @@ components:
       - tenants
       - hiddenBranchCount
       - roles
-    PaginatedAdminUsersResponseDto:
+    AdminBranchCountryDto:
       type: object
       properties:
-        data:
-          description: Array of user entries
-          type: array
-          items:
-            $ref: '#/components/schemas/AdminUserResponseDto'
-        meta:
-          description: Pagination metadata
-          allOf:
-          - $ref: '#/components/schemas/PaginationMetaDto'
+        id:
+          type: number
+          description: Country ID
+          example: 1
+        name:
+          type: string
+          description: Country name
+          example: Germany
+        countryCode:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2)
+          example: DE
       required:
-      - data
-      - meta
+      - id
+      - name
+      - countryCode
+    MyBranchesResponseDto:
+      type: object
+      properties:
+        branches:
+          description: List of branches accessible to the current user
+          items:
+            type: array
+          type: array
+      required:
+      - branches
     UpdateAdminUserDto:
       type: object
       properties:
@@ -408,192 +597,3 @@ components:
           type: array
           items:
             type: array
-    AdminBranchDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Branch ID
-          example: branch-123
-        name:
-          type: string
-          description: Branch name
-          example: Berlin Branch
-        zohoId:
-          type:
-          - object
-          - 'null'
-          description: Zoho CRM ID
-          example: '12345678'
-        country:
-          description: Country information
-          allOf:
-          - $ref: '#/components/schemas/AdminBranchCountryDto'
-      required:
-      - id
-      - name
-      - zohoId
-      - country
-    AccessLevel:
-      type: string
-      enum:
-      - global
-      - country
-      - branch
-    AdminUserTenantDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Tenant ID
-          example: tenant-1
-        name:
-          type: string
-          description: Tenant name (branch name)
-          example: Berlin Branch
-      required:
-      - id
-      - name
-    CurrentAdminUserResponseDto:
-      type: object
-      properties:
-        id:
-          type: number
-          description: User ID
-          example: 123
-        accessLevel:
-          description: Access level determining the scope of data the user can access
-          example: branch
-          allOf:
-          - $ref: '#/components/schemas/AccessLevel'
-        countryId:
-          type:
-          - object
-          - 'null'
-          description: Country ID (null for GLOBAL users)
-          example: 1
-        countryName:
-          type:
-          - object
-          - 'null'
-          description: Country name (null for GLOBAL users)
-          example: Germany
-        tenants:
-          description: List of tenants the user has access to (for BRANCH level users)
-          items:
-            type: array
-          type: array
-      required:
-      - id
-      - accessLevel
-      - countryId
-      - countryName
-      - tenants
-    AdminBranchCountryDto:
-      type: object
-      properties:
-        id:
-          type: number
-          description: Country ID
-          example: 1
-        name:
-          type: string
-          description: Country name
-          example: Germany
-        countryCode:
-          type: string
-          description: Country code (ISO 3166-1 alpha-2)
-          example: DE
-      required:
-      - id
-      - name
-      - countryCode
-    AdminUserResponseDto:
-      type: object
-      properties:
-        id:
-          type: number
-          description: Unique identifier of the user
-          example: 123
-        email:
-          type: string
-          description: User email address
-          example: john.doe@example.com
-        name:
-          type: string
-          description: User full name
-          example: John Doe
-        accessLevel:
-          description: Access level determining the scope of data the user can access
-          example: branch
-          allOf:
-          - $ref: '#/components/schemas/AccessLevel'
-        createdAt:
-          type: string
-          description: Timestamp when the user was created
-          example: '2024-01-15T10:30:00.000Z'
-        lastLoginAt:
-          type:
-          - object
-          - 'null'
-          description: Timestamp of last login
-          example: '2024-06-20T14:45:00.000Z'
-        tenants:
-          description: Tenants (branches) the user belongs to
-          type: array
-          items:
-            $ref: '#/components/schemas/AdminUserTenantDto'
-      required:
-      - id
-      - email
-      - name
-      - accessLevel
-      - createdAt
-      - lastLoginAt
-      - tenants
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-    MyBranchesResponseDto:
-      type: object
-      properties:
-        branches:
-          description: List of branches accessible to the current user
-          items:
-            type: array
-          type: array
-      required:
-      - branches
-    AdminUserSortField:
-      type: string
-      enum:
-      - createdAt
-      - name
-      - email
-      - lastLoginAt
-    PaginationMetaDto:
-      type: object
-      properties:
-        total:
-          type: number
-          description: Total number of items
-          example: 100
-        page:
-          type: number
-          description: Current page number
-          example: 1
-        limit:
-          type: number
-          description: Number of items per page
-          example: 20
-        totalPages:
-          type: number
-          description: Total number of pages
-          example: 5
-      required:
-      - total
-      - page
-      - limit
-      - totalPages

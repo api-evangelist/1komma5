@@ -49,16 +49,41 @@ paths:
       - Products
 components:
   schemas:
-    CategoryDTO:
+    MediaDTO:
       type: object
       properties:
         id:
-          type: number
-        name:
+          type:
+          - number
+          - 'null'
+        normal:
+          type:
+          - string
+          - 'null'
+        thumb:
+          type:
+          - string
+          - 'null'
+        url:
           type: string
       required:
-      - id
-      - name
+      - url
+    ProductGetAllResponse:
+      type: object
+      properties:
+        products:
+          description: List of products
+          items:
+            type: array
+          type: array
+        categories:
+          description: List of categories associated with the products
+          items:
+            type: array
+          type: array
+      required:
+      - products
+      - categories
     PriceDTO:
       type: object
       properties:
@@ -126,22 +151,16 @@ components:
       - canEditCustomPrice
       - canEditCustomInvoiceLine
       - canEditOffer
-    ProductGetAllResponse:
+    CategoryDTO:
       type: object
       properties:
-        products:
-          description: List of products
-          items:
-            type: array
-          type: array
-        categories:
-          description: List of categories associated with the products
-          items:
-            type: array
-          type: array
+        id:
+          type: number
+        name:
+          type: string
       required:
-      - products
-      - categories
+      - id
+      - name
     BrandDTO:
       type: object
       properties:
@@ -152,22 +171,3 @@ components:
       required:
       - id
       - name
-    MediaDTO:
-      type: object
-      properties:
-        id:
-          type:
-          - number
-          - 'null'
-        normal:
-          type:
-          - string
-          - 'null'
-        thumb:
-          type:
-          - string
-          - 'null'
-        url:
-          type: string
-      required:
-      - url

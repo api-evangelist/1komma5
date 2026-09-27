@@ -82,101 +82,6 @@ paths:
       - Configs
 components:
   schemas:
-    SendOfferResponseDto:
-      type: object
-      properties:
-        success:
-          type: boolean
-        getAcceptDocumentId:
-          type: string
-      required:
-      - success
-    SendOfferEmailDto:
-      type: object
-      properties:
-        recipient:
-          type: string
-        ccAddress:
-          type: string
-        subject:
-          type: string
-        body:
-          type: string
-      required:
-      - recipient
-      - subject
-      - body
-    FinancingLimitsDto:
-      type: object
-      properties:
-        isBlockedByAge:
-          type: boolean
-        maxInstallmentsPv:
-          type:
-          - number
-          - 'null'
-        maxInstallmentsHeat:
-          type:
-          - number
-          - 'null'
-        minInstallmentMonths:
-          type:
-          - number
-          - 'null'
-        combinedGrossLimitEur:
-          type: number
-        isCombinedGrossOverLimit:
-          type: boolean
-        isPvBlockedByCombinedGrossLimit:
-          type: boolean
-        isHeatBlockedByCombinedGrossLimit:
-          type: boolean
-        isPvAloneOverFinancingLimit:
-          type: boolean
-        isHeatAloneOverFinancingLimit:
-          type: boolean
-    SendOfferRequestDto:
-      type: object
-      properties:
-        offerType:
-          type: string
-          enum:
-          - pv
-          - heat
-        withDataSheets:
-          type: boolean
-        shortVersion:
-          type: boolean
-        email:
-          $ref: '#/components/schemas/SendOfferEmailDto'
-      required:
-      - offerType
-      - withDataSheets
-    OfferPdfDto:
-      type: object
-      properties:
-        id:
-          type: number
-        url:
-          type: string
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-        name:
-          type: string
-        fileName:
-          type: string
-        thumb:
-          type: string
-      required:
-      - id
-      - url
-      - createdAt
-      - updatedAt
-      - name
-      - fileName
-      - thumb
     ConfigDetailsResponseDto:
       type: object
       properties:
@@ -240,6 +145,32 @@ components:
       - margins
       - profitability
       - emailPlaceholders
+    SendOfferResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+        getAcceptDocumentId:
+          type: string
+      required:
+      - success
+    SendOfferRequestDto:
+      type: object
+      properties:
+        offerType:
+          type: string
+          enum:
+          - pv
+          - heat
+        withDataSheets:
+          type: boolean
+        shortVersion:
+          type: boolean
+        email:
+          $ref: '#/components/schemas/SendOfferEmailDto'
+      required:
+      - offerType
+      - withDataSheets
     FinancingDto:
       type: object
       properties:
@@ -269,3 +200,72 @@ components:
           type: object
         financingLimits:
           $ref: '#/components/schemas/FinancingLimitsDto'
+    OfferPdfDto:
+      type: object
+      properties:
+        id:
+          type: number
+        url:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        name:
+          type: string
+        fileName:
+          type: string
+        thumb:
+          type: string
+      required:
+      - id
+      - url
+      - createdAt
+      - updatedAt
+      - name
+      - fileName
+      - thumb
+    FinancingLimitsDto:
+      type: object
+      properties:
+        isBlockedByAge:
+          type: boolean
+        maxInstallmentsPv:
+          type:
+          - number
+          - 'null'
+        maxInstallmentsHeat:
+          type:
+          - number
+          - 'null'
+        minInstallmentMonths:
+          type:
+          - number
+          - 'null'
+        combinedGrossLimitEur:
+          type: number
+        isCombinedGrossOverLimit:
+          type: boolean
+        isPvBlockedByCombinedGrossLimit:
+          type: boolean
+        isHeatBlockedByCombinedGrossLimit:
+          type: boolean
+        isPvAloneOverFinancingLimit:
+          type: boolean
+        isHeatAloneOverFinancingLimit:
+          type: boolean
+    SendOfferEmailDto:
+      type: object
+      properties:
+        recipient:
+          type: string
+        ccAddress:
+          type: string
+        subject:
+          type: string
+        body:
+          type: string
+      required:
+      - recipient
+      - subject
+      - body

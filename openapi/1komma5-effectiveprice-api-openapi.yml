@@ -46,23 +46,85 @@ paths:
       - EffectivePrice
 components:
   schemas:
-    EffectivePriceConsumptionRequestDto:
+    EffectivePriceHeatConsumptionRequestDto:
+      type: object
+      properties:
+        amountKwhPerYear:
+          type: number
+          description: Amount of kWh consumed for heating per year
+    EffectivePriceFossilConsumptionRequestDto:
+      type: object
+      properties:
+        heat:
+          description: Fossil heat consumption details
+          allOf:
+          - $ref: '#/components/schemas/EffectivePriceFossilHeatRequestDto'
+        mobility:
+          description: Fossil mobility consumption details
+          allOf:
+          - $ref: '#/components/schemas/EffectivePriceFossilMobilityRequestDto'
+    EffectivePriceFossilMobilityRequestDto:
+      type: object
+      properties:
+        amountKmPerYear:
+          type: number
+          description: Amount driven in km per year (fossil)
+        literPer100km:
+          type: number
+          description: Liters per 100km (fossil)
+        priceMinorCurrencyUnitPerLiter:
+          type: number
+          description: Price per liter in minor currency unit (fossil)
+        amountLiterPerYear:
+          type: number
+          description: Total liters per year (fossil)
+        priceTotalMajorCurrencyUnitPerYear:
+          type: number
+          description: Total price for fossil mobility per year in major currency unit
+    ConsumptionBasedBreakdownDto:
       type: object
       properties:
         household:
-          description: Household consumption details
+          description: Household consumption
           allOf:
-          - $ref: '#/components/schemas/EffectivePriceHouseholdConsumptionRequestDto'
+          - $ref: '#/components/schemas/ConsumptionBasedBreakdownComponentDto'
         heat:
-          description: Heat consumption details
+          description: Heat consumption
           allOf:
-          - $ref: '#/components/schemas/EffectivePriceHeatConsumptionRequestDto'
+          - $ref: '#/components/schemas/EffectivePriceHeatResponseDto'
         mobility:
-          description: Mobility consumption details
+          description: Mobility consumption
           allOf:
-          - $ref: '#/components/schemas/EffectivePriceMobilityConsumptionRequestDto'
+          - $ref: '#/components/schemas/EffectivePriceMobilityResponseDto'
       required:
       - household
+      - heat
+      - mobility
+    ConsumptionBasedBreakdownComponentDto:
+      type: object
+      properties:
+        energyType:
+          description: Energy type
+          allOf:
+          - $ref: '#/components/schemas/EnergyType'
+        amountKwhPerYear:
+          type: number
+          description: Amount of kWh consumed per year
+        amountKwhPerYearBatteryLoss:
+          type: number
+          description: 'Battery loss of kWh per year '
+        priceMinorCurrencyUnitPerKwh:
+          type: number
+          description: Price per kWh in minor currency unit
+        priceTotalMajorCurrencyUnitPerYear:
+          type: number
+          description: Total price per year in major currency unit
+      required:
+      - energyType
+      - amountKwhPerYear
+      - amountKwhPerYearBatteryLoss
+      - priceMinorCurrencyUnitPerKwh
+      - priceTotalMajorCurrencyUnitPerYear
     EffectivePriceFossilHeatRequestDto:
       type: object
       properties:
@@ -78,18 +140,87 @@ components:
         priceTotalMajorCurrencyUnitPerYear:
           type: number
           description: Total price for fossil heating per year in major currency unit
-    EffectivePriceMobilityConsumptionRequestDto:
+    Co2SavingsDto:
       type: object
       properties:
-        amountKmPerYear:
+        annualKg:
           type: number
-          description: Amount driven in km per year
-        kwhPer100km:
+          description: Annual CO2 savings in kg
+        lifetimeKg:
           type: number
-          description: Consumption kwh per 100 km
+          description: CO2 savings over the lifetime in kg
+        annualTrees:
+          type: number
+          description: CO2 savings represented as number of trees (annual)
+        annualKmDrivenByCar:
+          type: number
+          description: CO2 savings represented as number of km driven by an average car (annual)
+      required:
+      - annualKg
+      - lifetimeKg
+      - annualTrees
+      - annualKmDrivenByCar
+    EffectivePriceDataComponentDto:
+      type: object
+      properties:
         amountKwhPerYear:
           type: number
-          description: Total amount of kWh consumed for mobility per year
+          description: Amount of kWh per year
+        priceMinorCurrencyUnitPerKwh:
+          type: number
+          description: Price per kWh in minor currency unit
+        priceMinorCurrencyUnitPerKwhWithoutInvestmentCost:
+          type: number
+          description: Price per kWh without investment cost in minor currency unit
+        priceTotalMajorCurrencyUnitPerYear:
+          type: number
+          description: Total price per year in major currency unit
+        priceTotalWithoutInvestmentCostMajorCurrencyUnitPerYear:
+          type: number
+          description: Total price without investment costs per year in major currency unit
+        priceMinorCurrencyUnitPerKwhWithout14aSavings:
+          type: number
+          description: Price per kWh without 14a savings in minor currency unit
+        savings14a:
+          description: Paragraph 14a savings
+          allOf:
+          - $ref: '#/components/schemas/Paragraph14aSavingsResponseDto'
+        directMarketing:
+          description: Breakdown when direct marketing applies (EEG rate + premium)
+          allOf:
+          - $ref: '#/components/schemas/DirectMarketingBreakdownDto'
+      required:
+      - amountKwhPerYear
+      - priceMinorCurrencyUnitPerKwh
+      - priceTotalMajorCurrencyUnitPerYear
+    EffectivePriceHeatResponseDto:
+      type: object
+      properties:
+        energyType:
+          description: Energy type
+          allOf:
+          - $ref: '#/components/schemas/EnergyType'
+        amountKwhPerYear:
+          type: number
+          description: Amount of kWh consumed per year
+        amountKwhPerYearBatteryLoss:
+          type: number
+          description: 'Battery loss of kWh per year '
+        priceMinorCurrencyUnitPerKwh:
+          type: number
+          description: Price per kWh in minor currency unit
+        priceTotalMajorCurrencyUnitPerYear:
+          type: number
+          description: Total price per year in major currency unit
+        additionalCosts:
+          type: number
+          description: Additional costs for heating in Euro
+      required:
+      - energyType
+      - amountKwhPerYear
+      - amountKwhPerYearBatteryLoss
+      - priceMinorCurrencyUnitPerKwh
+      - priceTotalMajorCurrencyUnitPerYear
     EffectivePriceResponseDeDto:
       type: object
       properties:
@@ -132,6 +263,47 @@ components:
       - hasBattery
       - co2Savings
       - consumptionBasedBreakdown
+    EffectivePriceHouseholdConsumptionRequestDto:
+      type: object
+      properties:
+        amountKwhPerYear:
+          type: number
+          description: Annual household consumption in kWh per year
+      required:
+      - amountKwhPerYear
+    Paragraph14aSavingsResponseDto:
+      type: object
+      properties:
+        module1:
+          type: number
+          description: Module 1 savings
+        module3:
+          type: number
+          description: Module 3 savings
+        priceMinorCurrencyUnitPerKwh:
+          type: number
+          description: Total savings per kwh in minor currency unit
+      required:
+      - module1
+      - module3
+      - priceMinorCurrencyUnitPerKwh
+    EffectivePriceConsumptionRequestDto:
+      type: object
+      properties:
+        household:
+          description: Household consumption details
+          allOf:
+          - $ref: '#/components/schemas/EffectivePriceHouseholdConsumptionRequestDto'
+        heat:
+          description: Heat consumption details
+          allOf:
+          - $ref: '#/components/schemas/EffectivePriceHeatConsumptionRequestDto'
+        mobility:
+          description: Mobility consumption details
+          allOf:
+          - $ref: '#/components/schemas/EffectivePriceMobilityConsumptionRequestDto'
+      required:
+      - household
     EffectivePriceMobilityResponseDto:
       type: object
       properties:
@@ -174,86 +346,18 @@ components:
       - priceTotalMajorCurrencyUnitPerYear
       - amountKmPerYear
       - kwhPer100km
-    EffectivePriceDataComponentDto:
+    EffectivePriceMobilityConsumptionRequestDto:
       type: object
       properties:
+        amountKmPerYear:
+          type: number
+          description: Amount driven in km per year
+        kwhPer100km:
+          type: number
+          description: Consumption kwh per 100 km
         amountKwhPerYear:
           type: number
-          description: Amount of kWh per year
-        priceMinorCurrencyUnitPerKwh:
-          type: number
-          description: Price per kWh in minor currency unit
-        priceMinorCurrencyUnitPerKwhWithoutInvestmentCost:
-          type: number
-          description: Price per kWh without investment cost in minor currency unit
-        priceTotalMajorCurrencyUnitPerYear:
-          type: number
-          description: Total price per year in major currency unit
-        priceTotalWithoutInvestmentCostMajorCurrencyUnitPerYear:
-          type: number
-          description: Total price without investment costs per year in major currency unit
-        priceMinorCurrencyUnitPerKwhWithout14aSavings:
-          type: number
-          description: Price per kWh without 14a savings in minor currency unit
-        savings14a:
-          description: Paragraph 14a savings
-          allOf:
-          - $ref: '#/components/schemas/Paragraph14aSavingsResponseDto'
-        directMarketing:
-          description: Breakdown when direct marketing applies (EEG rate + premium)
-          allOf:
-          - $ref: '#/components/schemas/DirectMarketingBreakdownDto'
-      required:
-      - amountKwhPerYear
-      - priceMinorCurrencyUnitPerKwh
-      - priceTotalMajorCurrencyUnitPerYear
-    EffectivePriceFossilConsumptionRequestDto:
-      type: object
-      properties:
-        heat:
-          description: Fossil heat consumption details
-          allOf:
-          - $ref: '#/components/schemas/EffectivePriceFossilHeatRequestDto'
-        mobility:
-          description: Fossil mobility consumption details
-          allOf:
-          - $ref: '#/components/schemas/EffectivePriceFossilMobilityRequestDto'
-    ConsumptionBasedBreakdownComponentDto:
-      type: object
-      properties:
-        energyType:
-          description: Energy type
-          allOf:
-          - $ref: '#/components/schemas/EnergyType'
-        amountKwhPerYear:
-          type: number
-          description: Amount of kWh consumed per year
-        amountKwhPerYearBatteryLoss:
-          type: number
-          description: 'Battery loss of kWh per year '
-        priceMinorCurrencyUnitPerKwh:
-          type: number
-          description: Price per kWh in minor currency unit
-        priceTotalMajorCurrencyUnitPerYear:
-          type: number
-          description: Total price per year in major currency unit
-      required:
-      - energyType
-      - amountKwhPerYear
-      - amountKwhPerYearBatteryLoss
-      - priceMinorCurrencyUnitPerKwh
-      - priceTotalMajorCurrencyUnitPerYear
-    EffectivePriceHeatConsumptionRequestDto:
-      type: object
-      properties:
-        amountKwhPerYear:
-          type: number
-          description: Amount of kWh consumed for heating per year
-    EnergyType:
-      type: string
-      enum:
-      - electric
-      - fossil
+          description: Total amount of kWh consumed for mobility per year
     EffectivePriceRequestDeDto:
       type: object
       properties:
@@ -309,97 +413,6 @@ components:
           description: When true, feed-in uses EEG-style remuneration (no Solarspitzen scaling) plus direct-marketing bonus ct/kWh
       required:
       - consumption
-    EffectivePriceHouseholdConsumptionRequestDto:
-      type: object
-      properties:
-        amountKwhPerYear:
-          type: number
-          description: Annual household consumption in kWh per year
-      required:
-      - amountKwhPerYear
-    Co2SavingsDto:
-      type: object
-      properties:
-        annualKg:
-          type: number
-          description: Annual CO2 savings in kg
-        lifetimeKg:
-          type: number
-          description: CO2 savings over the lifetime in kg
-        annualTrees:
-          type: number
-          description: CO2 savings represented as number of trees (annual)
-        annualKmDrivenByCar:
-          type: number
-          description: CO2 savings represented as number of km driven by an average car (annual)
-      required:
-      - annualKg
-      - lifetimeKg
-      - annualTrees
-      - annualKmDrivenByCar
-    Paragraph14aSavingsResponseDto:
-      type: object
-      properties:
-        module1:
-          type: number
-          description: Module 1 savings
-        module3:
-          type: number
-          description: Module 3 savings
-        priceMinorCurrencyUnitPerKwh:
-          type: number
-          description: Total savings per kwh in minor currency unit
-      required:
-      - module1
-      - module3
-      - priceMinorCurrencyUnitPerKwh
-    EffectivePriceHeatResponseDto:
-      type: object
-      properties:
-        energyType:
-          description: Energy type
-          allOf:
-          - $ref: '#/components/schemas/EnergyType'
-        amountKwhPerYear:
-          type: number
-          description: Amount of kWh consumed per year
-        amountKwhPerYearBatteryLoss:
-          type: number
-          description: 'Battery loss of kWh per year '
-        priceMinorCurrencyUnitPerKwh:
-          type: number
-          description: Price per kWh in minor currency unit
-        priceTotalMajorCurrencyUnitPerYear:
-          type: number
-          description: Total price per year in major currency unit
-        additionalCosts:
-          type: number
-          description: Additional costs for heating in Euro
-      required:
-      - energyType
-      - amountKwhPerYear
-      - amountKwhPerYearBatteryLoss
-      - priceMinorCurrencyUnitPerKwh
-      - priceTotalMajorCurrencyUnitPerYear
-    ConsumptionBasedBreakdownDto:
-      type: object
-      properties:
-        household:
-          description: Household consumption
-          allOf:
-          - $ref: '#/components/schemas/ConsumptionBasedBreakdownComponentDto'
-        heat:
-          description: Heat consumption
-          allOf:
-          - $ref: '#/components/schemas/EffectivePriceHeatResponseDto'
-        mobility:
-          description: Mobility consumption
-          allOf:
-          - $ref: '#/components/schemas/EffectivePriceMobilityResponseDto'
-      required:
-      - household
-      - heat
-      - mobility
     DirectMarketingBreakdownDto:
       type: object
       properties:
@@ -412,21 +425,8 @@ components:
       required:
       - eegPriceMinorCurrencyUnitPerKwh
       - bonusMinorCurrencyUnitPerKwh
-    EffectivePriceFossilMobilityRequestDto:
-      type: object
-      properties:
-        amountKmPerYear:
-          type: number
-          description: Amount driven in km per year (fossil)
-        literPer100km:
-          type: number
-          description: Liters per 100km (fossil)
-        priceMinorCurrencyUnitPerLiter:
-          type: number
-          description: Price per liter in minor currency unit (fossil)
-        amountLiterPerYear:
-          type: number
-          description: Total liters per year (fossil)
-        priceTotalMajorCurrencyUnitPerYear:
-          type: number
-          description: Total price for fossil mobility per year in major currency unit
+    EnergyType:
+      type: string
+      enum:
+      - electric
+      - fossil
