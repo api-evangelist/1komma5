@@ -109,57 +109,6 @@ paths:
       - Admin - Audit Logs
 components:
   schemas:
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-    AuditLogSortField:
-      type: string
-      enum:
-      - createdAt
-      - action
-      - subjectType
-      - actorType
-    PaginationMetaDto:
-      type: object
-      properties:
-        total:
-          type: number
-          description: Total number of items
-          example: 100
-        page:
-          type: number
-          description: Current page number
-          example: 1
-        limit:
-          type: number
-          description: Number of items per page
-          example: 20
-        totalPages:
-          type: number
-          description: Total number of pages
-          example: 5
-      required:
-      - total
-      - page
-      - limit
-      - totalPages
-    PaginatedAuditLogsResponseDto:
-      type: object
-      properties:
-        data:
-          description: Array of audit log entries
-          type: array
-          items:
-            $ref: '#/components/schemas/AuditLogResponseDto'
-        meta:
-          description: Pagination metadata
-          allOf:
-          - $ref: '#/components/schemas/PaginationMetaDto'
-      required:
-      - data
-      - meta
     AuditLogResponseDto:
       type: object
       properties:
@@ -228,3 +177,54 @@ components:
       - traceId
       - metadata
       - createdAt
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+    PaginatedAuditLogsResponseDto:
+      type: object
+      properties:
+        data:
+          description: Array of audit log entries
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditLogResponseDto'
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
+      required:
+      - data
+      - meta
+    PaginationMetaDto:
+      type: object
+      properties:
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
+          example: 1
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
+      required:
+      - total
+      - page
+      - limit
+      - totalPages
+    AuditLogSortField:
+      type: string
+      enum:
+      - createdAt
+      - action
+      - subjectType
+      - actorType

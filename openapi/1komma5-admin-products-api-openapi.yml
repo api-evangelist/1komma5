@@ -285,39 +285,6 @@ paths:
       - Admin - Products
 components:
   schemas:
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-    UpdateAdminProductDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Product name
-          example: Solar Panel XL
-          minLength: 1
-          maxLength: 255
-    AdminProductSortField:
-      type: string
-      enum:
-      - name
-      - createdAt
-      - price
-      - category
-    CategoryDto:
-      type: object
-      properties:
-        id:
-          type: number
-          description: Category ID
-        name:
-          type: string
-          description: Category name
-      required:
-      - id
-      - name
     PricebookOverridesDto:
       type: object
       properties:
@@ -346,6 +313,99 @@ components:
       - factor
       - public
       - canbesold
+    AdminProductDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Product ID
+        name:
+          type: string
+          description: Product name
+        category:
+          description: Product category
+          allOf:
+          - $ref: '#/components/schemas/CategoryDto'
+        brand:
+          description: Product brand
+          allOf:
+          - $ref: '#/components/schemas/BrandDto'
+        price:
+          type: number
+          description: Product price (EK)
+        factor:
+          type: number
+          description: Price factor
+        public:
+          type: boolean
+          description: Is product publicly visible
+        canbesold:
+          type: boolean
+          description: Can product be sold
+        visibleToTenant:
+          type: boolean
+          description: Is product visible to tenants
+        imageUrl:
+          type:
+          - object
+          - 'null'
+          description: Product image URL
+        createdAt:
+          type: string
+          description: Product creation date
+        countryId:
+          type:
+          - object
+          - 'null'
+          description: Country ID
+        countryCode:
+          type:
+          - object
+          - 'null'
+          description: Country code (e.g., DE, SE, DK)
+        vatType:
+          type:
+          - string
+          - 'null'
+          description: VAT type override (null = inherit from category)
+          enum:
+          - pv
+          - general
+      required:
+      - id
+      - name
+      - category
+      - brand
+      - price
+      - factor
+      - public
+      - canbesold
+      - visibleToTenant
+      - imageUrl
+      - createdAt
+      - countryId
+      - countryCode
+      - vatType
+    CreateAdminProductDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Product name
+          example: Solar Panel XL
+          minLength: 1
+          maxLength: 255
+      required:
+      - name
+    UpdateAdminProductDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Product name
+          example: Solar Panel XL
+          minLength: 1
+          maxLength: 255
     BrandDto:
       type: object
       properties:
@@ -358,6 +418,69 @@ components:
       required:
       - id
       - name
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+    CategoryDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Category ID
+        name:
+          type: string
+          description: Category name
+      required:
+      - id
+      - name
+    PaginatedAdminPricebookResponseDto:
+      type: object
+      properties:
+        data:
+          description: List of pricebook products
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminPricebookProductDto'
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
+      required:
+      - data
+      - meta
+    PaginationMetaDto:
+      type: object
+      properties:
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
+          example: 1
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
+      required:
+      - total
+      - page
+      - limit
+      - totalPages
+    AdminProductSortField:
+      type: string
+      enum:
+      - name
+      - createdAt
+      - price
+      - category
     AdminPricebookProductDto:
       type: object
       properties:
@@ -452,129 +575,6 @@ components:
       - effectiveFactor
       - effectivePublic
       - effectiveCanbesold
-    PaginationMetaDto:
-      type: object
-      properties:
-        total:
-          type: number
-          description: Total number of items
-          example: 100
-        page:
-          type: number
-          description: Current page number
-          example: 1
-        limit:
-          type: number
-          description: Number of items per page
-          example: 20
-        totalPages:
-          type: number
-          description: Total number of pages
-          example: 5
-      required:
-      - total
-      - page
-      - limit
-      - totalPages
-    AdminProductDto:
-      type: object
-      properties:
-        id:
-          type: number
-          description: Product ID
-        name:
-          type: string
-          description: Product name
-        category:
-          description: Product category
-          allOf:
-          - $ref: '#/components/schemas/CategoryDto'
-        brand:
-          description: Product brand
-          allOf:
-          - $ref: '#/components/schemas/BrandDto'
-        price:
-          type: number
-          description: Product price (EK)
-        factor:
-          type: number
-          description: Price factor
-        public:
-          type: boolean
-          description: Is product publicly visible
-        canbesold:
-          type: boolean
-          description: Can product be sold
-        visibleToTenant:
-          type: boolean
-          description: Is product visible to tenants
-        imageUrl:
-          type:
-          - object
-          - 'null'
-          description: Product image URL
-        createdAt:
-          type: string
-          description: Product creation date
-        countryId:
-          type:
-          - object
-          - 'null'
-          description: Country ID
-        countryCode:
-          type:
-          - object
-          - 'null'
-          description: Country code (e.g., DE, SE, DK)
-        vatType:
-          type:
-          - string
-          - 'null'
-          description: VAT type override (null = inherit from category)
-          enum:
-          - pv
-          - general
-      required:
-      - id
-      - name
-      - category
-      - brand
-      - price
-      - factor
-      - public
-      - canbesold
-      - visibleToTenant
-      - imageUrl
-      - createdAt
-      - countryId
-      - countryCode
-      - vatType
-    PaginatedAdminPricebookResponseDto:
-      type: object
-      properties:
-        data:
-          description: List of pricebook products
-          type: array
-          items:
-            $ref: '#/components/schemas/AdminPricebookProductDto'
-        meta:
-          description: Pagination metadata
-          allOf:
-          - $ref: '#/components/schemas/PaginationMetaDto'
-      required:
-      - data
-      - meta
-    CreateAdminProductDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Product name
-          example: Solar Panel XL
-          minLength: 1
-          maxLength: 255
-      required:
-      - name
     PaginatedAdminProductsResponseDto:
       type: object
       properties:

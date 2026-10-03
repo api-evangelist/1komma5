@@ -49,6 +49,13 @@ paths:
       - Products
 components:
   schemas:
+    PriceDTO:
+      type: object
+      properties:
+        relative:
+          type: number
+      required:
+      - relative
     MediaDTO:
       type: object
       properties:
@@ -68,6 +75,16 @@ components:
           type: string
       required:
       - url
+    CategoryDTO:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+      required:
+      - id
+      - name
     ProductGetAllResponse:
       type: object
       properties:
@@ -84,13 +101,6 @@ components:
       required:
       - products
       - categories
-    PriceDTO:
-      type: object
-      properties:
-        relative:
-          type: number
-      required:
-      - relative
     ProductDTO:
       type: object
       properties:
@@ -151,16 +161,6 @@ components:
       - canEditCustomPrice
       - canEditCustomInvoiceLine
       - canEditOffer
-    CategoryDTO:
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
-      required:
-      - id
-      - name
     BrandDTO:
       type: object
       properties:

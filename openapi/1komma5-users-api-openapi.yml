@@ -118,14 +118,6 @@ components:
       - name
       - id
       - country
-    CheckUserAuth0RequestDto:
-      type: object
-      properties:
-        email:
-          type: string
-          example: foo@bar.com
-      required:
-      - email
     CountryDto:
       type: object
       properties:
@@ -153,6 +145,36 @@ components:
       - locale
       - currency
       - vatRate
+    AccessLevel:
+      type: string
+      enum:
+      - global
+      - country
+      - branch
+    CountryCode:
+      type: string
+      enum:
+      - DE
+      - DK
+      - SE
+      - NL
+    UpdateUserRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name that will be updated
+        calendarUrl:
+          type: string
+          description: Optional calendar URL to book appointments
+      required:
+      - name
+    Currency:
+      type: string
+      enum:
+      - EUR
+      - DKK
+      - SEK
     UserDto:
       type: object
       properties:
@@ -226,6 +248,28 @@ components:
       - zohoUserId
       - tenantIdHeat
       - activeTenantId
+    CheckAuth0UserResponseDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: The unique identifier of the user
+          example: 1
+        email:
+          type: string
+          description: The email address of the user
+          example: foo@bar.com
+      required:
+      - id
+      - email
+    CheckUserAuth0RequestDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: foo@bar.com
+      required:
+      - email
     Locale:
       type: string
       enum:
@@ -234,17 +278,6 @@ components:
       - en-US
       - sv-SE
       - nl-NL
-    UpdateUserRequestDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name that will be updated
-        calendarUrl:
-          type: string
-          description: Optional calendar URL to book appointments
-      required:
-      - name
     UserProfileResponseDto:
       type: object
       properties:
@@ -314,36 +347,3 @@ components:
       - permissions
       - abilities
       - accessLevel
-    AccessLevel:
-      type: string
-      enum:
-      - global
-      - country
-      - branch
-    Currency:
-      type: string
-      enum:
-      - EUR
-      - DKK
-      - SEK
-    CheckAuth0UserResponseDto:
-      type: object
-      properties:
-        id:
-          type: number
-          description: The unique identifier of the user
-          example: 1
-        email:
-          type: string
-          description: The email address of the user
-          example: foo@bar.com
-      required:
-      - id
-      - email
-    CountryCode:
-      type: string
-      enum:
-      - DE
-      - DK
-      - SE
-      - NL

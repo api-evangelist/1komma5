@@ -145,32 +145,21 @@ components:
       - margins
       - profitability
       - emailPlaceholders
-    SendOfferResponseDto:
+    SendOfferEmailDto:
       type: object
       properties:
-        success:
-          type: boolean
-        getAcceptDocumentId:
+        recipient:
+          type: string
+        ccAddress:
+          type: string
+        subject:
+          type: string
+        body:
           type: string
       required:
-      - success
-    SendOfferRequestDto:
-      type: object
-      properties:
-        offerType:
-          type: string
-          enum:
-          - pv
-          - heat
-        withDataSheets:
-          type: boolean
-        shortVersion:
-          type: boolean
-        email:
-          $ref: '#/components/schemas/SendOfferEmailDto'
-      required:
-      - offerType
-      - withDataSheets
+      - recipient
+      - subject
+      - body
     FinancingDto:
       type: object
       properties:
@@ -200,31 +189,32 @@ components:
           type: object
         financingLimits:
           $ref: '#/components/schemas/FinancingLimitsDto'
-    OfferPdfDto:
+    SendOfferRequestDto:
       type: object
       properties:
-        id:
-          type: number
-        url:
+        offerType:
           type: string
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-        name:
-          type: string
-        fileName:
-          type: string
-        thumb:
+          enum:
+          - pv
+          - heat
+        withDataSheets:
+          type: boolean
+        shortVersion:
+          type: boolean
+        email:
+          $ref: '#/components/schemas/SendOfferEmailDto'
+      required:
+      - offerType
+      - withDataSheets
+    SendOfferResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+        getAcceptDocumentId:
           type: string
       required:
-      - id
-      - url
-      - createdAt
-      - updatedAt
-      - name
-      - fileName
-      - thumb
+      - success
     FinancingLimitsDto:
       type: object
       properties:
@@ -254,18 +244,28 @@ components:
           type: boolean
         isHeatAloneOverFinancingLimit:
           type: boolean
-    SendOfferEmailDto:
+    OfferPdfDto:
       type: object
       properties:
-        recipient:
+        id:
+          type: number
+        url:
           type: string
-        ccAddress:
+        createdAt:
           type: string
-        subject:
+        updatedAt:
           type: string
-        body:
+        name:
+          type: string
+        fileName:
+          type: string
+        thumb:
           type: string
       required:
-      - recipient
-      - subject
-      - body
+      - id
+      - url
+      - createdAt
+      - updatedAt
+      - name
+      - fileName
+      - thumb
