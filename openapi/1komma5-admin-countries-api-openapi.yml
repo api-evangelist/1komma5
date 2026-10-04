@@ -27,6 +27,13 @@ paths:
       - Admin - Countries
 components:
   schemas:
+    CountryCode:
+      type: string
+      enum:
+      - DE
+      - DK
+      - SE
+      - NL
     CountryDto:
       type: object
       properties:
@@ -54,19 +61,6 @@ components:
       - locale
       - currency
       - vatRate
-    Currency:
-      type: string
-      enum:
-      - EUR
-      - DKK
-      - SEK
-    CountryCode:
-      type: string
-      enum:
-      - DE
-      - DK
-      - SE
-      - NL
     Locale:
       type: string
       enum:
@@ -75,3 +69,9 @@ components:
       - en-US
       - sv-SE
       - nl-NL
+    Currency:
+      type: string
+      enum:
+      - EUR
+      - DKK
+      - SEK

@@ -172,6 +172,11 @@ paths:
       - Admin - Concepts
 components:
   schemas:
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
     CreateAdminConceptDto:
       type: object
       properties:
@@ -198,16 +203,87 @@ components:
       required:
       - data
       - meta
-    SortOrder:
+    ConceptVisibility:
       type: string
       enum:
-      - asc
-      - desc
-    ConceptSortField:
+      - visible
+      - hidden
+    UpdateAdminConceptDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Concept name
+          example: PV Basic 10kWp
+          minLength: 1
+          maxLength: 255
+    ConceptScope:
       type: string
       enum:
+      - global
+      - branch
+    ConceptPricingDto:
+      type: object
+      properties:
+        totalNet:
+          type: number
+          description: Total net price (excl. VAT)
+          example: 12500
+        totalGross:
+          type: number
+          description: Total gross price (incl. VAT)
+          example: 14875
+        vatRate:
+          type: number
+          description: VAT rate as percentage
+          example: 19
+        currency:
+          type: string
+          description: Currency code
+          example: EUR
+      required:
+      - totalNet
+      - totalGross
+      - vatRate
+      - currency
+    ConceptTenantDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Tenant ID
+          example: tenant-123
+        name:
+          type: string
+          description: Tenant name
+          example: Berlin Branch
+      required:
+      - id
       - name
-      - createdAt
+    PaginationMetaDto:
+      type: object
+      properties:
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
+          example: 1
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
+      required:
+      - total
+      - page
+      - limit
+      - totalPages
     ConceptTemplateType:
       type: string
       enum:
@@ -291,84 +367,8 @@ components:
       - tenant
       - pricing
       - products
-    ConceptVisibility:
+    ConceptSortField:
       type: string
       enum:
-      - visible
-      - hidden
-    UpdateAdminConceptDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Concept name
-          example: PV Basic 10kWp
-          minLength: 1
-          maxLength: 255
-    ConceptScope:
-      type: string
-      enum:
-      - global
-      - branch
-    ConceptTenantDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Tenant ID
-          example: tenant-123
-        name:
-          type: string
-          description: Tenant name
-          example: Berlin Branch
-      required:
-      - id
       - name
-    PaginationMetaDto:
-      type: object
-      properties:
-        total:
-          type: number
-          description: Total number of items
-          example: 100
-        page:
-          type: number
-          description: Current page number
-          example: 1
-        limit:
-          type: number
-          description: Number of items per page
-          example: 20
-        totalPages:
-          type: number
-          description: Total number of pages
-          example: 5
-      required:
-      - total
-      - page
-      - limit
-      - totalPages
-    ConceptPricingDto:
-      type: object
-      properties:
-        totalNet:
-          type: number
-          description: Total net price (excl. VAT)
-          example: 12500
-        totalGross:
-          type: number
-          description: Total gross price (incl. VAT)
-          example: 14875
-        vatRate:
-          type: number
-          description: VAT rate as percentage
-          example: 19
-        currency:
-          type: string
-          description: Currency code
-          example: EUR
-      required:
-      - totalNet
-      - totalGross
-      - vatRate
-      - currency
+      - createdAt

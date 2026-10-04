@@ -82,6 +82,75 @@ paths:
       - Configs
 components:
   schemas:
+    OfferPdfDto:
+      type: object
+      properties:
+        id:
+          type: number
+        url:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        name:
+          type: string
+        fileName:
+          type: string
+        thumb:
+          type: string
+      required:
+      - id
+      - url
+      - createdAt
+      - updatedAt
+      - name
+      - fileName
+      - thumb
+    SendOfferEmailDto:
+      type: object
+      properties:
+        recipient:
+          type: string
+        ccAddress:
+          type: string
+        subject:
+          type: string
+        body:
+          type: string
+      required:
+      - recipient
+      - subject
+      - body
+    FinancingDto:
+      type: object
+      properties:
+        creditOption:
+          type: object
+        creditInvestmentSum:
+          type: object
+        creditInstallments:
+          type: object
+        creditInterestRate:
+          type: object
+        creditMonthlyFee:
+          type: object
+        creditTotalMonthlyCosts:
+          type: object
+        creditInstallmentsPv:
+          type: object
+        creditInstallmentsHeat:
+          type: object
+        creditInterestRatePv:
+          type: object
+        creditInterestRateHeat:
+          type: object
+        creditTotalMonthlyCostsPv:
+          type: object
+        creditTotalMonthlyCostsHeat:
+          type: object
+        financingLimits:
+          $ref: '#/components/schemas/FinancingLimitsDto'
     ConfigDetailsResponseDto:
       type: object
       properties:
@@ -145,67 +214,6 @@ components:
       - margins
       - profitability
       - emailPlaceholders
-    SendOfferEmailDto:
-      type: object
-      properties:
-        recipient:
-          type: string
-        ccAddress:
-          type: string
-        subject:
-          type: string
-        body:
-          type: string
-      required:
-      - recipient
-      - subject
-      - body
-    FinancingDto:
-      type: object
-      properties:
-        creditOption:
-          type: object
-        creditInvestmentSum:
-          type: object
-        creditInstallments:
-          type: object
-        creditInterestRate:
-          type: object
-        creditMonthlyFee:
-          type: object
-        creditTotalMonthlyCosts:
-          type: object
-        creditInstallmentsPv:
-          type: object
-        creditInstallmentsHeat:
-          type: object
-        creditInterestRatePv:
-          type: object
-        creditInterestRateHeat:
-          type: object
-        creditTotalMonthlyCostsPv:
-          type: object
-        creditTotalMonthlyCostsHeat:
-          type: object
-        financingLimits:
-          $ref: '#/components/schemas/FinancingLimitsDto'
-    SendOfferRequestDto:
-      type: object
-      properties:
-        offerType:
-          type: string
-          enum:
-          - pv
-          - heat
-        withDataSheets:
-          type: boolean
-        shortVersion:
-          type: boolean
-        email:
-          $ref: '#/components/schemas/SendOfferEmailDto'
-      required:
-      - offerType
-      - withDataSheets
     SendOfferResponseDto:
       type: object
       properties:
@@ -244,28 +252,20 @@ components:
           type: boolean
         isHeatAloneOverFinancingLimit:
           type: boolean
-    OfferPdfDto:
+    SendOfferRequestDto:
       type: object
       properties:
-        id:
-          type: number
-        url:
+        offerType:
           type: string
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-        name:
-          type: string
-        fileName:
-          type: string
-        thumb:
-          type: string
+          enum:
+          - pv
+          - heat
+        withDataSheets:
+          type: boolean
+        shortVersion:
+          type: boolean
+        email:
+          $ref: '#/components/schemas/SendOfferEmailDto'
       required:
-      - id
-      - url
-      - createdAt
-      - updatedAt
-      - name
-      - fileName
-      - thumb
+      - offerType
+      - withDataSheets

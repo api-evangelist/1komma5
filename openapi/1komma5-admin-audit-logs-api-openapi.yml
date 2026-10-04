@@ -182,21 +182,13 @@ components:
       enum:
       - asc
       - desc
-    PaginatedAuditLogsResponseDto:
-      type: object
-      properties:
-        data:
-          description: Array of audit log entries
-          type: array
-          items:
-            $ref: '#/components/schemas/AuditLogResponseDto'
-        meta:
-          description: Pagination metadata
-          allOf:
-          - $ref: '#/components/schemas/PaginationMetaDto'
-      required:
-      - data
-      - meta
+    AuditLogSortField:
+      type: string
+      enum:
+      - createdAt
+      - action
+      - subjectType
+      - actorType
     PaginationMetaDto:
       type: object
       properties:
@@ -221,10 +213,18 @@ components:
       - page
       - limit
       - totalPages
-    AuditLogSortField:
-      type: string
-      enum:
-      - createdAt
-      - action
-      - subjectType
-      - actorType
+    PaginatedAuditLogsResponseDto:
+      type: object
+      properties:
+        data:
+          description: Array of audit log entries
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditLogResponseDto'
+        meta:
+          description: Pagination metadata
+          allOf:
+          - $ref: '#/components/schemas/PaginationMetaDto'
+      required:
+      - data
+      - meta

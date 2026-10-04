@@ -41,20 +41,6 @@ paths:
       - Admin - Megasearch
 components:
   schemas:
-    MegasearchMetaDto:
-      type: object
-      properties:
-        query:
-          type: string
-          description: The search query that was executed
-          example: john
-        totalResults:
-          type: number
-          description: Total number of results across all groups
-          example: 5
-      required:
-      - query
-      - totalResults
     MegasearchGroupDto:
       type: object
       properties:
@@ -75,6 +61,39 @@ components:
       - type
       - label
       - results
+    MegasearchResultTagDto:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Tag display label
+          example: PV
+        variant:
+          type: string
+          description: Color variant for the tag
+          example: amber
+        style:
+          type: string
+          description: 'Rendering style: pill (scope badges), dot (type accent), icon (visibility)'
+          example: pill
+      required:
+      - label
+      - variant
+    MegasearchResponseDto:
+      type: object
+      properties:
+        groups:
+          description: Search results grouped by entity type
+          type: array
+          items:
+            $ref: '#/components/schemas/MegasearchGroupDto'
+        meta:
+          description: Metadata about the search
+          allOf:
+          - $ref: '#/components/schemas/MegasearchMetaDto'
+      required:
+      - groups
+      - meta
     MegasearchResultDto:
       type: object
       properties:
@@ -103,36 +122,17 @@ components:
       - id
       - title
       - url
-    MegasearchResponseDto:
+    MegasearchMetaDto:
       type: object
       properties:
-        groups:
-          description: Search results grouped by entity type
-          type: array
-          items:
-            $ref: '#/components/schemas/MegasearchGroupDto'
-        meta:
-          description: Metadata about the search
-          allOf:
-          - $ref: '#/components/schemas/MegasearchMetaDto'
+        query:
+          type: string
+          description: The search query that was executed
+          example: john
+        totalResults:
+          type: number
+          description: Total number of results across all groups
+          example: 5
       required:
-      - groups
-      - meta
-    MegasearchResultTagDto:
-      type: object
-      properties:
-        label:
-          type: string
-          description: Tag display label
-          example: PV
-        variant:
-          type: string
-          description: Color variant for the tag
-          example: amber
-        style:
-          type: string
-          description: 'Rendering style: pill (scope badges), dot (type accent), icon (visibility)'
-          example: pill
-      required:
-      - label
-      - variant
+      - query
+      - totalResults

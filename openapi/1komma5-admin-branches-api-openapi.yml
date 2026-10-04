@@ -140,37 +140,16 @@ paths:
       - Admin - Branches
 components:
   schemas:
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
     AdminBranchSortField:
       type: string
       enum:
       - name
       - zohoId
-    AdminBranchDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Branch ID
-          example: branch-123
-        name:
-          type: string
-          description: Branch name
-          example: Berlin Branch
-        zohoId:
-          type:
-          - object
-          - 'null'
-          description: Zoho CRM ID
-          example: '12345678'
-        country:
-          description: Country information
-          allOf:
-          - $ref: '#/components/schemas/AdminBranchCountryDto'
-      required:
-      - id
-      - name
-      - zohoId
-      - country
     PaginatedAdminBranchesResponseDto:
       type: object
       properties:
@@ -186,44 +165,6 @@ components:
       required:
       - data
       - meta
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-    UpdateAdminBranchDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Branch name
-          example: Berlin Branch
-          minLength: 1
-          maxLength: 255
-    PaginationMetaDto:
-      type: object
-      properties:
-        total:
-          type: number
-          description: Total number of items
-          example: 100
-        page:
-          type: number
-          description: Current page number
-          example: 1
-        limit:
-          type: number
-          description: Number of items per page
-          example: 20
-        totalPages:
-          type: number
-          description: Total number of pages
-          example: 5
-      required:
-      - total
-      - page
-      - limit
-      - totalPages
     AdminBranchCountryDto:
       type: object
       properties:
@@ -254,3 +195,62 @@ components:
           maxLength: 255
       required:
       - name
+    PaginationMetaDto:
+      type: object
+      properties:
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
+          example: 1
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
+      required:
+      - total
+      - page
+      - limit
+      - totalPages
+    UpdateAdminBranchDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Branch name
+          example: Berlin Branch
+          minLength: 1
+          maxLength: 255
+    AdminBranchDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Branch ID
+          example: branch-123
+        name:
+          type: string
+          description: Branch name
+          example: Berlin Branch
+        zohoId:
+          type:
+          - object
+          - 'null'
+          description: Zoho CRM ID
+          example: '12345678'
+        country:
+          description: Country information
+          allOf:
+          - $ref: '#/components/schemas/AdminBranchCountryDto'
+      required:
+      - id
+      - name
+      - zohoId
+      - country

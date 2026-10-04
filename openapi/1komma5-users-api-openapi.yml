@@ -103,6 +103,86 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    UserProfileResponseDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: The unique identifier of the user
+        name:
+          type: string
+          description: The name of the user
+        email:
+          type: string
+          description: The email address of the user
+        phone:
+          type:
+          - object
+          - 'null'
+          description: The phone number of the user
+        currency:
+          description: The currency used by the user
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+        country:
+          description: The country details of the user
+          allOf:
+          - $ref: '#/components/schemas/CountryDto'
+        profilePhotoUrl:
+          type:
+          - object
+          - 'null'
+          description: The profile photo URL of the user
+        calendarUrl:
+          type:
+          - object
+          - 'null'
+          description: The URL to book an appointment with the user
+        permissions:
+          description: The permissions assigned to the user
+          items:
+            type: array
+          type: array
+        roles:
+          description: The roles assigned to the user
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        abilities:
+          description: The computed abilities (subject/action pairs) for the user
+          items:
+            type: array
+          type: array
+        tenant:
+          description: The tenant details of the user
+          allOf:
+          - $ref: '#/components/schemas/TenantDto'
+        accessLevel:
+          description: The access level of the user (global, country, or branch)
+          example: branch
+          allOf:
+          - $ref: '#/components/schemas/AccessLevel'
+      required:
+      - id
+      - name
+      - email
+      - currency
+      - permissions
+      - abilities
+      - accessLevel
+    UpdateUserRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name that will be updated
+        calendarUrl:
+          type: string
+          description: Optional calendar URL to book appointments
+      required:
+      - name
     TenantDto:
       type: object
       properties:
@@ -118,6 +198,13 @@ components:
       - name
       - id
       - country
+    CountryCode:
+      type: string
+      enum:
+      - DE
+      - DK
+      - SE
+      - NL
     CountryDto:
       type: object
       properties:
@@ -145,36 +232,6 @@ components:
       - locale
       - currency
       - vatRate
-    AccessLevel:
-      type: string
-      enum:
-      - global
-      - country
-      - branch
-    CountryCode:
-      type: string
-      enum:
-      - DE
-      - DK
-      - SE
-      - NL
-    UpdateUserRequestDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name that will be updated
-        calendarUrl:
-          type: string
-          description: Optional calendar URL to book appointments
-      required:
-      - name
-    Currency:
-      type: string
-      enum:
-      - EUR
-      - DKK
-      - SEK
     UserDto:
       type: object
       properties:
@@ -262,6 +319,12 @@ components:
       required:
       - id
       - email
+    Currency:
+      type: string
+      enum:
+      - EUR
+      - DKK
+      - SEK
     CheckUserAuth0RequestDto:
       type: object
       properties:
@@ -278,72 +341,9 @@ components:
       - en-US
       - sv-SE
       - nl-NL
-    UserProfileResponseDto:
-      type: object
-      properties:
-        id:
-          type: number
-          description: The unique identifier of the user
-        name:
-          type: string
-          description: The name of the user
-        email:
-          type: string
-          description: The email address of the user
-        phone:
-          type:
-          - object
-          - 'null'
-          description: The phone number of the user
-        currency:
-          description: The currency used by the user
-          allOf:
-          - $ref: '#/components/schemas/Currency'
-        country:
-          description: The country details of the user
-          allOf:
-          - $ref: '#/components/schemas/CountryDto'
-        profilePhotoUrl:
-          type:
-          - object
-          - 'null'
-          description: The profile photo URL of the user
-        calendarUrl:
-          type:
-          - object
-          - 'null'
-          description: The URL to book an appointment with the user
-        permissions:
-          description: The permissions assigned to the user
-          items:
-            type: array
-          type: array
-        roles:
-          description: The roles assigned to the user
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        abilities:
-          description: The computed abilities (subject/action pairs) for the user
-          items:
-            type: array
-          type: array
-        tenant:
-          description: The tenant details of the user
-          allOf:
-          - $ref: '#/components/schemas/TenantDto'
-        accessLevel:
-          description: The access level of the user (global, country, or branch)
-          example: branch
-          allOf:
-          - $ref: '#/components/schemas/AccessLevel'
-      required:
-      - id
-      - name
-      - email
-      - currency
-      - permissions
-      - abilities
-      - accessLevel
+    AccessLevel:
+      type: string
+      enum:
+      - global
+      - country
+      - branch

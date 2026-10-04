@@ -394,50 +394,6 @@ paths:
       - Migrations
 components:
   schemas:
-    ConfigMarketComponentsMigrationResponseDto:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the migration was successful
-        configId:
-          type: number
-          description: The config ID that was migrated
-        marketComponentsCreated:
-          type: number
-          description: Number of market component rows created
-        message:
-          type: string
-          description: Optional message about the migration
-        skipped:
-          type: boolean
-          description: Whether the step was skipped (already migrated, not frozen, no data)
-      required:
-      - success
-      - configId
-      - marketComponentsCreated
-    ConfigProductsMigrationResponseDto:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the migration was successful
-        configId:
-          type: number
-          description: The config ID that was migrated
-        productsUpdated:
-          type: number
-          description: Number of products updated
-        message:
-          type: string
-          description: Optional message about the migration
-        skipped:
-          type: boolean
-          description: Whether the step was skipped (already migrated, not frozen, no data)
-      required:
-      - success
-      - configId
-      - productsUpdated
     ConfigCustomerMigrationResponseDto:
       type: object
       properties:
@@ -460,6 +416,50 @@ components:
       - success
       - configId
       - columnsUpdated
+    ConfigMarketComponentsMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        marketComponentsCreated:
+          type: number
+          description: Number of market component rows created
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - marketComponentsCreated
+    ConfigEffectivePricesMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        rowsCreated:
+          type: number
+          description: 'Number of effective price rows created (up to 11 possible: 2 unoptimized + 4 pv + 5 dynamic_tariff)'
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - rowsCreated
     ConfigTableMigrationResponseDto:
       type: object
       properties:
@@ -504,50 +504,6 @@ components:
       - success
       - configId
       - marginsCreated
-    ConfigEffectivePricesMigrationResponseDto:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the migration was successful
-        configId:
-          type: number
-          description: The config ID that was migrated
-        rowsCreated:
-          type: number
-          description: 'Number of effective price rows created (up to 11 possible: 2 unoptimized + 4 pv + 5 dynamic_tariff)'
-        message:
-          type: string
-          description: Optional message about the migration
-        skipped:
-          type: boolean
-          description: Whether the step was skipped (already migrated, not frozen, no data)
-      required:
-      - success
-      - configId
-      - rowsCreated
-    ConfigCalculationLegacyMigrationResponseDto:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the migration was successful
-        configId:
-          type: number
-          description: The config ID that was migrated
-        columnsUpdated:
-          type: number
-          description: Number of columns updated (out of 9 possible columns)
-        message:
-          type: string
-          description: Optional message about the migration
-        skipped:
-          type: boolean
-          description: Whether the step was skipped (already migrated, not frozen, no data)
-      required:
-      - success
-      - configId
-      - columnsUpdated
     ConfigConsumptionMigrationResponseDto:
       type: object
       properties:
@@ -560,6 +516,28 @@ components:
         columnsUpdated:
           type: number
           description: Number of columns updated (out of 6 possible columns)
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - columnsUpdated
+    ConfigMetricsMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        columnsUpdated:
+          type: number
+          description: Number of columns updated (out of 20 possible columns)
         message:
           type: string
           description: Optional message about the migration
@@ -596,28 +574,6 @@ components:
       - success
       - configId
       - columnsUpdated
-    ConfigDocumentsMigrationResponseDto:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the migration was successful
-        configId:
-          type: number
-          description: The config ID that was migrated
-        documentsCreated:
-          type: number
-          description: Number of documents created
-        message:
-          type: string
-          description: Optional message about the migration
-        skipped:
-          type: boolean
-          description: Whether the step was skipped (already migrated, not frozen, no data)
-      required:
-      - success
-      - configId
-      - documentsCreated
     ConfigSelfSufficiencyMigrationResponseDto:
       type: object
       properties:
@@ -640,7 +596,51 @@ components:
       - success
       - configId
       - rowsCreated
-    ConfigMetricsMigrationResponseDto:
+    ConfigProductsMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        productsUpdated:
+          type: number
+          description: Number of products updated
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - productsUpdated
+    ConfigDocumentsMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        documentsCreated:
+          type: number
+          description: Number of documents created
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - documentsCreated
+    ConfigCalculationLegacyMigrationResponseDto:
       type: object
       properties:
         success:
@@ -651,7 +651,7 @@ components:
           description: The config ID that was migrated
         columnsUpdated:
           type: number
-          description: Number of columns updated (out of 20 possible columns)
+          description: Number of columns updated (out of 9 possible columns)
         message:
           type: string
           description: Optional message about the migration

@@ -49,58 +49,6 @@ paths:
       - Products
 components:
   schemas:
-    PriceDTO:
-      type: object
-      properties:
-        relative:
-          type: number
-      required:
-      - relative
-    MediaDTO:
-      type: object
-      properties:
-        id:
-          type:
-          - number
-          - 'null'
-        normal:
-          type:
-          - string
-          - 'null'
-        thumb:
-          type:
-          - string
-          - 'null'
-        url:
-          type: string
-      required:
-      - url
-    CategoryDTO:
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
-      required:
-      - id
-      - name
-    ProductGetAllResponse:
-      type: object
-      properties:
-        products:
-          description: List of products
-          items:
-            type: array
-          type: array
-        categories:
-          description: List of categories associated with the products
-          items:
-            type: array
-          type: array
-      required:
-      - products
-      - categories
     ProductDTO:
       type: object
       properties:
@@ -161,6 +109,29 @@ components:
       - canEditCustomPrice
       - canEditCustomInvoiceLine
       - canEditOffer
+    PriceDTO:
+      type: object
+      properties:
+        relative:
+          type: number
+      required:
+      - relative
+    ProductGetAllResponse:
+      type: object
+      properties:
+        products:
+          description: List of products
+          items:
+            type: array
+          type: array
+        categories:
+          description: List of categories associated with the products
+          items:
+            type: array
+          type: array
+      required:
+      - products
+      - categories
     BrandDTO:
       type: object
       properties:
@@ -171,3 +142,32 @@ components:
       required:
       - id
       - name
+    CategoryDTO:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+      required:
+      - id
+      - name
+    MediaDTO:
+      type: object
+      properties:
+        id:
+          type:
+          - number
+          - 'null'
+        normal:
+          type:
+          - string
+          - 'null'
+        thumb:
+          type:
+          - string
+          - 'null'
+        url:
+          type: string
+      required:
+      - url
