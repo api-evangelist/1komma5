@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/1komma5/integrations
+- https://n8n.io/integrations/1komma5/
+- https://composio.dev/toolkits/1komma5
+- https://monid.ai/tools/1komma5
+checked:
+- https://composio.dev/toolkits/1komma5
+- https://monid.ai/tools/1komma5
+- https://n8n.io/integrations/1komma5/
+- https://zapier.com/apps/1komma5/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
