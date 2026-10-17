@@ -48,23 +48,6 @@ paths:
       - PDF
 components:
   schemas:
-    PdfResponseDto:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the PDF generation was initiated
-        message:
-          type: string
-          description: Error message if generation failed
-      required:
-      - success
-    OfferTypeEnum:
-      type: string
-      enum:
-      - pv
-      - heat
-      - charger
     GeneratePdfDto:
       type: object
       properties:
@@ -80,3 +63,20 @@ components:
           description: Whether the configuration has a Heartbeat product
       required:
       - offerType
+    OfferTypeEnum:
+      type: string
+      enum:
+      - pv
+      - heat
+      - charger
+    PdfResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the PDF generation was initiated
+        message:
+          type: string
+          description: Error message if generation failed
+      required:
+      - success

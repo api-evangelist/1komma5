@@ -27,6 +27,20 @@ paths:
       - Admin - Countries
 components:
   schemas:
+    Locale:
+      type: string
+      enum:
+      - de-DE
+      - da-DK
+      - en-US
+      - sv-SE
+      - nl-NL
+    Currency:
+      type: string
+      enum:
+      - EUR
+      - DKK
+      - SEK
     CountryCode:
       type: string
       enum:
@@ -61,17 +75,3 @@ components:
       - locale
       - currency
       - vatRate
-    Locale:
-      type: string
-      enum:
-      - de-DE
-      - da-DK
-      - en-US
-      - sv-SE
-      - nl-NL
-    Currency:
-      type: string
-      enum:
-      - EUR
-      - DKK
-      - SEK

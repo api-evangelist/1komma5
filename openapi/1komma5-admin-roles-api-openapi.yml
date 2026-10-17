@@ -25,6 +25,16 @@ paths:
       - Admin Roles
 components:
   schemas:
+    AssignableRolesResponseDto:
+      type: object
+      properties:
+        roles:
+          description: List of roles the current user can assign
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleDto'
+      required:
+      - roles
     RoleDto:
       type: object
       properties:
@@ -47,13 +57,3 @@ components:
       - name
       - displayName
       - category
-    AssignableRolesResponseDto:
-      type: object
-      properties:
-        roles:
-          description: List of roles the current user can assign
-          type: array
-          items:
-            $ref: '#/components/schemas/RoleDto'
-      required:
-      - roles

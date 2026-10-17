@@ -128,18 +128,6 @@ paths:
       - Customers
 components:
   schemas:
-    CreateCustomerResponseDto:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the customer was successfully created
-        customerId:
-          type: number
-          description: The ID of the newly created customer
-      required:
-      - success
-      - customerId
     CustomerResponseDto:
       type: object
       properties:
@@ -229,66 +217,9 @@ components:
       - activeTenantId
       - lastName
       - firstName
-    UpdateCustomerRequestDto:
+    Links:
       type: object
-      properties:
-        salesContact:
-          type:
-          - number
-          - 'null'
-          description: Sales contact id
-        phone:
-          type:
-          - string
-          - 'null'
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        company:
-          type:
-          - string
-          - 'null'
-        salutation:
-          type:
-          - string
-          - 'null'
-        zohoId:
-          type:
-          - string
-          - 'null'
-        dateOfBirth:
-          type:
-          - string
-          - 'null'
-          format: date
-        address:
-          allOf:
-          - $ref: '#/components/schemas/AddressDto'
-      required:
-      - email
-      - firstName
-      - lastName
-      - address
-    CreateCustomerRequestDto:
-      type: object
-      properties:
-        customer:
-          $ref: '#/components/schemas/CustomerCreateInputDto'
-        site:
-          $ref: '#/components/schemas/SiteFormFieldsDto'
-        country:
-          type: string
-          enum:
-          - DE
-          - DK
-          - SE
-      required:
-      - customer
-      - site
-      - country
+      properties: {}
     CustomerCreateInputDto:
       type: object
       properties:
@@ -355,6 +286,66 @@ components:
           - 'null'
       required:
       - zipcode
+    CreateCustomerRequestDto:
+      type: object
+      properties:
+        customer:
+          $ref: '#/components/schemas/CustomerCreateInputDto'
+        site:
+          $ref: '#/components/schemas/SiteFormFieldsDto'
+        country:
+          type: string
+          enum:
+          - DE
+          - DK
+          - SE
+      required:
+      - customer
+      - site
+      - country
+    UpdateCustomerRequestDto:
+      type: object
+      properties:
+        salesContact:
+          type:
+          - number
+          - 'null'
+          description: Sales contact id
+        phone:
+          type:
+          - string
+          - 'null'
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        company:
+          type:
+          - string
+          - 'null'
+        salutation:
+          type:
+          - string
+          - 'null'
+        zohoId:
+          type:
+          - string
+          - 'null'
+        dateOfBirth:
+          type:
+          - string
+          - 'null'
+          format: date
+        address:
+          allOf:
+          - $ref: '#/components/schemas/AddressDto'
+      required:
+      - email
+      - firstName
+      - lastName
+      - address
     PaginatedResponseDto:
       type: object
       properties:
@@ -414,12 +405,18 @@ components:
       required:
       - maxPanels
       - powerConsumptionYear
-    Links:
+    CreateCustomerResponseDto:
       type: object
-      properties: {}
-    BasketOption:
-      type: object
-      properties: {}
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the customer was successfully created
+        customerId:
+          type: number
+          description: The ID of the newly created customer
+      required:
+      - success
+      - customerId
     CustomerDetailsResponseDto:
       type: object
       properties:
@@ -461,6 +458,12 @@ components:
       required:
       - customer
       - sites
+    Currency:
+      type: string
+      enum:
+      - EUR
+      - DKK
+      - SEK
     TenantDto:
       type: object
       properties:
@@ -476,6 +479,112 @@ components:
       - name
       - id
       - country
+    SiteResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Site ID - hashed
+        hashId:
+          type: string
+          description: HashId
+        maxPanels:
+          type:
+          - object
+          - 'null'
+          description: Maximum number of panels
+        powerConsumptionYear:
+          type:
+          - object
+          - 'null'
+          description: Annual power consumption
+        ownersCount:
+          type: number
+          description: Number of owners
+        address:
+          type:
+          - object
+          - 'null'
+          description: Site address
+        zohoId:
+          type: object
+          description: Zoho IDs and CRM deal stages
+          properties:
+            pv:
+              type:
+              - string
+              - 'null'
+              description: PV Zoho ID
+            pvLink:
+              type:
+              - string
+              - 'null'
+              description: PV Zoho Link
+            pvDealStage:
+              type:
+              - string
+              - 'null'
+              description: PV deal stage key from CRM sync
+            pvNewOffersAllowed:
+              type: boolean
+              description: Whether the PV deal can receive new offers
+            hp:
+              type:
+              - string
+              - 'null'
+              description: HP Zoho ID
+            hpLink:
+              type:
+              - string
+              - 'null'
+              description: HP Zoho Link
+            hpDealStage:
+              type:
+              - string
+              - 'null'
+              description: Heat deal stage key from CRM sync
+            hpNewOffersAllowed:
+              type: boolean
+              description: Whether the heat deal can receive new offers
+        basket:
+          description: Site basket
+          allOf:
+          - $ref: '#/components/schemas/Basket'
+        images:
+          description: Site images
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteImage'
+      required:
+      - id
+      - hashId
+      - maxPanels
+      - powerConsumptionYear
+      - ownersCount
+      - address
+      - zohoId
+      - basket
+      - images
+    SiteImageMeta:
+      type: object
+      properties:
+        createdAt:
+          type: object
+          description: Creation timestamp
+        updatedAt:
+          type: object
+          description: Last update timestamp
+        name:
+          type: string
+          description: Image name
+        fileName:
+          type: string
+          description: Image file name
+      required:
+      - createdAt
+      - updatedAt
+      - name
+      - fileName
     CountryCode:
       type: string
       enum:
@@ -483,49 +592,9 @@ components:
       - DK
       - SE
       - NL
-    CountryDto:
+    BasketOption:
       type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
-          description: Country name
-        countryCode:
-          allOf:
-          - $ref: '#/components/schemas/CountryCode'
-        locale:
-          allOf:
-          - $ref: '#/components/schemas/Locale'
-        currency:
-          allOf:
-          - $ref: '#/components/schemas/Currency'
-        vatRate:
-          type: number
-          description: Default VAT rate as percentage
-      required:
-      - id
-      - name
-      - countryCode
-      - locale
-      - currency
-      - vatRate
-    Basket:
-      type: object
-      properties:
-        options:
-          description: All the options that can be selected for the site's basket
-          type: array
-          items:
-            $ref: '#/components/schemas/BasketOption'
-        selectedOptions:
-          description: Selected options related with the site
-          type: array
-          items:
-            type: number
-      required:
-      - options
-      - selectedOptions
+      properties: {}
     CustomerFullSchemaDto:
       type: object
       properties:
@@ -642,126 +711,6 @@ components:
       - lastName
       - firstName
       - tenant
-    SiteImageMeta:
-      type: object
-      properties:
-        createdAt:
-          type: object
-          description: Creation timestamp
-        updatedAt:
-          type: object
-          description: Last update timestamp
-        name:
-          type: string
-          description: Image name
-        fileName:
-          type: string
-          description: Image file name
-      required:
-      - createdAt
-      - updatedAt
-      - name
-      - fileName
-    Locale:
-      type: string
-      enum:
-      - de-DE
-      - da-DK
-      - en-US
-      - sv-SE
-      - nl-NL
-    Currency:
-      type: string
-      enum:
-      - EUR
-      - DKK
-      - SEK
-    SiteResponseDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Site ID - hashed
-        hashId:
-          type: string
-          description: HashId
-        maxPanels:
-          type:
-          - object
-          - 'null'
-          description: Maximum number of panels
-        powerConsumptionYear:
-          type:
-          - object
-          - 'null'
-          description: Annual power consumption
-        ownersCount:
-          type: number
-          description: Number of owners
-        address:
-          type:
-          - object
-          - 'null'
-          description: Site address
-        zohoId:
-          type: object
-          description: Zoho IDs and CRM deal stages
-          properties:
-            pv:
-              type:
-              - string
-              - 'null'
-              description: PV Zoho ID
-            pvLink:
-              type:
-              - string
-              - 'null'
-              description: PV Zoho Link
-            pvDealStage:
-              type:
-              - string
-              - 'null'
-              description: PV deal stage key from CRM sync
-            pvNewOffersAllowed:
-              type: boolean
-              description: Whether the PV deal can receive new offers
-            hp:
-              type:
-              - string
-              - 'null'
-              description: HP Zoho ID
-            hpLink:
-              type:
-              - string
-              - 'null'
-              description: HP Zoho Link
-            hpDealStage:
-              type:
-              - string
-              - 'null'
-              description: Heat deal stage key from CRM sync
-            hpNewOffersAllowed:
-              type: boolean
-              description: Whether the heat deal can receive new offers
-        basket:
-          description: Site basket
-          allOf:
-          - $ref: '#/components/schemas/Basket'
-        images:
-          description: Site images
-          type: array
-          items:
-            $ref: '#/components/schemas/SiteImage'
-      required:
-      - id
-      - hashId
-      - maxPanels
-      - powerConsumptionYear
-      - ownersCount
-      - address
-      - zohoId
-      - basket
-      - images
     SalesContactCustomerDto:
       type: object
       properties:
@@ -775,6 +724,30 @@ components:
       - id
       - name
       - email
+    Basket:
+      type: object
+      properties:
+        options:
+          description: All the options that can be selected for the site's basket
+          type: array
+          items:
+            $ref: '#/components/schemas/BasketOption'
+        selectedOptions:
+          description: Selected options related with the site
+          type: array
+          items:
+            type: number
+      required:
+      - options
+      - selectedOptions
+    Locale:
+      type: string
+      enum:
+      - de-DE
+      - da-DK
+      - en-US
+      - sv-SE
+      - nl-NL
     SiteImage:
       type: object
       properties:
@@ -796,3 +769,30 @@ components:
       - uuid
       - src
       - meta
+    CountryDto:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+          description: Country name
+        countryCode:
+          allOf:
+          - $ref: '#/components/schemas/CountryCode'
+        locale:
+          allOf:
+          - $ref: '#/components/schemas/Locale'
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/Currency'
+        vatRate:
+          type: number
+          description: Default VAT rate as percentage
+      required:
+      - id
+      - name
+      - countryCode
+      - locale
+      - currency
+      - vatRate

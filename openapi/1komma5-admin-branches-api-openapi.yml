@@ -145,11 +145,6 @@ components:
       enum:
       - asc
       - desc
-    AdminBranchSortField:
-      type: string
-      enum:
-      - name
-      - zohoId
     PaginatedAdminBranchesResponseDto:
       type: object
       properties:
@@ -165,6 +160,15 @@ components:
       required:
       - data
       - meta
+    UpdateAdminBranchDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Branch name
+          example: Berlin Branch
+          minLength: 1
+          maxLength: 255
     AdminBranchCountryDto:
       type: object
       properties:
@@ -184,50 +188,6 @@ components:
       - id
       - name
       - countryCode
-    CreateAdminBranchDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Branch name
-          example: Berlin Branch
-          minLength: 1
-          maxLength: 255
-      required:
-      - name
-    PaginationMetaDto:
-      type: object
-      properties:
-        total:
-          type: number
-          description: Total number of items
-          example: 100
-        page:
-          type: number
-          description: Current page number
-          example: 1
-        limit:
-          type: number
-          description: Number of items per page
-          example: 20
-        totalPages:
-          type: number
-          description: Total number of pages
-          example: 5
-      required:
-      - total
-      - page
-      - limit
-      - totalPages
-    UpdateAdminBranchDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Branch name
-          example: Berlin Branch
-          minLength: 1
-          maxLength: 255
     AdminBranchDto:
       type: object
       properties:
@@ -254,3 +214,43 @@ components:
       - name
       - zohoId
       - country
+    PaginationMetaDto:
+      type: object
+      properties:
+        total:
+          type: number
+          description: Total number of items
+          example: 100
+        page:
+          type: number
+          description: Current page number
+          example: 1
+        limit:
+          type: number
+          description: Number of items per page
+          example: 20
+        totalPages:
+          type: number
+          description: Total number of pages
+          example: 5
+      required:
+      - total
+      - page
+      - limit
+      - totalPages
+    AdminBranchSortField:
+      type: string
+      enum:
+      - name
+      - zohoId
+    CreateAdminBranchDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Branch name
+          example: Berlin Branch
+          minLength: 1
+          maxLength: 255
+      required:
+      - name

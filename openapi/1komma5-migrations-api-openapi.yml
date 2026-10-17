@@ -394,7 +394,7 @@ paths:
       - Migrations
 components:
   schemas:
-    ConfigCustomerMigrationResponseDto:
+    ConfigMetricsMigrationResponseDto:
       type: object
       properties:
         success:
@@ -405,7 +405,7 @@ components:
           description: The config ID that was migrated
         columnsUpdated:
           type: number
-          description: Number of columns updated (out of 9 possible columns)
+          description: Number of columns updated (out of 20 possible columns)
         message:
           type: string
           description: Optional message about the migration
@@ -416,28 +416,6 @@ components:
       - success
       - configId
       - columnsUpdated
-    ConfigMarketComponentsMigrationResponseDto:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the migration was successful
-        configId:
-          type: number
-          description: The config ID that was migrated
-        marketComponentsCreated:
-          type: number
-          description: Number of market component rows created
-        message:
-          type: string
-          description: Optional message about the migration
-        skipped:
-          type: boolean
-          description: Whether the step was skipped (already migrated, not frozen, no data)
-      required:
-      - success
-      - configId
-      - marketComponentsCreated
     ConfigEffectivePricesMigrationResponseDto:
       type: object
       properties:
@@ -460,7 +438,7 @@ components:
       - success
       - configId
       - rowsCreated
-    ConfigTableMigrationResponseDto:
+    ConfigDocumentsMigrationResponseDto:
       type: object
       properties:
         success:
@@ -469,12 +447,38 @@ components:
         configId:
           type: number
           description: The config ID that was migrated
-        columnsUpdated:
+        documentsCreated:
           type: number
-          description: Number of columns updated (out of 6 possible columns)
+          description: Number of documents created
         message:
           type: string
           description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - documentsCreated
+    ConfigCalculationMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+          example: true
+        configId:
+          type: number
+          description: The ID of the config that was migrated
+          example: 123
+        columnsUpdated:
+          type: number
+          description: Number of columns updated in the config_calculation table
+          example: 15
+        message:
+          type: string
+          description: Optional message about the migration status
+          example: Successfully updated 15 column(s)
         skipped:
           type: boolean
           description: Whether the step was skipped (already migrated, not frozen, no data)
@@ -504,6 +508,50 @@ components:
       - success
       - configId
       - marginsCreated
+    ConfigCustomerMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        columnsUpdated:
+          type: number
+          description: Number of columns updated (out of 9 possible columns)
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - columnsUpdated
+    ConfigProductsMigrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the migration was successful
+        configId:
+          type: number
+          description: The config ID that was migrated
+        productsUpdated:
+          type: number
+          description: Number of products updated
+        message:
+          type: string
+          description: Optional message about the migration
+        skipped:
+          type: boolean
+          description: Whether the step was skipped (already migrated, not frozen, no data)
+      required:
+      - success
+      - configId
+      - productsUpdated
     ConfigConsumptionMigrationResponseDto:
       type: object
       properties:
@@ -526,7 +574,7 @@ components:
       - success
       - configId
       - columnsUpdated
-    ConfigMetricsMigrationResponseDto:
+    ConfigCalculationLegacyMigrationResponseDto:
       type: object
       properties:
         success:
@@ -537,36 +585,10 @@ components:
           description: The config ID that was migrated
         columnsUpdated:
           type: number
-          description: Number of columns updated (out of 20 possible columns)
+          description: Number of columns updated (out of 9 possible columns)
         message:
           type: string
           description: Optional message about the migration
-        skipped:
-          type: boolean
-          description: Whether the step was skipped (already migrated, not frozen, no data)
-      required:
-      - success
-      - configId
-      - columnsUpdated
-    ConfigCalculationMigrationResponseDto:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the migration was successful
-          example: true
-        configId:
-          type: number
-          description: The ID of the config that was migrated
-          example: 123
-        columnsUpdated:
-          type: number
-          description: Number of columns updated in the config_calculation table
-          example: 15
-        message:
-          type: string
-          description: Optional message about the migration status
-          example: Successfully updated 15 column(s)
         skipped:
           type: boolean
           description: Whether the step was skipped (already migrated, not frozen, no data)
@@ -596,7 +618,7 @@ components:
       - success
       - configId
       - rowsCreated
-    ConfigProductsMigrationResponseDto:
+    ConfigMarketComponentsMigrationResponseDto:
       type: object
       properties:
         success:
@@ -605,9 +627,9 @@ components:
         configId:
           type: number
           description: The config ID that was migrated
-        productsUpdated:
+        marketComponentsCreated:
           type: number
-          description: Number of products updated
+          description: Number of market component rows created
         message:
           type: string
           description: Optional message about the migration
@@ -617,30 +639,8 @@ components:
       required:
       - success
       - configId
-      - productsUpdated
-    ConfigDocumentsMigrationResponseDto:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the migration was successful
-        configId:
-          type: number
-          description: The config ID that was migrated
-        documentsCreated:
-          type: number
-          description: Number of documents created
-        message:
-          type: string
-          description: Optional message about the migration
-        skipped:
-          type: boolean
-          description: Whether the step was skipped (already migrated, not frozen, no data)
-      required:
-      - success
-      - configId
-      - documentsCreated
-    ConfigCalculationLegacyMigrationResponseDto:
+      - marketComponentsCreated
+    ConfigTableMigrationResponseDto:
       type: object
       properties:
         success:
@@ -651,7 +651,7 @@ components:
           description: The config ID that was migrated
         columnsUpdated:
           type: number
-          description: Number of columns updated (out of 9 possible columns)
+          description: Number of columns updated (out of 6 possible columns)
         message:
           type: string
           description: Optional message about the migration

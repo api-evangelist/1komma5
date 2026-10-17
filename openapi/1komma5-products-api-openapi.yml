@@ -49,6 +49,16 @@ paths:
       - Products
 components:
   schemas:
+    CategoryDTO:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+      required:
+      - id
+      - name
     ProductDTO:
       type: object
       properties:
@@ -109,49 +119,6 @@ components:
       - canEditCustomPrice
       - canEditCustomInvoiceLine
       - canEditOffer
-    PriceDTO:
-      type: object
-      properties:
-        relative:
-          type: number
-      required:
-      - relative
-    ProductGetAllResponse:
-      type: object
-      properties:
-        products:
-          description: List of products
-          items:
-            type: array
-          type: array
-        categories:
-          description: List of categories associated with the products
-          items:
-            type: array
-          type: array
-      required:
-      - products
-      - categories
-    BrandDTO:
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
-      required:
-      - id
-      - name
-    CategoryDTO:
-      type: object
-      properties:
-        id:
-          type: number
-        name:
-          type: string
-      required:
-      - id
-      - name
     MediaDTO:
       type: object
       properties:
@@ -171,3 +138,36 @@ components:
           type: string
       required:
       - url
+    ProductGetAllResponse:
+      type: object
+      properties:
+        products:
+          description: List of products
+          items:
+            type: array
+          type: array
+        categories:
+          description: List of categories associated with the products
+          items:
+            type: array
+          type: array
+      required:
+      - products
+      - categories
+    PriceDTO:
+      type: object
+      properties:
+        relative:
+          type: number
+      required:
+      - relative
+    BrandDTO:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+      required:
+      - id
+      - name
