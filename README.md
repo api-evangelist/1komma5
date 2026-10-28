@@ -1,4 +1,4 @@
-# 1Komma5
+# 1KOMMA5°
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,5 +64,172 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-1Komma5 is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.hiive.com/securities/1komma5-stock
+1KOMMA5° (1Komma5 Grad) is a Hamburg, Germany headquartered smart-energy company that sells, installs and operates integrated residential energy systems — rooftop photovoltaics, battery storage, heat pumps and EV charging — and ties them together with Heartbeat AI, its energy-management platform. Heartbeat aggregates customer hardware into one of Europe's largest residential virtual power plants, optimising self-consumption and trading household flexibility against day-ahead and intraday electricity markets. The company operates across Germany, Australia, the Netherlands, Sweden, Finland, Denmark and Belgium. Its machine-readable surface is small and mostly internal: a live OpenAPI 3.0 for the Offer Tool API used by its sales and partner network, an Auth0-backed OIDC provider at auth.1komma5grad.com, and the undocumented Heartbeat customer API that its mobile apps and community-built Home Assistant integrations consume.
+
+**Areas:** Company · Energy · Solar · Renewable Energy · Smart Home · Electric Vehicles · Heat Pumps · Virtual Power Plant · Energy Management · Germany
+
+## 1KOMMA5° on APIs.io
+
+Everything profiled for 1KOMMA5° is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/1komma5/](https://apis.io/providers/1komma5/)** — or go straight to one of the APIs or properties below.
+
+### APIs (28)
+
+- [1KOMMA5° Heartbeat API](https://apis.io/apis/1komma5/1komma5-heartbeat-api/) — The Heartbeat API is the customer-facing energy API behind the 1KOMMA5° mobile apps and the Heartbeat AI platform — sites and systems, live power snapshots…
+- [1KOMMA5° Admin - Audit Logs API](https://apis.io/apis/1komma5/1komma5-admin-audit-logs-api/) — The Admin - Audit Logs API from 1KOMMA5° — 1 operation(s) for admin - audit logs.
+- [1KOMMA5° Admin - Branches API](https://apis.io/apis/1komma5/1komma5-admin-branches-api/) — The Admin - Branches API from 1KOMMA5° — 2 operation(s) for admin - branches.
+- [1KOMMA5° Admin - Concepts API](https://apis.io/apis/1komma5/1komma5-admin-concepts-api/) — The Admin - Concepts API from 1KOMMA5° — 2 operation(s) for admin - concepts.
+- [1KOMMA5° Admin - Countries API](https://apis.io/apis/1komma5/1komma5-admin-countries-api/) — The Admin - Countries API from 1KOMMA5° — 1 operation(s) for admin - countries.
+- [1KOMMA5° Admin - Maintenance API](https://apis.io/apis/1komma5/1komma5-admin-maintenance-api/) — The Admin - Maintenance API from 1KOMMA5° — 1 operation(s) for admin - maintenance.
+- [1KOMMA5° Admin - Megasearch API](https://apis.io/apis/1komma5/1komma5-admin-megasearch-api/) — The Admin - Megasearch API from 1KOMMA5° — 1 operation(s) for admin - megasearch.
+- [1KOMMA5° Admin - Products API](https://apis.io/apis/1komma5/1komma5-admin-products-api/) — The Admin - Products API from 1KOMMA5° — 5 operation(s) for admin - products.
+- [1KOMMA5° Admin - Roles API](https://apis.io/apis/1komma5/1komma5-admin-roles-api/) — The Admin - Roles API from 1KOMMA5° — 1 operation(s) for admin - roles.
+- [1KOMMA5° Admin - Users API](https://apis.io/apis/1komma5/1komma5-admin-users-api/) — The Admin - Users API from 1KOMMA5° — 6 operation(s) for admin - users.
+- [1KOMMA5° Concepts API](https://apis.io/apis/1komma5/1komma5-concepts-api/) — The Concepts API from 1KOMMA5° — 1 operation(s) for concepts.
+- [1KOMMA5° Configs API](https://apis.io/apis/1komma5/1komma5-configs-api/) — The Configs API from 1KOMMA5° — 3 operation(s) for configs.
+- [1KOMMA5° CRM API](https://apis.io/apis/1komma5/1komma5-crm-api/) — The CRM API from 1KOMMA5° — 2 operation(s) for crm.
+- [1KOMMA5° Customers API](https://apis.io/apis/1komma5/1komma5-customers-api/) — The Customers API from 1KOMMA5° — 3 operation(s) for customers.
+- [1KOMMA5° Effective Price API](https://apis.io/apis/1komma5/1komma5-effectiveprice-api/) — The EffectivePrice API from 1KOMMA5° — 2 operation(s) for effectiveprice.
+- [1KOMMA5° Health API](https://apis.io/apis/1komma5/1komma5-health-api/) — The Health API from 1KOMMA5° — 1 operation(s) for health.
+- [1KOMMA5° Index API](https://apis.io/apis/1komma5/1komma5-index-api/) — The index API from 1KOMMA5° — 1 operation(s) for index.
+- [1KOMMA5° Migration Frozen State API](https://apis.io/apis/1komma5/1komma5-migration-frozen-state-api/) — The migration-frozen-state API from 1KOMMA5° — 1 operation(s) for migration-frozen-state.
+- [1KOMMA5° Migrations API](https://apis.io/apis/1komma5/1komma5-migrations-api/) — The Migrations API from 1KOMMA5° — 12 operation(s) for migrations.
+- [1KOMMA5° Payment Options API](https://apis.io/apis/1komma5/1komma5-payment-options-api/) — The payment-options API from 1KOMMA5° — 1 operation(s) for payment-options.
+- [1KOMMA5° PDF API](https://apis.io/apis/1komma5/1komma5-pdf-api/) — The PDF API from 1KOMMA5° — 1 operation(s) for pdf.
+- [1KOMMA5° Products API](https://apis.io/apis/1komma5/1komma5-products-api/) — The Products API from 1KOMMA5° — 2 operation(s) for products.
+- [1KOMMA5° Sales Users API](https://apis.io/apis/1komma5/1komma5-sales-users-api/) — The Sales Users API from 1KOMMA5° — 1 operation(s) for sales users.
+- [1KOMMA5° Site API](https://apis.io/apis/1komma5/1komma5-site-api/) — The site API from 1KOMMA5° — 1 operation(s) for site.
+- [1KOMMA5° Sites API](https://apis.io/apis/1komma5/1komma5-sites-api/) — The Sites API from 1KOMMA5° — 1 operation(s) for sites.
+- [1KOMMA5° Tenants API](https://apis.io/apis/1komma5/1komma5-tenants-api/) — The Tenants API from 1KOMMA5° — 2 operation(s) for tenants.
+- [1KOMMA5° Test API](https://apis.io/apis/1komma5/1komma5-test-api/) — The Test API from 1KOMMA5° — 1 operation(s) for test.
+- [1KOMMA5° Users API](https://apis.io/apis/1komma5/1komma5-users-api/) — The Users API from 1KOMMA5° — 4 operation(s) for users.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [1komma5-mcp.yml](https://apis.io/servers/1komma5/1komma5-mcp-yml/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [1Komma5 Agentic Access](https://apis.io/agentic-access/1komma5/1komma5-agentic-access/)
+
+#### Collections (28)
+
+Postman and Open Collection request collections.
+
+- [Offer Tool Admin - Audit Logs API](https://apis.io/collections/1komma5/open-1komma5-admin-audit-logs-api/)
+- [Offer Tool Admin - Branches API](https://apis.io/collections/1komma5/open-1komma5-admin-branches-api/)
+- [Offer Tool Admin - Concepts API](https://apis.io/collections/1komma5/open-1komma5-admin-concepts-api/)
+- [Offer Tool Admin - Countries API](https://apis.io/collections/1komma5/open-1komma5-admin-countries-api/)
+- [Offer Tool Admin - Maintenance API](https://apis.io/collections/1komma5/open-1komma5-admin-maintenance-api/)
+- [Offer Tool Admin - Megasearch API](https://apis.io/collections/1komma5/open-1komma5-admin-megasearch-api/)
+- [Offer Tool Admin - Products API](https://apis.io/collections/1komma5/open-1komma5-admin-products-api/)
+- [Offer Tool Admin - Roles API](https://apis.io/collections/1komma5/open-1komma5-admin-roles-api/)
+- [Offer Tool Admin - Users API](https://apis.io/collections/1komma5/open-1komma5-admin-users-api/)
+- [Offer Tool Concepts API](https://apis.io/collections/1komma5/open-1komma5-concepts-api/)
+- [Offer Tool Configs API](https://apis.io/collections/1komma5/open-1komma5-configs-api/)
+- [Offer Tool CRM API](https://apis.io/collections/1komma5/open-1komma5-crm-api/)
+- [Offer Tool Customers API](https://apis.io/collections/1komma5/open-1komma5-customers-api/)
+- [Offer Tool Effective Price API](https://apis.io/collections/1komma5/open-1komma5-effectiveprice-api/)
+- [Offer Tool Health API](https://apis.io/collections/1komma5/open-1komma5-health-api/)
+- [Offer Tool Index API](https://apis.io/collections/1komma5/open-1komma5-index-api/)
+- [Offer Tool Migration Frozen State API](https://apis.io/collections/1komma5/open-1komma5-migration-frozen-state-api/)
+- [Offer Tool Migrations API](https://apis.io/collections/1komma5/open-1komma5-migrations-api/)
+- [Offer Tool API](https://apis.io/collections/1komma5/open-1komma5-offer-tool-openapi-original/)
+- [Offer Tool Payment Options API](https://apis.io/collections/1komma5/open-1komma5-payment-options-api/)
+- [Offer Tool PDF API](https://apis.io/collections/1komma5/open-1komma5-pdf-api/)
+- [Offer Tool Products API](https://apis.io/collections/1komma5/open-1komma5-products-api/)
+- [Offer Tool Sales Users API](https://apis.io/collections/1komma5/open-1komma5-sales-users-api/)
+- [Offer Tool Site API](https://apis.io/collections/1komma5/open-1komma5-site-api/)
+- [Offer Tool Sites API](https://apis.io/collections/1komma5/open-1komma5-sites-api/)
+- …and 3 more published on APIs.io
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [1Komma5 Offer Tool Overlay](https://apis.io/overlays/1komma5/1komma5-offer-tool-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [1Komma5 Authentication](https://apis.io/security/1komma5/1komma5-authentication/)
+- [1Komma5 Domain Security](https://apis.io/security/1komma5/1komma5-domain-security/)
+- [1Komma5 Vulnerability Disclosure](https://apis.io/security/1komma5/1komma5-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [1Komma5 Scopes](https://apis.io/scopes/1komma5/1komma5-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://1komma5.com/en/)
+- [Support](https://1komma5.com/en/about-us/contact/)
+- [Blog](https://1komma5.com/en/press/press-releases/)
+- [Security](https://1komma5.com/.well-known/security.txt)
+- [Terms of service](https://1komma5.com/de/legal/agb/)
+- [Privacy policy](https://1komma5.com/en/legal/privacy-policy/)
+
+## API Evangelist rating
+
+**Kin Score 29.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 35.5 |
+| Contract governance | 4.5 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 20.8 |
+| Access clarity | 21.1 |
+
+**Agent readiness 31.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+
+**Regulatory alignment 39.3** — Energy & Utilities
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/1komma5/](https://apis.io/providers/1komma5/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for 1KOMMA5°: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/1komma5/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
