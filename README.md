@@ -117,7 +117,7 @@ Model Context Protocol servers that expose the API to agents.
 
 Which operations an agent can call, which act, and which need a human in the loop.
 
-- [1Komma5 Agentic Access](https://apis.io/agentic-access/1komma5/1komma5-agentic-access/)
+- [1KOMMA5° Agentic Access](https://apis.io/agentic-access/1komma5/1komma5-agentic-access/)
 
 #### Collections (28)
 
@@ -154,21 +154,27 @@ Postman and Open Collection request collections.
 
 OpenAPI overlays, including conversational phrasing for each operation.
 
-- [1Komma5 Offer Tool Overlay](https://apis.io/overlays/1komma5/1komma5-offer-tool-overlay/)
+- [1KOMMA5° Offer Tool Overlay](https://apis.io/overlays/1komma5/1komma5-offer-tool-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [1KOMMA5° API Rules](https://apis.io/rules/1komma5/1komma5-rules/)
 
 #### Security (3)
 
 Authentication, trust centre, and vulnerability disclosure.
 
-- [1Komma5 Authentication](https://apis.io/security/1komma5/1komma5-authentication/)
-- [1Komma5 Domain Security](https://apis.io/security/1komma5/1komma5-domain-security/)
-- [1Komma5 Vulnerability Disclosure](https://apis.io/security/1komma5/1komma5-vulnerability-disclosure/)
+- [1KOMMA5° Authentication](https://apis.io/security/1komma5/1komma5-authentication/)
+- [1KOMMA5° Domain Security](https://apis.io/security/1komma5/1komma5-domain-security/)
+- [1KOMMA5° Vulnerability Disclosure](https://apis.io/security/1komma5/1komma5-vulnerability-disclosure/)
 
 #### OAuth scopes (1)
 
 The permissions the API asks for.
 
-- [1Komma5 Scopes](https://apis.io/scopes/1komma5/1komma5-scopes/)
+- [1KOMMA5° Scopes](https://apis.io/scopes/1komma5/1komma5-scopes/)
 
 ## Where to find this API
 
@@ -183,18 +189,18 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 29.0** — thin · rubric 0.24.0 · scored 2026-10-17
+**Kin Score 31.9** — thin · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
 | Discoverability | 73.2 |
 | Contract quality | 35.5 |
-| Contract governance | 4.5 |
-| Operational transparency | 5.3 |
+| Contract governance | 18.2 |
+| Operational transparency | 4.8 |
 | Developer ergonomics | 20.8 |
-| Access clarity | 21.1 |
+| Access clarity | 27.7 |
 
-**Agent readiness 31.5** — agent-ready
+**Agent readiness 31.2** — agent-ready
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -217,6 +223,12 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Protected Resource Metadata | — |
 | Dynamic Client Registration | yes |
 | Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | na |
 
 **Regulatory alignment 39.3** — Energy & Utilities
 
